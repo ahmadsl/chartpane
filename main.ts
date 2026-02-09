@@ -16,7 +16,7 @@ if (process.argv.includes("--stdio")) {
   app.use(cors());
   app.use(express.json());
 
-  app.post("/mcp", async (req, res) => {
+  app.post("/", async (req, res) => {
     const transport = new StreamableHTTPServerTransport({
       sessionIdGenerator: undefined,
       enableJsonResponse: true,
@@ -28,6 +28,6 @@ if (process.argv.includes("--stdio")) {
 
   const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3001;
   app.listen(PORT, () => {
-    console.log(`ChartPane MCP server running at http://localhost:${PORT}/mcp`);
+    console.log(`ChartPane MCP server running at http://localhost:${PORT}`);
   });
 }

@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 npm run build          # Type-check (tsc --noEmit) + bundle UI into dist/mcp-app.html
-npm start              # Watch-build UI + run MCP server (stdio mode)
+npm start              # Watch-build UI + run MCP server (HTTP mode, port 3001)
 npm run dev            # Watch-build UI + run MCP server + sandbox dev server (localhost:3456)
 npm test               # Run all tests (vitest)
 npm run test:watch     # Run tests in watch mode
@@ -16,6 +16,9 @@ npx vitest run tests/unit/config.test.ts
 
 # Run tests matching a name pattern
 npx vitest run -t "scatter"
+
+# Run MCP server in stdio mode (for Claude Desktop)
+npx tsx main.ts --stdio
 ```
 
 ## Architecture
@@ -25,14 +28,16 @@ MCP App that renders Chart.js charts inline in Claude's UI. Two tools: `render_c
 ### Data Flow
 
 ```
-Claude tool call → server.ts (validate + build Chart.js config) → structuredContent
-    → mcp-app.ts (ontoolresult handler) → Chart.js renders to canvas in iframe
+Claude tool call → server.ts (validate, pass through ChartInput as structuredContent)
+    → mcp-app.ts (ontoolresult) → buildChartConfig() → Chart.js renders to canvas
 ```
+
+The server is intentionally thin — it validates input and returns the raw `ChartInput` as `structuredContent`. All Chart.js config transformation happens browser-side in `shared/config.ts`.
 
 ### Module Layout
 
-- **`server.ts`** — MCP server: tool registration via `registerAppTool`/`registerAppResource`, validation, config building. Returns `structuredContent` with chart config.
-- **`main.ts`** — Entry point: stdio mode (Claude Desktop) or HTTP mode (port 3001, `/mcp` endpoint).
+- **`server.ts`** — MCP server: tool registration via `registerAppTool`/`registerAppResource`, validation. Returns validated `ChartInput` as `structuredContent`.
+- **`main.ts`** — Entry point: HTTP mode by default (port 3001, `/` endpoint), or `--stdio` flag for Claude Desktop.
 - **`src/mcp-app.ts`** — Browser-side UI: `App` from `@modelcontextprotocol/ext-apps`, `ontoolresult`/`ontoolinput`/`onhostcontextchanged` handlers, Chart.js rendering.
 - **`shared/`** — Pure modules imported by both server and UI:
   - `types.ts` — Zod schemas (ChartInput, DashboardInput, RenderResult)
@@ -43,11 +48,13 @@ Claude tool call → server.ts (validate + build Chart.js config) → structured
 
 ### Build Pipeline
 
-`mcp-app.html` → Vite + `vite-plugin-singlefile` → `dist/mcp-app.html` (single bundled file). The `INPUT` env var tells Vite which HTML file to use as Rollup entry. The server reads `dist/mcp-app.html` at runtime and serves it as the UI resource.
+`mcp-app.html` → Vite + `vite-plugin-singlefile` → `dist/mcp-app.html` (single bundled file with Chart.js + all CSS/JS inlined). The `INPUT` env var sets the Rollup entry in `vite.config.ts` (`rollupOptions.input: process.env.INPUT`). The server reads `dist/mcp-app.html` at runtime and serves it as the UI resource via `registerAppResource`.
+
+**Note:** `INPUT=` is a Unix-only env var syntax. The `cross-env` devDependency exists but npm scripts don't use it, so builds won't work on Windows as-is.
 
 ### Sandbox Dev Server
 
-`sandbox/dev-server.ts` runs on port 3456 with Vite middleware mode. **Critical ordering:** API routes (`/api/*`, `/sandbox/fixture/*`) must be registered BEFORE `vite.middlewares`, but the HTML route (`/sandbox`) must be registered AFTER, to avoid html-proxy MIME type conflicts. `transformIndexHtml` path must include `.html` suffix.
+`sandbox/dev-server.ts` runs on port 3456 with Vite middleware mode. `sandbox/sandbox.html` is the page served at `/sandbox` — it imports shared modules directly (TS), which Vite transforms on the fly. **Critical ordering:** API routes (`/api/*`, `/sandbox/fixture/*`) must be registered BEFORE `vite.middlewares`, but the HTML route (`/sandbox`) must be registered AFTER, to avoid html-proxy MIME type conflicts. `transformIndexHtml` path must include `.html` suffix.
 
 ## Testing
 
