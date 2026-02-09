@@ -1,0 +1,41 @@
+#loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.chart-container {
+  width: 100%;
+  height: 400px;
+  padding: 16px;
+  position: relative;
+}
+
+.dashboard-container {
+  width: 100%;
+  padding: 16px;
+}
+
+.dashboard-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--color-text-primary);
+}
+
+.dashboard-grid {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+}
+
+.dashboard-cell {
+  position: relative;
+  height: 300px;
+  background: var(--color-background-secondary);
+  border-radius: 8px;
+  padding: 12px;
+}

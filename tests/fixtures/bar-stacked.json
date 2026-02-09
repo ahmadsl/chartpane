@@ -1,0 +1,12 @@
+{
+  "type": "bar",
+  "title": "Revenue vs Expenses",
+  "data": {
+    "labels": ["Jan", "Feb", "Mar", "Apr"],
+    "datasets": [
+      { "label": "Revenue", "data": [5000, 5500, 6200, 5800] },
+      { "label": "Expenses", "data": [3200, 3100, 3400, 3300] }
+    ]
+  },
+  "stacked": true
+}

@@ -1,0 +1,10 @@
+{
+  "type": "pie",
+  "title": "Market Share",
+  "data": {
+    "labels": ["Chrome", "Safari", "Firefox", "Edge", "Other"],
+    "datasets": [
+      { "label": "Market Share", "data": [65, 19, 4, 4, 8] }
+    ]
+  }
+}

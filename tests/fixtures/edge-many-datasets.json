@@ -1,0 +1,19 @@
+{
+  "type": "line",
+  "title": "Server Response Times (10 Regions)",
+  "data": {
+    "labels": ["00:00", "06:00", "12:00", "18:00"],
+    "datasets": [
+      { "label": "US-East", "data": [45, 52, 68, 55] },
+      { "label": "US-West", "data": [38, 41, 55, 48] },
+      { "label": "EU-West", "data": [120, 115, 130, 125] },
+      { "label": "EU-Central", "data": [110, 108, 125, 118] },
+      { "label": "Asia-East", "data": [200, 190, 210, 205] },
+      { "label": "Asia-South", "data": [180, 175, 195, 188] },
+      { "label": "Australia", "data": [160, 155, 170, 165] },
+      { "label": "South America", "data": [150, 145, 160, 152] },
+      { "label": "Africa", "data": [220, 210, 240, 225] },
+      { "label": "Middle East", "data": [190, 185, 200, 195] }
+    ]
+  }
+}

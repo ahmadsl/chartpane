@@ -1,0 +1,11 @@
+{
+  "type": "radar",
+  "title": "Skill Assessment",
+  "data": {
+    "labels": ["JavaScript", "Python", "Design", "DevOps", "Communication", "Leadership"],
+    "datasets": [
+      { "label": "Alice", "data": [90, 70, 60, 80, 85, 75] },
+      { "label": "Bob", "data": [75, 85, 40, 90, 70, 65] }
+    ]
+  }
+}

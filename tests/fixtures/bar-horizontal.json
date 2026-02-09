@@ -1,0 +1,11 @@
+{
+  "type": "bar",
+  "title": "Top Programming Languages",
+  "data": {
+    "labels": ["JavaScript", "Python", "TypeScript", "Java", "Rust"],
+    "datasets": [
+      { "label": "Popularity", "data": [65, 58, 42, 35, 18] }
+    ]
+  },
+  "horizontal": true
+}

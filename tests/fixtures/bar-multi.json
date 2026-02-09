@@ -1,0 +1,12 @@
+{
+  "type": "bar",
+  "title": "Quarterly Sales by Region",
+  "data": {
+    "labels": ["Q1", "Q2", "Q3", "Q4"],
+    "datasets": [
+      { "label": "North America", "data": [12000, 15000, 13000, 17000] },
+      { "label": "Europe", "data": [8000, 9500, 11000, 10000] },
+      { "label": "Asia Pacific", "data": [6000, 7500, 9000, 11000] }
+    ]
+  }
+}

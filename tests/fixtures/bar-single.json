@@ -1,0 +1,13 @@
+{
+  "type": "bar",
+  "title": "Monthly Revenue",
+  "data": {
+    "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    "datasets": [
+      {
+        "label": "Revenue",
+        "data": [4000, 4500, 5200, 4800, 5500, 6100]
+      }
+    ]
+  }
+}

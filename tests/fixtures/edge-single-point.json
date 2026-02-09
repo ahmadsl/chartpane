@@ -1,0 +1,10 @@
+{
+  "type": "bar",
+  "title": "Single Data Point",
+  "data": {
+    "labels": ["Today"],
+    "datasets": [
+      { "label": "Value", "data": [42] }
+    ]
+  }
+}

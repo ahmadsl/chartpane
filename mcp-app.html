@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChartPane</title>
+  <link rel="stylesheet" href="./src/global.css" />
+  <link rel="stylesheet" href="./src/mcp-app.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="loading">Waiting for chart data...</div>
+    <div id="chart-container" class="chart-container" style="display:none">
+      <canvas id="chart-canvas"></canvas>
+    </div>
+    <div id="dashboard-container" class="dashboard-container" style="display:none">
+      <h2 id="dashboard-title" class="dashboard-title"></h2>
+      <div id="dashboard-grid" class="dashboard-grid"></div>
+    </div>
+  </div>
+  <script type="module" src="./src/mcp-app.ts"></script>
+</body>
+</html>

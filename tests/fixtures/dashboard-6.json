@@ -1,0 +1,67 @@
+{
+  "title": "Company Dashboard",
+  "charts": [
+    {
+      "type": "line",
+      "title": "Monthly Revenue",
+      "data": {
+        "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+        "datasets": [
+          { "label": "2024", "data": [4000, 4500, 5200, 4800, 5500, 6100] },
+          { "label": "2025", "data": [4500, 5000, 5800, 5200, 6000, 6800] }
+        ]
+      }
+    },
+    {
+      "type": "bar",
+      "title": "Headcount by Department",
+      "data": {
+        "labels": ["Eng", "Sales", "Marketing", "Ops"],
+        "datasets": [
+          { "label": "Headcount", "data": [45, 30, 15, 10] }
+        ]
+      }
+    },
+    {
+      "type": "pie",
+      "title": "Revenue Split",
+      "data": {
+        "labels": ["SaaS", "Services", "Hardware"],
+        "datasets": [
+          { "label": "Revenue", "data": [60, 25, 15] }
+        ]
+      }
+    },
+    {
+      "type": "area",
+      "title": "Active Users",
+      "data": {
+        "labels": ["W1", "W2", "W3", "W4"],
+        "datasets": [
+          { "label": "DAU", "data": [12000, 15000, 14000, 18000] }
+        ]
+      }
+    },
+    {
+      "type": "radar",
+      "title": "Team Skills",
+      "data": {
+        "labels": ["Frontend", "Backend", "DevOps", "Design", "Data"],
+        "datasets": [
+          { "label": "Team A", "data": [85, 70, 60, 90, 50] },
+          { "label": "Team B", "data": [60, 90, 80, 40, 75] }
+        ]
+      }
+    },
+    {
+      "type": "doughnut",
+      "title": "Customer Satisfaction",
+      "data": {
+        "labels": ["Very Happy", "Happy", "Neutral", "Unhappy"],
+        "datasets": [
+          { "label": "Responses", "data": [45, 30, 15, 10] }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "type": "area",
+  "title": "CPU Usage Over Time",
+  "data": {
+    "labels": ["00:00", "04:00", "08:00", "12:00", "16:00", "20:00"],
+    "datasets": [
+      { "label": "CPU %", "data": [15, 12, 45, 78, 62, 30] }
+    ]
+  }
+}

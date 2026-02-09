@@ -1,0 +1,32 @@
+{
+  "name": "chartpane",
+  "version": "1.0.0",
+  "description": "MCP App that renders charts inline in Claude's UI",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit && INPUT=mcp-app.html vite build",
+    "start": "concurrently \"INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\"",
+    "dev": "concurrently \"INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\" \"tsx sandbox/dev-server.ts\"",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "^1.0.1",
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "chart.js": "^4.5.1",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-singlefile": "^2.3.0",
+    "vitest": "^4.0.18"
+  }
+}

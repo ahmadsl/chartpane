@@ -1,0 +1,10 @@
+{
+  "type": "doughnut",
+  "title": "Budget Allocation",
+  "data": {
+    "labels": ["Engineering", "Marketing", "Sales", "Operations"],
+    "datasets": [
+      { "label": "Budget", "data": [40, 25, 20, 15] }
+    ]
+  }
+}

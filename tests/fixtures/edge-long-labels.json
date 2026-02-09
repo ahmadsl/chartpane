@@ -1,0 +1,15 @@
+{
+  "type": "bar",
+  "title": "Products With Very Long Names",
+  "data": {
+    "labels": [
+      "Enterprise Cloud Platform Premium Edition",
+      "Small Business Starter Pack Basic Tier",
+      "Individual Developer Tools Professional",
+      "Academic Research License Extended"
+    ],
+    "datasets": [
+      { "label": "Sales (thousands)", "data": [120, 85, 200, 45] }
+    ]
+  }
+}

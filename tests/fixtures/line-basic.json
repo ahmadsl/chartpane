@@ -1,0 +1,11 @@
+{
+  "type": "line",
+  "title": "Website Traffic",
+  "data": {
+    "labels": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    "datasets": [
+      { "label": "Visitors", "data": [1200, 1900, 3000, 2500, 2200, 800, 600] },
+      { "label": "Page Views", "data": [3600, 5700, 9000, 7500, 6600, 2400, 1800] }
+    ]
+  }
+}

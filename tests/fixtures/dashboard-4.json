@@ -1,0 +1,45 @@
+{
+  "title": "Q1 Business Overview",
+  "charts": [
+    {
+      "type": "line",
+      "title": "Revenue Trend",
+      "data": {
+        "labels": ["Jan", "Feb", "Mar"],
+        "datasets": [
+          { "label": "Revenue", "data": [4000, 4500, 5200] }
+        ]
+      }
+    },
+    {
+      "type": "pie",
+      "title": "Revenue by Region",
+      "data": {
+        "labels": ["US", "EU", "Asia"],
+        "datasets": [
+          { "label": "Revenue", "data": [5000, 3000, 2000] }
+        ]
+      }
+    },
+    {
+      "type": "bar",
+      "title": "Top Products",
+      "data": {
+        "labels": ["Widget A", "Widget B", "Widget C"],
+        "datasets": [
+          { "label": "Units Sold", "data": [1200, 900, 750] }
+        ]
+      }
+    },
+    {
+      "type": "doughnut",
+      "title": "Customer Segments",
+      "data": {
+        "labels": ["Enterprise", "SMB", "Consumer"],
+        "datasets": [
+          { "label": "Customers", "data": [35, 45, 20] }
+        ]
+      }
+    }
+  ]
+}

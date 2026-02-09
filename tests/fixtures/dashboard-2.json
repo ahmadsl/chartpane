@@ -1,0 +1,25 @@
+{
+  "title": "Sales Overview",
+  "charts": [
+    {
+      "type": "line",
+      "title": "Revenue Trend",
+      "data": {
+        "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+        "datasets": [
+          { "label": "Revenue", "data": [4000, 4500, 5200, 4800, 5500, 6100] }
+        ]
+      }
+    },
+    {
+      "type": "pie",
+      "title": "Revenue by Region",
+      "data": {
+        "labels": ["US", "EU", "Asia"],
+        "datasets": [
+          { "label": "Revenue", "data": [5000, 3000, 2000] }
+        ]
+      }
+    }
+  ]
+}

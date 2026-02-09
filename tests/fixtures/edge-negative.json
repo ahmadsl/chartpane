@@ -1,0 +1,11 @@
+{
+  "type": "bar",
+  "title": "Profit/Loss by Quarter",
+  "data": {
+    "labels": ["Q1", "Q2", "Q3", "Q4"],
+    "datasets": [
+      { "label": "Profit", "data": [250000, -120000, 180000, -50000] },
+      { "label": "Cash Flow", "data": [100000, -200000, 50000, -30000] }
+    ]
+  }
+}
