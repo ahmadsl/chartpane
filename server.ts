@@ -17,10 +17,7 @@ const RESOURCE_URI = "ui://chartpane/mcp-app.html";
 const LOG_DIR = join(__dirname, "logs");
 const LOG_FILE = join(LOG_DIR, "requests.jsonl");
 
-// Ensure logs directory exists
-try {
-  mkdirSync(LOG_DIR, { recursive: true });
-} catch {}
+try { mkdirSync(LOG_DIR, { recursive: true }); } catch {}
 
 function logRequest(tool: string, data: Record<string, unknown>): void {
   const entry = {
@@ -30,7 +27,7 @@ function logRequest(tool: string, data: Record<string, unknown>): void {
   };
   const line = JSON.stringify(entry) + "\n";
   console.error(line.trimEnd());
-  appendFileSync(LOG_FILE, line);
+  try { appendFileSync(LOG_FILE, line); } catch {}
 }
 
 export function createServer(): McpServer {
