@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc --noEmit && INPUT=mcp-app.html vite build",
-    "start": "wrangler dev",
+    "start": "concurrently \"wrangler dev\" \"INPUT=mcp-app.html vite build --watch\"",
     "dev": "concurrently \"wrangler dev\" \"tsx sandbox/dev-server.ts\"",
     "deploy": "wrangler deploy",
     "test": "vitest run",
