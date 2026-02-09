@@ -35,7 +35,7 @@ The server is intentionally thin — it validates input and returns the raw `Cha
 ### Module Layout
 
 - **`server.ts`** — MCP server factory: `createServer(options: ServerOptions)` with `htmlLoader` and `onLog` params. Platform-agnostic (no `fs`/`path`/`url`). Tool registration via `registerAppTool`/`registerAppResource`.
-- **`worker.ts`** — Cloudflare Workers entry point: `createMcpHandler` from `agents/mcp` with `route: "/"` and `ASSETS` binding for static HTML.
+- **`worker.ts`** — Cloudflare Workers entry point: `createMcpHandler` from `agents/mcp` with `route: "/"`, `ASSETS` binding for static HTML, and `DB` binding for D1 request logging.
 - **`src/mcp-app.ts`** — Browser-side UI: `App` from `@modelcontextprotocol/ext-apps`, `ontoolresult`/`ontoolinput`/`onhostcontextchanged` handlers, Chart.js rendering.
 - **`shared/`** — Pure modules imported by both server and UI:
   - `types.ts` — Zod schemas (ChartInput, DashboardInput, RenderResult)
@@ -76,6 +76,9 @@ The server is intentionally thin — it validates input and returns the raw `Cha
 
 ## Deployment (Cloudflare Workers)
 
+- **D1 database** — `DB` binding in `wrangler.jsonc`, database `chartpane-db`. `onLog` in `worker.ts` writes to `requests` table via `ctx.waitUntil()`.
+- **D1 migrations** — `wrangler d1 migrations create` requires the D1 binding in `wrangler.jsonc` first (will error otherwise).
+- **Local D1 state** — stored in `.wrangler/state/v3/d1/`. Query with `npx wrangler d1 execute chartpane-db --local --command "SELECT * FROM requests"`.
 - **`createMcpHandler` default route is `/mcp`** — must pass `{ route: "/" }` for root path
 - **`agents` pins `@modelcontextprotocol/sdk` 1.25.2** — causes duplicate McpServer types. `worker-types.d.ts` bridges the mismatch with a widened declaration.
 - **Workers types** — `@cloudflare/workers-types` via triple-slash in `worker.ts` only. No `types` field in tsconfig (would break Node type auto-discovery for sandbox/tests).

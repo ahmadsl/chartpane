@@ -10,5 +10,12 @@
   },
   "build": {
     "command": "npm run build"
-  }
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "chartpane-db",
+      "database_id": "652be01f-e3b7-407c-a6fc-42b72ccb1a8a"
+    }
+  ]
 }
