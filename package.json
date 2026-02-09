@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "build": "tsc --noEmit && INPUT=mcp-app.html vite build",
-    "start": "concurrently \"INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\"",
-    "dev": "concurrently \"INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\" \"tsx sandbox/dev-server.ts\"",
+    "start": "wrangler dev",
+    "dev": "concurrently \"wrangler dev\" \"tsx sandbox/dev-server.ts\"",
+    "deploy": "wrangler deploy",
     "test": "vitest run",
     "test:watch": "vitest"
   },
@@ -14,19 +15,21 @@
     "@modelcontextprotocol/ext-apps": "^1.0.1",
     "@modelcontextprotocol/sdk": "^1.26.0",
     "chart.js": "^4.5.1",
-    "cors": "^2.8.6",
-    "express": "^5.2.1",
+    "agents": "^0.3.10",
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.6",
+    "@cloudflare/workers-types": "^4.20250205.0",
+    "@hono/node-server": "^1.14.0",
+    "hono": "^4.7.0",
+    "@types/node": "^22.0.0",
     "concurrently": "^9.2.1",
     "cross-env": "^10.1.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vite-plugin-singlefile": "^2.3.0",
-    "vitest": "^4.0.18"
+    "vitest": "^4.0.18",
+    "wrangler": "^4.0.0"
   }
 }

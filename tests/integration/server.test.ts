@@ -7,7 +7,9 @@ describe("MCP Server", () => {
   let client: Client;
 
   beforeAll(async () => {
-    const server = createServer();
+    const server = createServer({
+      htmlLoader: () => Promise.resolve("<html>test</html>"),
+    });
     const [clientTransport, serverTransport] =
       InMemoryTransport.createLinkedPair();
 

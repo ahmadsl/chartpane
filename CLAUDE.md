@@ -6,8 +6,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 npm run build          # Type-check (tsc --noEmit) + bundle UI into dist/mcp-app.html
-npm start              # Watch-build UI + run MCP server (HTTP mode, port 3001)
-npm run dev            # Watch-build UI + run MCP server + sandbox dev server (localhost:3456)
+npm start              # Local Workers server via wrangler dev (port 8787)
+npm run dev            # wrangler dev + sandbox dev server (localhost:3456)
+npm run deploy         # Deploy to Cloudflare Workers
 npm test               # Run all tests (vitest)
 npm run test:watch     # Run tests in watch mode
 
@@ -16,9 +17,6 @@ npx vitest run tests/unit/config.test.ts
 
 # Run tests matching a name pattern
 npx vitest run -t "scatter"
-
-# Run MCP server in stdio mode (for Claude Desktop)
-npx tsx main.ts --stdio
 ```
 
 ## Architecture
@@ -36,8 +34,8 @@ The server is intentionally thin — it validates input and returns the raw `Cha
 
 ### Module Layout
 
-- **`server.ts`** — MCP server: tool registration via `registerAppTool`/`registerAppResource`, validation. Returns validated `ChartInput` as `structuredContent`.
-- **`main.ts`** — Entry point: HTTP mode by default (port 3001, `/` endpoint), or `--stdio` flag for Claude Desktop.
+- **`server.ts`** — MCP server factory: `createServer(options: ServerOptions)` with `htmlLoader` and `onLog` params. Platform-agnostic (no `fs`/`path`/`url`). Tool registration via `registerAppTool`/`registerAppResource`.
+- **`worker.ts`** — Cloudflare Workers entry point: `createMcpHandler` from `agents/mcp` with `route: "/"` and `ASSETS` binding for static HTML.
 - **`src/mcp-app.ts`** — Browser-side UI: `App` from `@modelcontextprotocol/ext-apps`, `ontoolresult`/`ontoolinput`/`onhostcontextchanged` handlers, Chart.js rendering.
 - **`shared/`** — Pure modules imported by both server and UI:
   - `types.ts` — Zod schemas (ChartInput, DashboardInput, RenderResult)
@@ -48,13 +46,13 @@ The server is intentionally thin — it validates input and returns the raw `Cha
 
 ### Build Pipeline
 
-`mcp-app.html` → Vite + `vite-plugin-singlefile` → `dist/mcp-app.html` (single bundled file with Chart.js + all CSS/JS inlined). The `INPUT` env var sets the Rollup entry in `vite.config.ts` (`rollupOptions.input: process.env.INPUT`). The server reads `dist/mcp-app.html` at runtime and serves it as the UI resource via `registerAppResource`.
+`mcp-app.html` → Vite + `vite-plugin-singlefile` → `dist/mcp-app.html` (single bundled file with Chart.js + all CSS/JS inlined). The `INPUT` env var sets the Rollup entry in `vite.config.ts` (`rollupOptions.input: process.env.INPUT`). The Worker reads `dist/mcp-app.html` via `env.ASSETS.fetch()` (static assets binding) and passes it through `htmlLoader` to the server.
 
 **Note:** `INPUT=` is a Unix-only env var syntax. The `cross-env` devDependency exists but npm scripts don't use it, so builds won't work on Windows as-is.
 
 ### Sandbox Dev Server
 
-`sandbox/dev-server.ts` runs on port 3456 with Vite middleware mode. `sandbox/sandbox.html` is the page served at `/sandbox` — it imports shared modules directly (TS), which Vite transforms on the fly. **Critical ordering:** API routes (`/api/*`, `/sandbox/fixture/*`) must be registered BEFORE `vite.middlewares`, but the HTML route (`/sandbox`) must be registered AFTER, to avoid html-proxy MIME type conflicts. `transformIndexHtml` path must include `.html` suffix.
+`sandbox/dev-server.ts` runs on port 3456 with Hono + `@hono/node-server` + Vite middleware mode. `sandbox/sandbox.html` is the page served at `/sandbox` — it imports shared modules directly (TS), which Vite transforms on the fly. **Critical ordering:** API routes (`/api/*`, `/sandbox/fixture/*`) must be registered BEFORE `vite.middlewares`, but the HTML route (`/sandbox`) must be registered AFTER, to avoid html-proxy MIME type conflicts. `transformIndexHtml` path must include `.html` suffix.
 
 ## Testing
 
@@ -73,5 +71,12 @@ The server is intentionally thin — it validates input and returns the raw `Cha
 ## Package Versions
 
 - `@modelcontextprotocol/ext-apps`: 1.0.1 / `@modelcontextprotocol/sdk`: 1.26.0
-- `zod`: 4.x / `chart.js`: 4.5.1 / `express`: 5.x
+- `zod`: 4.x / `chart.js`: 4.5.1 / `agents`: 0.3.x / `hono`: 4.x (dev only, sandbox)
 - `vite`: 7.x / `vitest`: 4.x / `typescript`: 5.9.x
+
+## Deployment (Cloudflare Workers)
+
+- **`createMcpHandler` default route is `/mcp`** — must pass `{ route: "/" }` for root path
+- **`agents` pins `@modelcontextprotocol/sdk` 1.25.2** — causes duplicate McpServer types. `worker-types.d.ts` bridges the mismatch with a widened declaration.
+- **Workers types** — `@cloudflare/workers-types` via triple-slash in `worker.ts` only. No `types` field in tsconfig (would break Node type auto-discovery for sandbox/tests).
+- See `docs/adr/002-deployment-architecture.md` and `docs/adr/003-mcp-http-handler.md`

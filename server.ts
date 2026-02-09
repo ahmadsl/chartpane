@@ -4,33 +4,32 @@ import {
   registerAppResource,
   RESOURCE_MIME_TYPE,
 } from "@modelcontextprotocol/ext-apps/server";
-import { readFileSync, appendFileSync, mkdirSync } from "fs";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
 import { ChartInputSchema, DashboardInputSchema } from "./shared/types.js";
 import type { ChartInput, RenderResult } from "./shared/types.js";
 import { validateChartInput, validateDashboardInput } from "./shared/validation.js";
 import { calculateColumns } from "./shared/grid.js";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
 const RESOURCE_URI = "ui://chartpane/mcp-app.html";
-const LOG_DIR = join(__dirname, "logs");
-const LOG_FILE = join(LOG_DIR, "requests.jsonl");
 
-try { mkdirSync(LOG_DIR, { recursive: true }); } catch {}
-
-function logRequest(tool: string, data: Record<string, unknown>): void {
-  const entry = {
-    timestamp: new Date().toISOString(),
-    tool,
-    ...data,
-  };
-  const line = JSON.stringify(entry) + "\n";
-  console.error(line.trimEnd());
-  try { appendFileSync(LOG_FILE, line); } catch {}
+export interface ServerOptions {
+  htmlLoader: () => Promise<string>;
+  onLog?: (entry: Record<string, unknown>) => void;
 }
 
-export function createServer(): McpServer {
+function createLogRequest(onLog?: (entry: Record<string, unknown>) => void) {
+  return function logRequest(tool: string, data: Record<string, unknown>): void {
+    const entry = {
+      timestamp: new Date().toISOString(),
+      tool,
+      ...data,
+    };
+    console.log(JSON.stringify(entry));
+    onLog?.(entry);
+  };
+}
+
+export function createServer(options: ServerOptions): McpServer {
+  const logRequest = createLogRequest(options.onLog);
   const server = new McpServer({
     name: "ChartPane",
     version: "1.0.0",
@@ -149,7 +148,7 @@ export function createServer(): McpServer {
     RESOURCE_URI,
     { mimeType: RESOURCE_MIME_TYPE },
     async () => {
-      const html = readFileSync(join(__dirname, "dist", "mcp-app.html"), "utf-8");
+      const html = await options.htmlLoader();
       return {
         contents: [
           {
