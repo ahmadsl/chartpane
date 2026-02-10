@@ -2,7 +2,7 @@
   "name": "chartpane",
   "main": "worker.ts",
   "compatibility_date": "2026-02-01",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
@@ -11,6 +11,12 @@
   "build": {
     "command": "npm run build"
   },
+  "kv_namespaces": [
+    {
+      "binding": "OAUTH_KV",
+      "id": "PLACEHOLDER_CREATE_WITH_WRANGLER"
+    }
+  ],
   "d1_databases": [
     {
       "binding": "DB",

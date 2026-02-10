@@ -5,6 +5,11 @@
 // our McpServer is accepted by createMcpHandler.
 declare module "agents/mcp" {
   import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+
+  interface McpAuthContext {
+    props: Record<string, unknown>;
+  }
+
   export function createMcpHandler(
     server: McpServer,
     options?: Record<string, unknown>,
@@ -13,4 +18,6 @@ declare module "agents/mcp" {
     env: unknown,
     ctx: ExecutionContext,
   ) => Promise<Response>;
+
+  export function getMcpAuthContext(): McpAuthContext | undefined;
 }

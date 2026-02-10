@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll } from "vitest";
+import { describe, it, expect, beforeAll, vi } from "vitest";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
 import { createServer } from "../../server.js";
@@ -144,5 +144,43 @@ describe("MCP Server", () => {
       r.uri.includes("chartpane"),
     );
     expect(uiResource).toBeDefined();
+  });
+});
+
+describe("MCP Server with userId", () => {
+  it("passes userId through to onLog", async () => {
+    const onLog = vi.fn();
+    const server = createServer({
+      htmlLoader: () => Promise.resolve("<html>test</html>"),
+      onLog,
+      userId: "u-integration",
+    });
+    const [clientTransport, serverTransport] =
+      InMemoryTransport.createLinkedPair();
+    const client = new Client({ name: "test-client", version: "1.0.0" });
+
+    await Promise.all([
+      client.connect(clientTransport),
+      server.connect(serverTransport),
+    ]);
+
+    await client.callTool({
+      name: "render_chart",
+      arguments: {
+        type: "bar",
+        title: "Auth Test",
+        data: {
+          labels: ["A"],
+          datasets: [{ label: "V", data: [1] }],
+        },
+      },
+    });
+
+    expect(onLog).toHaveBeenCalledOnce();
+    expect(onLog.mock.calls[0][0]).toMatchObject({
+      tool: "render_chart",
+      status: "ok",
+      userId: "u-integration",
+    });
   });
 });

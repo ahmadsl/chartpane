@@ -14,13 +14,18 @@ const RESOURCE_URI = "ui://chartpane/mcp-app.html";
 export interface ServerOptions {
   htmlLoader: () => Promise<string>;
   onLog?: (entry: Record<string, unknown>) => void;
+  userId?: string;
 }
 
-function createLogRequest(onLog?: (entry: Record<string, unknown>) => void) {
+function createLogRequest(
+  onLog?: (entry: Record<string, unknown>) => void,
+  userId?: string,
+) {
   return function logRequest(tool: string, data: Record<string, unknown>): void {
     const entry = {
       timestamp: new Date().toISOString(),
       tool,
+      ...(userId && { userId }),
       ...data,
     };
     console.log(JSON.stringify(entry));
@@ -29,7 +34,7 @@ function createLogRequest(onLog?: (entry: Record<string, unknown>) => void) {
 }
 
 export function createServer(options: ServerOptions): McpServer {
-  const logRequest = createLogRequest(options.onLog);
+  const logRequest = createLogRequest(options.onLog, options.userId);
   const server = new McpServer({
     name: "ChartPane",
     version: "1.0.0",
