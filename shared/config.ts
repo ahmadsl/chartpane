@@ -8,8 +8,8 @@ export function buildChartConfig(input: ChartInput): ChartConfiguration {
   // Map our type to Chart.js type
   const chartJsType = type === "area" ? "line" : type;
 
-  // Assign colors
-  const colorSets = assignColors(type, data.datasets);
+  // Assign colors (custom colors override default palette)
+  const colorSets = assignColors(type, data.datasets, input.colors);
 
   // Build Chart.js datasets
   const datasets = data.datasets.map((ds, i) => {

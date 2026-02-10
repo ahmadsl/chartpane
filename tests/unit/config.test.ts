@@ -208,4 +208,54 @@ describe("buildChartConfig", () => {
     expect(bg[1]).toBe(getColor(1));
     expect(bg[2]).toBe(getColor(2));
   });
+
+  it("uses dataset color when provided", () => {
+    const input: ChartInput = {
+      type: "bar",
+      title: "Custom",
+      data: {
+        labels: ["A", "B"],
+        datasets: [
+          { label: "X", data: [1, 2], color: "#ff0000" },
+          { label: "Y", data: [3, 4] },
+        ],
+      },
+    };
+    const config = buildChartConfig(input);
+    expect((config.data.datasets[0] as any).backgroundColor).toBe("#ff0000");
+    expect((config.data.datasets[1] as any).backgroundColor).toBe(getColor(1));
+  });
+
+  it("uses chart-level colors for pie slices", () => {
+    const input: ChartInput = {
+      type: "pie",
+      title: "Custom Pie",
+      colors: ["#ff0000", "#00ff00", "#0000ff"],
+      data: {
+        labels: ["A", "B", "C"],
+        datasets: [{ label: "DS", data: [10, 20, 30] }],
+      },
+    };
+    const config = buildChartConfig(input);
+    const bg = (config.data.datasets[0] as any).backgroundColor;
+    expect(bg).toEqual(["#ff0000", "#00ff00", "#0000ff"]);
+  });
+
+  it("uses chart-level colors as palette for datasets", () => {
+    const input: ChartInput = {
+      type: "line",
+      title: "Custom Palette",
+      colors: ["#aa0000", "#bb0000"],
+      data: {
+        labels: ["A", "B"],
+        datasets: [
+          { label: "X", data: [1, 2] },
+          { label: "Y", data: [3, 4] },
+        ],
+      },
+    };
+    const config = buildChartConfig(input);
+    expect((config.data.datasets[0] as any).backgroundColor).toBe("#aa0000");
+    expect((config.data.datasets[1] as any).backgroundColor).toBe("#bb0000");
+  });
 });

@@ -22,14 +22,16 @@ export function getColor(index: number): string {
 export function assignColors(
   type: ChartType,
   datasets: Dataset[],
+  chartColors?: string[],
 ): string[][] {
   if (type === "pie" || type === "doughnut") {
     // For pie/doughnut: each slice gets a different color
     return datasets.map((ds) =>
-      ds.data.map((_, i) => getColor(i)),
+      ds.data.map((_, i) => chartColors?.[i] ?? getColor(i)),
     );
   }
 
   // For all other types: each dataset gets one color
-  return datasets.map((_, i) => [getColor(i)]);
+  // Priority: dataset color > chart colors > default palette
+  return datasets.map((ds, i) => [ds.color ?? chartColors?.[i] ?? getColor(i)]);
 }

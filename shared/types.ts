@@ -20,6 +20,7 @@ const ScatterPointSchema = z.object({
 export const DatasetSchema = z.object({
   label: z.string(),
   data: z.union([z.array(z.number()), z.array(ScatterPointSchema)]),
+  color: z.string().optional(),
 });
 
 export type Dataset = z.infer<typeof DatasetSchema>;
@@ -37,6 +38,7 @@ export const ChartInputSchema = z.object({
   data: ChartDataSchema,
   stacked: z.boolean().optional(),
   horizontal: z.boolean().optional(),
+  colors: z.array(z.string()).optional(),
 });
 
 export type ChartInput = z.infer<typeof ChartInputSchema>;
