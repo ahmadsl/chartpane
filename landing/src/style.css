@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @source "../index.html";
+@source "../privacy.html";
 @source "./main.js";
 
 /* Geist Sans — variable weight */
