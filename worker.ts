@@ -38,7 +38,10 @@ function createMcpHandler_(env: Env, ctx: ExecutionContext, route: string) {
     userId,
   });
 
-  const instrumentedServer = Sentry.wrapMcpServerWithSentry(server);
+  const instrumentedServer = Sentry.wrapMcpServerWithSentry(server, {
+    recordInputs: true,
+    recordOutputs: true,
+  });
   return createMcpHandler(instrumentedServer, { route });
 }
 
@@ -102,7 +105,7 @@ export default Sentry.withSentry(
     release: env.CF_VERSION_METADATA?.id,
     tracesSampleRate: 1.0,
     enableLogs: true,
-    sendDefaultPii: false,
+    sendDefaultPii: true,
     initialScope: { tags: { surface: "worker" } },
     integrations: [
       Sentry.consoleLoggingIntegration({ levels: ["log", "warn", "error"] }),
