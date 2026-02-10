@@ -11,11 +11,15 @@
   <meta property="og:description" content="Get instant, interactive charts right in your AI conversation. No Excel, no screenshots, no breaking your flow." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://chartpane.com" />
+  <meta property="og:image" content="https://chartpane.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="ChartPane — See Your Data Without Leaving Claude" />
   <meta name="twitter:description" content="Get instant, interactive charts right in your AI conversation. No Excel, no screenshots, no breaking your flow." />
+  <meta name="twitter:image" content="https://chartpane.com/og-image.png" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5DEV3CDE8M"></script>
@@ -42,11 +46,13 @@
   <!-- 1. HERO                                                     -->
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section class="section relative overflow-hidden">
-    <div class="mx-auto max-w-6xl px-6">
+    <div class="hero-glow" style="right: -5%; top: -40%;"></div>
+
+    <div class="mx-auto max-w-6xl px-6 relative z-10">
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 items-center">
 
         <!-- Left: Text -->
-        <div class="max-w-xl">
+        <div class="max-w-xl fade-in">
           <h1 class="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl" style="color: var(--text);">
             See your data<br />
             <span style="color: var(--accent);">without leaving Claude</span>
@@ -64,10 +70,23 @@
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
             </a>
           </div>
+          <!-- Trust signal: Works with -->
+          <div class="mt-8 flex items-center gap-3 flex-wrap">
+            <span class="text-xs font-medium uppercase tracking-wider text-tertiary">Works with</span>
+            <span class="text-sm font-medium text-secondary">Claude</span>
+            <span class="text-tertiary text-xs">·</span>
+            <span class="text-sm font-medium text-secondary">ChatGPT</span>
+            <span class="text-tertiary text-xs">·</span>
+            <span class="text-sm font-medium text-secondary">VS Code</span>
+            <span class="text-tertiary text-xs">·</span>
+            <span class="text-sm font-medium text-secondary">Cursor</span>
+            <span class="text-tertiary text-xs">·</span>
+            <span class="text-sm font-medium text-secondary">Goose</span>
+          </div>
         </div>
 
-        <!-- Right: Conversation Mockup -->
-        <div class="mockup">
+        <!-- Right: Conversation Mockup (elevated) -->
+        <div class="mockup mockup-hero fade-in fade-delay-2">
           <div class="mockup-titlebar">
             <div class="mockup-dot"></div>
             <div class="mockup-dot"></div>
@@ -82,7 +101,7 @@
             <!-- Assistant message -->
             <div class="mockup-assistant">
               <p class="text-sm text-secondary mb-3">Here's your revenue growth chart:</p>
-              <div class="chart-container" style="height: 220px;">
+              <div class="chart-container" style="height: 280px;">
                 <canvas id="hero-chart"></canvas>
               </div>
             </div>
@@ -97,12 +116,12 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section class="section bg-subtle">
     <div class="mx-auto max-w-5xl px-6">
-      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Stop breaking your flow</h2>
-      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">Every time you leave your AI conversation to make a chart, you lose your train of thought.</p>
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);">Stop breaking your flow</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1">Every time you leave your AI conversation to make a chart, you lose your train of thought.</p>
 
       <div class="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2">
         <!-- Old Way -->
-        <div class="comparison-card comparison-card-old">
+        <div class="comparison-card comparison-card-old fade-in fade-delay-2">
           <h3 class="text-lg font-semibold mb-6" style="color: var(--text-secondary);">The old way</h3>
           <div class="space-y-4">
             <div class="comparison-step comparison-cross">
@@ -141,7 +160,7 @@
         </div>
 
         <!-- ChartPane Way -->
-        <div class="comparison-card comparison-card-new">
+        <div class="comparison-card comparison-card-new fade-in fade-delay-3">
           <h3 class="text-lg font-semibold mb-6" style="color: var(--accent);">With ChartPane</h3>
           <div class="space-y-4">
             <div class="comparison-step">
@@ -167,24 +186,24 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section class="section">
     <div class="mx-auto max-w-4xl px-6">
-      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">How it works</h2>
-      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">Three steps. No code, no API keys, no cost.</p>
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);">How it works</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1">Three steps. No code, no API keys, no cost.</p>
 
       <div class="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3">
         <!-- Step 1 -->
-        <div class="text-center">
+        <div class="text-center fade-in fade-delay-2">
           <div class="step-number mx-auto">1</div>
           <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);">Add to Claude</h3>
           <p class="mt-2 text-sm text-secondary leading-relaxed">One URL, 30 seconds. Works with Claude Desktop, ChatGPT, VS Code, and more.</p>
         </div>
         <!-- Step 2 -->
-        <div class="text-center">
+        <div class="text-center fade-in fade-delay-3">
           <div class="step-number mx-auto">2</div>
           <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);">Ask in plain English</h3>
           <p class="mt-2 text-sm text-secondary leading-relaxed">Describe what you want to see. Paste your data or let Claude work with what you're already discussing.</p>
         </div>
         <!-- Step 3 -->
-        <div class="text-center">
+        <div class="text-center fade-in fade-delay-4">
           <div class="step-number mx-auto">3</div>
           <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);">See it instantly</h3>
           <p class="mt-2 text-sm text-secondary leading-relaxed">An interactive chart appears right in your conversation. Hover for details, keep your train of thought.</p>
@@ -198,68 +217,77 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section id="real-examples" class="section bg-subtle">
     <div class="mx-auto max-w-6xl px-6">
-      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Real conversations, real charts</h2>
-      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">Here's what it looks like when you ask Claude to visualize your data.</p>
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);">Real conversations, real charts</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1">Here's what it looks like when you ask Claude to visualize your data.</p>
 
       <div class="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-3">
         <!-- Example 1: Growth Trend -->
-        <div class="mockup">
-          <div class="mockup-titlebar">
-            <div class="mockup-dot"></div>
-            <div class="mockup-dot"></div>
-            <div class="mockup-dot"></div>
-            <span class="ml-2 text-xs text-tertiary font-mono">Claude</span>
-          </div>
-          <div class="p-4 space-y-3">
-            <div class="mockup-user">
-              <p class="text-sm">My startup's monthly revenue: Jan $10k, Feb $15k, Mar $22k, Apr $31k, May $44k, Jun $58k. Show me the growth trend.</p>
+        <div class="fade-in fade-delay-2">
+          <div class="example-tag" style="background: rgba(34, 197, 94, 0.1); color: #16a34a;">Founder</div>
+          <div class="mockup">
+            <div class="mockup-titlebar">
+              <div class="mockup-dot"></div>
+              <div class="mockup-dot"></div>
+              <div class="mockup-dot"></div>
+              <span class="ml-2 text-xs text-tertiary font-mono">Claude</span>
             </div>
-            <div class="mockup-assistant">
-              <p class="text-sm text-secondary mb-3">Here's your revenue growth trend:</p>
-              <div class="chart-container" style="height: 200px;">
-                <canvas id="example-growth"></canvas>
+            <div class="p-4 space-y-3">
+              <div class="mockup-user">
+                <p class="text-sm">My startup's monthly revenue: Jan $10k, Feb $15k, Mar $22k, Apr $31k, May $44k, Jun $58k. Show me the growth trend.</p>
+              </div>
+              <div class="mockup-assistant">
+                <p class="text-sm text-secondary mb-3">Here's your revenue growth trend:</p>
+                <div class="chart-container" style="height: 200px;">
+                  <canvas id="example-growth"></canvas>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Example 2: Portfolio -->
-        <div class="mockup">
-          <div class="mockup-titlebar">
-            <div class="mockup-dot"></div>
-            <div class="mockup-dot"></div>
-            <div class="mockup-dot"></div>
-            <span class="ml-2 text-xs text-tertiary font-mono">Claude</span>
-          </div>
-          <div class="p-4 space-y-3">
-            <div class="mockup-user">
-              <p class="text-sm">My portfolio: 40% stocks, 30% bonds, 20% real estate, 10% cash. Visualize the allocation.</p>
+        <div class="fade-in fade-delay-3">
+          <div class="example-tag" style="background: rgba(37, 99, 235, 0.1); color: #2563eb;">Financial Analyst</div>
+          <div class="mockup">
+            <div class="mockup-titlebar">
+              <div class="mockup-dot"></div>
+              <div class="mockup-dot"></div>
+              <div class="mockup-dot"></div>
+              <span class="ml-2 text-xs text-tertiary font-mono">Claude</span>
             </div>
-            <div class="mockup-assistant">
-              <p class="text-sm text-secondary mb-3">Here's your portfolio breakdown:</p>
-              <div class="chart-container" style="height: 200px;">
-                <canvas id="example-portfolio"></canvas>
+            <div class="p-4 space-y-3">
+              <div class="mockup-user">
+                <p class="text-sm">My portfolio: 40% stocks, 30% bonds, 20% real estate, 10% cash. Visualize the allocation.</p>
+              </div>
+              <div class="mockup-assistant">
+                <p class="text-sm text-secondary mb-3">Here's your portfolio breakdown:</p>
+                <div class="chart-container" style="height: 200px;">
+                  <canvas id="example-portfolio"></canvas>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Example 3: Comparison -->
-        <div class="mockup">
-          <div class="mockup-titlebar">
-            <div class="mockup-dot"></div>
-            <div class="mockup-dot"></div>
-            <div class="mockup-dot"></div>
-            <span class="ml-2 text-xs text-tertiary font-mono">Claude</span>
-          </div>
-          <div class="p-4 space-y-3">
-            <div class="mockup-user">
-              <p class="text-sm">Compare Q4 sales by region: North $340k, South $280k, East $195k, West $410k</p>
+        <div class="fade-in fade-delay-4">
+          <div class="example-tag" style="background: rgba(217, 119, 6, 0.1); color: #d97706;">Sales Lead</div>
+          <div class="mockup">
+            <div class="mockup-titlebar">
+              <div class="mockup-dot"></div>
+              <div class="mockup-dot"></div>
+              <div class="mockup-dot"></div>
+              <span class="ml-2 text-xs text-tertiary font-mono">Claude</span>
             </div>
-            <div class="mockup-assistant">
-              <p class="text-sm text-secondary mb-3">Here's your regional comparison:</p>
-              <div class="chart-container" style="height: 200px;">
-                <canvas id="example-comparison"></canvas>
+            <div class="p-4 space-y-3">
+              <div class="mockup-user">
+                <p class="text-sm">Compare Q4 sales by region: North $340k, South $280k, East $195k, West $410k</p>
+              </div>
+              <div class="mockup-assistant">
+                <p class="text-sm text-secondary mb-3">Here's your regional comparison:</p>
+                <div class="chart-container" style="height: 200px;">
+                  <canvas id="example-comparison"></canvas>
+                </div>
               </div>
             </div>
           </div>
@@ -269,134 +297,53 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 5. WHO USES CHARTPANE                                       -->
+  <!-- 5. CHART GALLERY                                            -->
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section class="section">
     <div class="mx-auto max-w-6xl px-6">
-      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Built for people who work with data</h2>
-      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">Whether you're exploring, analyzing, or presenting — charts appear where you already think.</p>
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);">Every chart type you need</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1">Bar, line, area, pie, doughnut, scatter, radar, and stacked — all interactive, all in your conversation.</p>
 
-      <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <!-- Financial Analysts -->
-        <div class="persona-card">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
-              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            </div>
-            <h3 class="text-lg font-semibold" style="color: var(--text);">Financial Analysts</h3>
-          </div>
-          <p class="text-sm text-secondary leading-relaxed">Portfolio allocation, price trends, benchmark comparisons. Visualize financial data mid-analysis without exporting to a spreadsheet.</p>
-          <p class="persona-prompt">"Compare my tech stocks vs S&P 500 for the last year"</p>
-        </div>
-
-        <!-- Product Managers -->
-        <div class="persona-card">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
-              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" /></svg>
-            </div>
-            <h3 class="text-lg font-semibold" style="color: var(--text);">Product Managers</h3>
-          </div>
-          <p class="text-sm text-secondary leading-relaxed">KPI dashboards, sprint velocity, funnel analysis. Ask for a multi-chart dashboard and get a complete view in one response.</p>
-          <p class="persona-prompt">"Show me conversion rates by channel this quarter"</p>
-        </div>
-
-        <!-- Business Analysts -->
-        <div class="persona-card">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
-              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-            </div>
-            <h3 class="text-lg font-semibold" style="color: var(--text);">Business Analysts</h3>
-          </div>
-          <p class="text-sm text-secondary leading-relaxed">Revenue breakdowns, trend analysis, and cross-segment comparisons. Turn raw numbers into insight without leaving the conversation.</p>
-          <p class="persona-prompt">"Revenue by region, broken down by product line"</p>
-        </div>
-
-        <!-- Data Analysts -->
-        <div class="persona-card">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
-              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" /></svg>
-            </div>
-            <h3 class="text-lg font-semibold" style="color: var(--text);">Data Analysts</h3>
-          </div>
-          <p class="text-sm text-secondary leading-relaxed">Quick exploratory visualization during conversation. Scatter plot a dataset, histogram a distribution, or compare categories — without switching tools.</p>
-          <p class="persona-prompt">"Scatter plot to check if price correlates with sales volume"</p>
-        </div>
-
-        <!-- Marketing Teams -->
-        <div class="persona-card">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
-              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" /></svg>
-            </div>
-            <h3 class="text-lg font-semibold" style="color: var(--text);">Marketing Teams</h3>
-          </div>
-          <p class="text-sm text-secondary leading-relaxed">Campaign performance, channel attribution, budget allocation. See what's working without waiting for someone to build a dashboard.</p>
-          <p class="persona-prompt">"Campaign ROI comparison across all channels"</p>
-        </div>
-
-        <!-- Students & Researchers -->
-        <div class="persona-card">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
-              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-            </div>
-            <h3 class="text-lg font-semibold" style="color: var(--text);">Students & Researchers</h3>
-          </div>
-          <p class="text-sm text-secondary leading-relaxed">Visualize survey results, experiment data, and statistical distributions. Great for quick exploration before formal analysis.</p>
-          <p class="persona-prompt">"Visualize the survey results from my dataset"</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 6. CHART GALLERY                                            -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <section class="section bg-subtle">
-    <div class="mx-auto max-w-6xl px-6">
-      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Every chart type you need</h2>
-      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">Bar, line, area, pie, doughnut, scatter, and radar — all interactive, all in your conversation.</p>
-
-      <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="chart-container" style="height: 260px;">
+      <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="chart-container fade-in fade-delay-2" style="height: 240px;">
           <canvas id="gallery-bar"></canvas>
         </div>
-        <div class="chart-container" style="height: 260px;">
+        <div class="chart-container fade-in fade-delay-3" style="height: 240px;">
           <canvas id="gallery-line"></canvas>
         </div>
-        <div class="chart-container" style="height: 260px;">
+        <div class="chart-container fade-in fade-delay-4" style="height: 240px;">
           <canvas id="gallery-area"></canvas>
         </div>
-        <div class="chart-container" style="height: 260px;">
+        <div class="chart-container fade-in fade-delay-5" style="height: 240px;">
           <canvas id="gallery-pie"></canvas>
         </div>
-        <div class="chart-container" style="height: 260px;">
+        <div class="chart-container fade-in fade-delay-2" style="height: 240px;">
           <canvas id="gallery-doughnut"></canvas>
         </div>
-        <div class="chart-container" style="height: 260px;">
+        <div class="chart-container fade-in fade-delay-3" style="height: 240px;">
           <canvas id="gallery-scatter"></canvas>
         </div>
-        <div class="chart-container col-span-1 sm:col-span-2 lg:col-span-3 max-w-md mx-auto w-full" style="height: 260px;">
+        <div class="chart-container fade-in fade-delay-4" style="height: 240px;">
           <canvas id="gallery-radar"></canvas>
+        </div>
+        <div class="chart-container fade-in fade-delay-5" style="height: 240px;">
+          <canvas id="gallery-stacked"></canvas>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 7. DASHBOARD DEMO                                           -->
+  <!-- 6. DASHBOARD DEMO                                           -->
   <!-- ═══════════════════════════════════════════════════════════ -->
-  <section class="section">
+  <section class="section bg-subtle">
     <div class="mx-auto max-w-5xl px-6">
-      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Multi-chart dashboards</h2>
-      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);">Multi-chart dashboards</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1">
         Ask for a complete overview and get multiple charts in a single response.
       </p>
 
-      <div class="mt-10 mockup">
+      <div class="mt-10 mockup fade-in fade-delay-2">
         <div class="mockup-titlebar">
           <div class="mockup-dot"></div>
           <div class="mockup-dot"></div>
@@ -430,21 +377,21 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 8. GET STARTED                                              -->
+  <!-- 7. GET STARTED                                              -->
   <!-- ═══════════════════════════════════════════════════════════ -->
-  <section id="get-started" class="section bg-subtle">
+  <section id="get-started" class="section">
     <div class="mx-auto max-w-3xl px-6 text-center">
-      <h2 class="text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Start charting in 30 seconds</h2>
-      <p class="mt-4 text-secondary text-lg">Works with Claude Desktop, ChatGPT, VS Code, and any MCP-compatible client. Free, no API keys, no credit card.</p>
+      <h2 class="text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);">Start charting in 30 seconds</h2>
+      <p class="mt-4 text-secondary text-lg fade-in fade-delay-1">Works with Claude Desktop, ChatGPT, VS Code, and any MCP-compatible client. Free, no API keys, no credit card.</p>
 
       <!-- Tab switcher -->
-      <div class="mt-10 inline-flex rounded-lg p-1" style="background-color: var(--code-bg);">
+      <div class="mt-10 inline-flex rounded-lg p-1 fade-in fade-delay-2" style="background-color: var(--code-bg);">
         <button id="tab-connector" class="install-tab install-tab-active" type="button">Custom Connector</button>
         <button id="tab-mcp-remote" class="install-tab" type="button">mcp-remote</button>
       </div>
 
       <!-- Option 1: Custom Connector (default) -->
-      <div id="panel-connector" class="mt-6">
+      <div id="panel-connector" class="mt-6 fade-in fade-delay-3">
         <div class="code-block text-left relative">
           <div class="flex items-center justify-between px-4 py-2 border-b" style="border-color: var(--border);">
             <span class="text-xs font-mono text-tertiary">Server URL</span>
@@ -458,7 +405,7 @@
       </div>
 
       <!-- Option 2: mcp-remote -->
-      <div id="panel-mcp-remote" class="mt-6 hidden">
+      <div id="panel-mcp-remote" class="mt-6 hidden fade-in fade-delay-3">
         <div class="code-block text-left relative">
           <div class="flex items-center justify-between px-4 py-2 border-b" style="border-color: var(--border);">
             <span class="text-xs font-mono text-tertiary">claude_desktop_config.json</span>
@@ -488,13 +435,13 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 9. FAQ                                                      -->
+  <!-- 8. FAQ                                                      -->
   <!-- ═══════════════════════════════════════════════════════════ -->
-  <section class="section">
+  <section class="section bg-subtle">
     <div class="mx-auto max-w-3xl px-6">
-      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Frequently asked questions</h2>
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);">Frequently asked questions</h2>
 
-      <div class="mt-14 space-y-4">
+      <div class="mt-14 space-y-4 fade-in fade-delay-1">
         <details class="faq-item" open>
           <summary class="faq-summary">Is ChartPane free?</summary>
           <p class="faq-answer">Yes, completely free. No API keys, no credit card, no usage limits.</p>
@@ -524,7 +471,7 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 10. FOOTER                                                  -->
+  <!-- 9. FOOTER                                                   -->
   <!-- ═══════════════════════════════════════════════════════════ -->
   <footer class="section-sm" style="border-top: 1px solid var(--border);">
     <div class="mx-auto max-w-6xl px-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @font-face {
+    font-family: "Geist Sans";
+    src: url("/fonts/GeistVF.woff2") format("woff2");
+    font-weight: 100 900;
+    font-display: swap;
+  }
+  body {
+    width: 1200px;
+    height: 630px;
+    font-family: "Geist Sans", system-ui, sans-serif;
+    background: #0f0f13;
+    color: #e5e5e7;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+  }
+  /* Glow */
+  .glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: #6366f1;
+    opacity: 0.12;
+    filter: blur(120px);
+    right: 100px;
+    top: -100px;
+    pointer-events: none;
+  }
+  .glow-2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: #4f46e5;
+    opacity: 0.08;
+    filter: blur(100px);
+    left: -100px;
+    bottom: -100px;
+    pointer-events: none;
+  }
+  /* Layout */
+  .left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 50px 60px 70px;
+    position: relative;
+    z-index: 1;
+  }
+  .right {
+    width: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 50px 40px 0;
+    position: relative;
+    z-index: 1;
+  }
+  /* Brand */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .brand svg { width: 32px; height: 32px; }
+  .brand span {
+    font-size: 20px;
+    font-weight: 600;
+    color: #9ca3af;
+  }
+  /* Headline */
+  h1 {
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  h1 .accent { color: #818cf8; }
+  /* Subtitle */
+  .subtitle {
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #9ca3af;
+    max-width: 460px;
+  }
+  /* Mockup */
+  .mockup {
+    width: 100%;
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .titlebar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    border-bottom: 1px solid #27272a;
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #27272a;
+  }
+  .titlebar span {
+    margin-left: 6px;
+    font-size: 11px;
+    color: #6b7280;
+    font-family: "Geist Sans", monospace;
+  }
+  .chat { padding: 14px; }
+  .user-msg {
+    background: #1e1b4b;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #c7d2fe;
+    margin-bottom: 12px;
+  }
+  .assistant-msg {
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+  .assistant-msg p {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-bottom: 10px;
+  }
+  .chart-area {
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 8px;
+    padding: 10px;
+    height: 200px;
+  }
+  canvas { width: 100% !important; height: 100% !important; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="glow-2"></div>
+
+  <div class="left">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="20" height="20" rx="4" fill="#4f46e5"/>
+        <rect x="5" y="12" width="3" height="7" rx="1" fill="white"/>
+        <rect x="10.5" y="8" width="3" height="11" rx="1" fill="white"/>
+        <rect x="16" y="5" width="3" height="14" rx="1" fill="white"/>
+      </svg>
+      <span>ChartPane</span>
+    </div>
+    <h1>See your data<br/><span class="accent">without leaving Claude</span></h1>
+    <p class="subtitle">Instant, interactive charts right in your AI conversation. No Excel. No screenshots.</p>
+  </div>
+
+  <div class="right">
+    <div class="mockup">
+      <div class="titlebar">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <span>Claude</span>
+      </div>
+      <div class="chat">
+        <div class="user-msg">Show me revenue growth for H1 2025</div>
+        <div class="assistant-msg">
+          <p>Here's your revenue chart:</p>
+          <div class="chart-area">
+            <canvas id="chart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script type="module">
+import { Chart, BarController, CategoryScale, LinearScale, BarElement, Title } from "/node_modules/chart.js/dist/chart.js";
+Chart.register(BarController, CategoryScale, LinearScale, BarElement, Title);
+Chart.defaults.color = "#9ca3af";
+Chart.defaults.borderColor = "rgba(255,255,255,0.06)";
+new Chart(document.getElementById("chart"), {
+  type: "bar",
+  data: {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    datasets: [{
+      label: "Revenue ($k)",
+      data: [42, 45, 52, 48, 55, 61],
+      backgroundColor: "#6366f1",
+      borderRadius: 4,
+    }],
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, title: { display: true, text: "Monthly Revenue", color: "#e5e5e7", font: { size: 13 } } },
+    scales: {
+      x: { grid: { display: false } },
+      y: { beginAtZero: true, grid: { color: "rgba(255,255,255,0.04)" } },
+    },
+  },
+});
+</script>
+</body>
+</html>

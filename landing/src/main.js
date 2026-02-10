@@ -258,6 +258,22 @@ const galleryCharts = [
       },
     },
   },
+  {
+    id: "gallery-stacked",
+    input: {
+      type: "bar",
+      title: "Revenue by Channel",
+      stacked: true,
+      data: {
+        labels: ["Q1", "Q2", "Q3", "Q4"],
+        datasets: [
+          { label: "Direct", data: [80, 100, 120, 150] },
+          { label: "Organic", data: [60, 70, 90, 110] },
+          { label: "Paid", data: [40, 50, 60, 80] },
+        ],
+      },
+    },
+  },
 ];
 
 const dashboardCharts = [
@@ -455,8 +471,26 @@ function initInstallSection() {
 // Init
 // ──────────────────────────────────────────────────────────────
 
+// ──────────────────────────────────────────────────────────────
+// Scroll reveal animations
+// ──────────────────────────────────────────────────────────────
+
+function initScrollAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    }
+  }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+
+  document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
+}
+
 renderAll();
 initInstallSection();
+initScrollAnimations();
 
 // Re-render on theme change
 darkMq.addEventListener("change", () => {
