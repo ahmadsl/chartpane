@@ -49,6 +49,7 @@ function createOAuthProvider() {
     authorizeEndpoint: "/authorize",
     tokenEndpoint: "/token",
     clientRegistrationEndpoint: "/register",
+    accessTokenTTL: 86400, // 24 hours — reduces re-auth on reconnect cycles
   });
 }
 
@@ -60,6 +61,38 @@ function isAuthEnabled(env: Env): boolean {
 
 export default {
   async fetch(req: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+    const { method, url } = req;
+    const path = new URL(url).pathname;
+
+    // Log MCP JSON-RPC method for POST requests
+    let rpcMethod: string | undefined;
+    if (method === "POST") {
+      const cloned = req.clone();
+      try {
+        const body = await cloned.json() as { method?: string };
+        rpcMethod = body.method;
+      } catch { /* not JSON */ }
+    }
+
+    const sessionId = req.headers.get("mcp-session-id");
+    console.log(
+      `[mcp] ${method} ${path}${rpcMethod ? ` → ${rpcMethod}` : ""}${sessionId ? ` [session=${sessionId.slice(0, 8)}]` : " [no-session]"}`,
+    );
+
+    // RFC 9728: Protected Resource Metadata — lets clients skip the
+    // .well-known fallback chain (eliminates ~4 x 404s per reconnect cycle)
+    if (
+      path === "/.well-known/oauth-protected-resource" ||
+      path === "/.well-known/oauth-protected-resource/mcp"
+    ) {
+      const origin = new URL(url).origin;
+      return Response.json({
+        resource: `${origin}/mcp`,
+        authorization_servers: [`${origin}/`],
+        bearer_methods_supported: ["header"],
+      });
+    }
+
     if (isAuthEnabled(env)) {
       oauthProvider ??= createOAuthProvider();
       return oauthProvider.fetch(req, env, ctx);
