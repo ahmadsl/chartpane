@@ -54,17 +54,31 @@ function applyHostContext(ctx: McpUiHostContext): void {
   if (lastResult) handleResult(lastResult);
 }
 
+function showError(container: HTMLElement | null, message: string): void {
+  if (!container) return;
+  const el = document.createElement("div");
+  el.className = "chart-error";
+  el.textContent = message;
+  container.appendChild(el);
+}
+
 function renderSingleChart(
   input: ChartInput,
   canvas: HTMLCanvasElement,
   suppressTitle = false,
 ): void {
-  const config = buildChartConfig(input);
-  if (suppressTitle && config.options?.plugins?.title) {
-    config.options.plugins.title.display = false;
+  try {
+    const config = buildChartConfig(input);
+    if (suppressTitle && config.options?.plugins?.title) {
+      config.options.plugins.title.display = false;
+    }
+    const chart = new Chart(canvas, config);
+    charts.push(chart);
+  } catch (err) {
+    console.error("Chart render error:", err);
+    canvas.style.display = "none";
+    showError(canvas.parentElement, err instanceof Error ? err.message : "Failed to render chart");
   }
-  const chart = new Chart(canvas, config);
-  charts.push(chart);
 }
 
 function showChart(input: ChartInput): void {
@@ -115,10 +129,18 @@ function handleResult(result: RenderResult): void {
   lastResult = result;
   destroyAllCharts();
 
-  if (result.mode === "chart") {
-    showChart(result.chart);
-  } else if (result.mode === "dashboard") {
-    showDashboard(result.title, result.charts, result.columns);
+  try {
+    if (result.mode === "chart") {
+      showChart(result.chart);
+    } else if (result.mode === "dashboard") {
+      showDashboard(result.title, result.charts, result.columns);
+    }
+  } catch (err) {
+    console.error("Render error:", err);
+    hideElement("loading");
+    const container = document.getElementById("chart-container") || document.getElementById("dashboard-container");
+    showElement(container?.id ?? "chart-container");
+    showError(container, err instanceof Error ? err.message : "Failed to render");
   }
 }
 
@@ -130,9 +152,19 @@ const app = new App(
 );
 
 app.ontoolresult = (result) => {
-  const structured = result.structuredContent as RenderResult | undefined;
-  if (structured) {
-    handleResult(structured);
+  try {
+    const structured = result.structuredContent as RenderResult | undefined;
+    if (structured) {
+      handleResult(structured);
+    }
+  } catch (err) {
+    console.error("Tool result error:", err);
+    hideElement("loading");
+    showElement("chart-container");
+    showError(
+      document.getElementById("chart-container"),
+      err instanceof Error ? err.message : "Failed to process tool result",
+    );
   }
 };
 

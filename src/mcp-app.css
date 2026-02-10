@@ -213,6 +213,17 @@
   margin: 4px 0;
 }
 
+.chart-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  text-align: center;
+  line-height: 1.5;
+}
+
 .dashboard-container {
   width: 100%;
   padding: 16px;

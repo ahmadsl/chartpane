@@ -30,6 +30,23 @@
     gtag('config', 'G-5DEV3CDE8M');
   </script>
 
+  <!-- Sentry error tracking (lazy-loaded CDN bundle) -->
+  <script>
+    window.sentryOnLoad = function () {
+      Sentry.init({
+        environment: "production",
+        tracesSampleRate: 0,
+        replaysSessionSampleRate: 0,
+        replaysOnErrorSampleRate: 0,
+        initialScope: { tags: { surface: "landing" } },
+      });
+    };
+  </script>
+  <script
+    src="https://js.sentry-cdn.com/15523aa4801cb0b9ac0b49b801f46069.min.js"
+    crossorigin="anonymous"
+  ></script>
+
   <!-- Favicon -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 

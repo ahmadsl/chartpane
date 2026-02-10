@@ -1,5 +1,6 @@
 /// <reference types="@cloudflare/workers-types" />
 import OAuthProvider from "@cloudflare/workers-oauth-provider";
+import * as Sentry from "@sentry/cloudflare";
 import { createMcpHandler, getMcpAuthContext } from "agents/mcp";
 import { createServer } from "./server.js";
 import { googleHandler } from "./auth-handler.js";
@@ -11,10 +12,14 @@ type Env = {
   GOOGLE_CLIENT_ID: string;
   GOOGLE_CLIENT_SECRET: string;
   COOKIE_ENCRYPTION_KEY: string;
+  SENTRY_DSN: string;
+  CF_VERSION_METADATA: { id: string; tag: string };
 };
 
 function createMcpHandler_(env: Env, ctx: ExecutionContext, route: string) {
   const userId = getMcpAuthContext()?.props?.userId as string | undefined;
+  if (userId) Sentry.setUser({ id: userId });
+
   const server = createServer({
     htmlLoader: async () => {
       const r = await env.ASSETS.fetch("https://assets.local/mcp-app.html");
@@ -32,7 +37,9 @@ function createMcpHandler_(env: Env, ctx: ExecutionContext, route: string) {
     },
     userId,
   });
-  return createMcpHandler(server, { route });
+
+  const instrumentedServer = Sentry.wrapMcpServerWithSentry(server);
+  return createMcpHandler(instrumentedServer, { route });
 }
 
 const authApiHandler = {
@@ -89,47 +96,60 @@ async function normalizeResourceParam(req: Request): Promise<Request> {
   return req;
 }
 
-export default {
-  async fetch(req: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-    const { method, url } = req;
-    const path = new URL(url).pathname;
+export default Sentry.withSentry(
+  (env: Env) => ({
+    dsn: env.SENTRY_DSN,
+    release: env.CF_VERSION_METADATA?.id,
+    tracesSampleRate: 1.0,
+    enableLogs: true,
+    sendDefaultPii: false,
+    initialScope: { tags: { surface: "worker" } },
+    integrations: [
+      Sentry.consoleLoggingIntegration({ levels: ["log", "warn", "error"] }),
+    ],
+  }),
+  {
+    async fetch(req: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+      const { method, url } = req;
+      const path = new URL(url).pathname;
 
-    // Log MCP JSON-RPC method for POST requests
-    let rpcMethod: string | undefined;
-    if (method === "POST") {
-      const cloned = req.clone();
-      try {
-        const body = await cloned.json() as { method?: string };
-        rpcMethod = body.method;
-      } catch { /* not JSON */ }
-    }
+      // Log MCP JSON-RPC method for POST requests
+      let rpcMethod: string | undefined;
+      if (method === "POST") {
+        const cloned = req.clone();
+        try {
+          const body = await cloned.json() as { method?: string };
+          rpcMethod = body.method;
+        } catch { /* not JSON */ }
+      }
 
-    const sessionId = req.headers.get("mcp-session-id");
-    console.log(
-      `[mcp] ${method} ${path}${rpcMethod ? ` → ${rpcMethod}` : ""}${sessionId ? ` [session=${sessionId.slice(0, 8)}]` : " [no-session]"}`,
-    );
+      const sessionId = req.headers.get("mcp-session-id");
+      console.log(
+        `[mcp] ${method} ${path}${rpcMethod ? ` → ${rpcMethod}` : ""}${sessionId ? ` [session=${sessionId.slice(0, 8)}]` : " [no-session]"}`,
+      );
 
-    // RFC 9728: Protected Resource Metadata — override OAuthProvider's built-in
-    // response because it includes the apiRoute path in `resource`, but its own
-    // token validation checks audience against origin-only (protocol://host).
-    if (
-      path === "/.well-known/oauth-protected-resource" ||
-      path === "/.well-known/oauth-protected-resource/mcp"
-    ) {
-      const origin = new URL(url).origin;
-      return Response.json({
-        resource: origin,
-        authorization_servers: [`${origin}/`],
-        bearer_methods_supported: ["header"],
-      });
-    }
+      // RFC 9728: Protected Resource Metadata — override OAuthProvider's built-in
+      // response because it includes the apiRoute path in `resource`, but its own
+      // token validation checks audience against origin-only (protocol://host).
+      if (
+        path === "/.well-known/oauth-protected-resource" ||
+        path === "/.well-known/oauth-protected-resource/mcp"
+      ) {
+        const origin = new URL(url).origin;
+        return Response.json({
+          resource: origin,
+          authorization_servers: [`${origin}/`],
+          bearer_methods_supported: ["header"],
+        });
+      }
 
-    if (isAuthEnabled(env)) {
-      oauthProvider ??= createOAuthProvider();
-      req = await normalizeResourceParam(req);
-      return oauthProvider.fetch(req, env, ctx);
-    }
-    // Unauthenticated fallback
-    return createMcpHandler_(env, ctx, "/mcp")(req, env, ctx);
+      if (isAuthEnabled(env)) {
+        oauthProvider ??= createOAuthProvider();
+        req = await normalizeResourceParam(req);
+        return oauthProvider.fetch(req, env, ctx);
+      }
+      // Unauthenticated fallback
+      return createMcpHandler_(env, ctx, "/mcp")(req, env, ctx);
+    },
   },
-};
+);
