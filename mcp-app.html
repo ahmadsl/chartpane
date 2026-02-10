@@ -11,7 +11,38 @@
   <div id="app">
     <div id="loading">Waiting for chart data...</div>
     <div id="chart-container" class="chart-container" style="display:none">
+      <div class="chart-toolbar">
+        <span class="chart-toolbar-title" id="chart-title"></span>
+        <div class="chart-toolbar-actions">
+          <button class="chart-toolbar-btn" id="btn-colors" data-tooltip="Colors">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <line x1="2" y1="4" x2="14" y2="4"/>
+              <line x1="2" y1="8" x2="14" y2="8"/>
+              <line x1="2" y1="12" x2="14" y2="12"/>
+              <circle cx="5" cy="4" r="1.5" fill="currentColor"/>
+              <circle cx="10" cy="8" r="1.5" fill="currentColor"/>
+              <circle cx="7" cy="12" r="1.5" fill="currentColor"/>
+            </svg>
+          </button>
+          <button class="chart-toolbar-btn" id="btn-copy" data-tooltip="Copy CSV">
+            <svg class="icon-copy" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5.5" y="5.5" width="7" height="7" rx="1.5"/>
+              <path d="M3.5 10.5v-7a1.5 1.5 0 011.5-1.5h7"/>
+            </svg>
+            <svg class="icon-check" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+              <path d="M3 8.5l3 3 7-7"/>
+            </svg>
+          </button>
+          <button class="chart-toolbar-btn" id="btn-download" data-tooltip="Download PNG">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2.5v7m0 0L5 6.5m3 3l3-3"/>
+              <path d="M2.5 11.5v1a1 1 0 001 1h9a1 1 0 001-1v-1"/>
+            </svg>
+          </button>
+        </div>
+      </div>
       <canvas id="chart-canvas"></canvas>
+      <div id="color-popover" class="color-popover" style="display:none"></div>
     </div>
     <div id="dashboard-container" class="dashboard-container" style="display:none">
       <h2 id="dashboard-title" class="dashboard-title"></h2>
