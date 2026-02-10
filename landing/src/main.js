@@ -322,31 +322,90 @@ function renderAll() {
 }
 
 // ──────────────────────────────────────────────────────────────
-// Copy button
+// Install tabs + copy buttons
 // ──────────────────────────────────────────────────────────────
 
-function initCopyButton() {
-  const btn = document.getElementById("copy-btn");
-  const code = document.getElementById("config-code");
-  if (!btn || !code) return;
+function copyText(text, btn) {
+  const label = btn.textContent;
+  try {
+    navigator.clipboard.writeText(text);
+    btn.textContent = "Copied!";
+    setTimeout(() => { btn.textContent = label; }, 2000);
+  } catch {
+    const el = document.createElement("textarea");
+    el.value = text;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+    btn.textContent = "Copied!";
+    setTimeout(() => { btn.textContent = label; }, 2000);
+  }
+}
 
-  btn.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(code.textContent);
-      btn.textContent = "Copied!";
-      setTimeout(() => { btn.textContent = "Copy"; }, 2000);
-    } catch {
-      // Fallback for older browsers
-      const range = document.createRange();
-      range.selectNodeContents(code);
-      const sel = window.getSelection();
-      sel.removeAllRanges();
-      sel.addRange(range);
-      document.execCommand("copy");
-      sel.removeAllRanges();
-      btn.textContent = "Copied!";
-      setTimeout(() => { btn.textContent = "Copy"; }, 2000);
+function initInstallSection() {
+  const tabConnector = document.getElementById("tab-connector");
+  const tabMcpRemote = document.getElementById("tab-mcp-remote");
+  const panelConnector = document.getElementById("panel-connector");
+  const panelMcpRemote = document.getElementById("panel-mcp-remote");
+  const copyInstallBtn = document.getElementById("copy-install-btn");
+  const copyUrlBtn = document.getElementById("copy-url-btn");
+  const copyConfigBtn = document.getElementById("copy-config-btn");
+
+  if (!tabConnector || !tabMcpRemote) return;
+
+  let activeTab = "connector";
+
+  const btnLabel = copyInstallBtn?.querySelector(".btn-label");
+
+  function switchTab(tab) {
+    activeTab = tab;
+    if (tab === "connector") {
+      tabConnector.classList.add("install-tab-active");
+      tabMcpRemote.classList.remove("install-tab-active");
+      panelConnector.classList.remove("hidden");
+      panelMcpRemote.classList.add("hidden");
+      if (btnLabel) btnLabel.textContent = "Copy URL";
+    } else {
+      tabMcpRemote.classList.add("install-tab-active");
+      tabConnector.classList.remove("install-tab-active");
+      panelMcpRemote.classList.remove("hidden");
+      panelConnector.classList.add("hidden");
+      if (btnLabel) btnLabel.textContent = "Copy Config";
     }
+  }
+
+  tabConnector.addEventListener("click", () => switchTab("connector"));
+  tabMcpRemote.addEventListener("click", () => switchTab("mcp-remote"));
+
+  // Individual copy buttons
+  copyUrlBtn?.addEventListener("click", () => {
+    copyText(document.getElementById("connector-url").textContent, copyUrlBtn);
+  });
+  copyConfigBtn?.addEventListener("click", () => {
+    copyText(document.getElementById("config-code").textContent, copyConfigBtn);
+  });
+
+  // Main CTA button — use the label span so the SVG icon is preserved
+  copyInstallBtn?.addEventListener("click", () => {
+    const text = activeTab === "connector"
+      ? document.getElementById("connector-url").textContent
+      : document.getElementById("config-code").textContent;
+    const target = btnLabel || copyInstallBtn;
+    const original = target.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      target.textContent = "Copied!";
+      setTimeout(() => { target.textContent = original; }, 2000);
+    }).catch(() => {
+      const el = document.createElement("textarea");
+      el.value = text;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand("copy");
+      document.body.removeChild(el);
+      target.textContent = "Copied!";
+      setTimeout(() => { target.textContent = original; }, 2000);
+    });
   });
 }
 
@@ -355,7 +414,7 @@ function initCopyButton() {
 // ──────────────────────────────────────────────────────────────
 
 renderAll();
-initCopyButton();
+initInstallSection();
 
 // Re-render on theme change
 darkMq.addEventListener("change", () => {

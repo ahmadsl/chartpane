@@ -257,28 +257,54 @@
   <section id="get-started" class="section bg-subtle">
     <div class="mx-auto max-w-3xl px-6 text-center">
       <h2 class="text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Start charting in 30 seconds</h2>
-      <p class="mt-4 text-secondary text-lg">Add this to your Claude Desktop config and restart.</p>
+      <p class="mt-4 text-secondary text-lg">Add ChartPane to Claude Desktop and restart.</p>
 
-      <div class="mt-10 code-block text-left relative">
-        <div class="flex items-center justify-between px-4 py-2 border-b" style="border-color: var(--border);">
-          <span class="text-xs font-mono text-tertiary">claude_desktop_config.json</span>
-          <button id="copy-btn" class="copy-btn" type="button">Copy</button>
+      <!-- Tab switcher -->
+      <div class="mt-10 inline-flex rounded-lg p-1" style="background-color: var(--code-bg);">
+        <button id="tab-connector" class="install-tab install-tab-active" type="button">Custom Connector</button>
+        <button id="tab-mcp-remote" class="install-tab" type="button">mcp-remote</button>
+      </div>
+
+      <!-- Option 1: Custom Connector (default) -->
+      <div id="panel-connector" class="mt-6">
+        <div class="code-block text-left relative">
+          <div class="flex items-center justify-between px-4 py-2 border-b" style="border-color: var(--border);">
+            <span class="text-xs font-mono text-tertiary">Server URL</span>
+            <button id="copy-url-btn" class="copy-btn" type="button">Copy</button>
+          </div>
+          <pre class="font-mono"><code id="connector-url">https://mcp.chartpane.com/mcp</code></pre>
         </div>
-        <pre class="font-mono"><code id="config-code">{
+        <p class="mt-4 text-sm text-secondary">
+          Open Claude Desktop → Settings → Connectors → <strong>Add custom connector</strong> → paste the URL above.
+        </p>
+      </div>
+
+      <!-- Option 2: mcp-remote -->
+      <div id="panel-mcp-remote" class="mt-6 hidden">
+        <div class="code-block text-left relative">
+          <div class="flex items-center justify-between px-4 py-2 border-b" style="border-color: var(--border);">
+            <span class="text-xs font-mono text-tertiary">claude_desktop_config.json</span>
+            <button id="copy-config-btn" class="copy-btn" type="button">Copy</button>
+          </div>
+          <pre class="font-mono"><code id="config-code">{
   "mcpServers": {
     "chartpane": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.chartpane.com/"]
+      "args": ["-y", "mcp-remote", "https://mcp.chartpane.com/mcp"]
     }
   }
 }</code></pre>
+        </div>
+        <p class="mt-4 text-sm text-secondary">
+          Add this to your <code class="font-mono text-xs px-1 py-0.5 rounded" style="background-color: var(--code-bg);">claude_desktop_config.json</code> and restart Claude Desktop. Requires Node.js.
+        </p>
       </div>
 
       <div class="mt-8 flex flex-wrap justify-center gap-4">
-        <a href="#get-started" class="btn-primary" onclick="document.getElementById('copy-btn').click(); return false;">
-          Copy &amp; Install
+        <button id="copy-install-btn" class="btn-primary" type="button">
+          <span class="btn-label">Copy URL</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-        </a>
+        </button>
         <a href="https://github.com/AhmadMuj/chartpane" target="_blank" rel="noopener" class="btn-secondary">
           View on GitHub
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
@@ -286,7 +312,7 @@
       </div>
 
       <p class="mt-6 text-sm text-tertiary">
-        Works with Claude Desktop, ChatGPT, VS Code, and any MCP-compatible client.
+        Works with Claude Desktop and any MCP-compatible client.
       </p>
     </div>
   </section>
