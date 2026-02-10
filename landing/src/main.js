@@ -120,6 +120,43 @@ const heroChart = {
   },
 };
 
+// Real Examples fixtures
+const exampleCharts = [
+  {
+    id: "example-growth",
+    input: {
+      type: "line",
+      title: "Revenue Growth",
+      data: {
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+        datasets: [{ label: "Revenue ($k)", data: [10, 15, 22, 31, 44, 58] }],
+      },
+    },
+  },
+  {
+    id: "example-portfolio",
+    input: {
+      type: "doughnut",
+      title: "Portfolio Allocation",
+      data: {
+        labels: ["Stocks", "Bonds", "Real Estate", "Cash"],
+        datasets: [{ label: "Allocation", data: [40, 30, 20, 10] }],
+      },
+    },
+  },
+  {
+    id: "example-comparison",
+    input: {
+      type: "bar",
+      title: "Q4 Sales by Region",
+      data: {
+        labels: ["North", "South", "East", "West"],
+        datasets: [{ label: "Sales ($k)", data: [340, 280, 195, 410] }],
+      },
+    },
+  },
+];
+
 const galleryCharts = [
   {
     id: "gallery-bar",
@@ -310,6 +347,11 @@ function renderAll() {
   // Hero
   renderChart("hero-chart", heroChart);
 
+  // Real Examples
+  for (const item of exampleCharts) {
+    renderChart(item.id, item.input);
+  }
+
   // Gallery
   for (const item of galleryCharts) {
     renderChart(item.id, item.input);
@@ -365,7 +407,7 @@ function initInstallSection() {
       tabMcpRemote.classList.remove("install-tab-active");
       panelConnector.classList.remove("hidden");
       panelMcpRemote.classList.add("hidden");
-      if (btnLabel) btnLabel.textContent = "Copy URL";
+      if (btnLabel) btnLabel.textContent = "Get Started Free";
     } else {
       tabMcpRemote.classList.add("install-tab-active");
       tabConnector.classList.remove("install-tab-active");

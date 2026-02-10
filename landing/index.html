@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ChartPane — Interactive Charts in Your AI Conversations</title>
-  <meta name="description" content="ChartPane renders live, interactive Chart.js charts directly inside Claude, ChatGPT, and other AI assistants. Bar, line, pie, scatter, radar — just ask." />
+  <title>ChartPane — See Your Data Without Leaving Claude</title>
+  <meta name="description" content="Get instant, interactive charts right in your AI conversation. No Excel, no screenshots, no breaking your flow. Works with Claude, ChatGPT, VS Code, and more." />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="ChartPane — Interactive Charts in AI Conversations" />
-  <meta property="og:description" content="Render live Chart.js charts inside Claude, ChatGPT, and 500+ AI clients. Just ask for a chart." />
+  <meta property="og:title" content="ChartPane — See Your Data Without Leaving Claude" />
+  <meta property="og:description" content="Get instant, interactive charts right in your AI conversation. No Excel, no screenshots, no breaking your flow." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://chartpane.com" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ChartPane — Interactive Charts in AI Conversations" />
-  <meta name="twitter:description" content="Render live Chart.js charts inside Claude, ChatGPT, and 500+ AI clients." />
+  <meta name="twitter:title" content="ChartPane — See Your Data Without Leaving Claude" />
+  <meta name="twitter:description" content="Get instant, interactive charts right in your AI conversation. No Excel, no screenshots, no breaking your flow." />
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -39,16 +39,20 @@
         <!-- Left: Text -->
         <div class="max-w-xl">
           <h1 class="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl" style="color: var(--text);">
-            Charts inside your<br />
-            <span style="color: var(--accent);">AI conversations</span>
+            See your data<br />
+            <span style="color: var(--accent);">without leaving Claude</span>
           </h1>
           <p class="mt-6 text-lg leading-relaxed text-secondary">
-            ChartPane renders live, interactive charts directly in Claude, ChatGPT, and other AI assistants. Bar, line, pie, scatter, radar — just ask.
+            You're already asking Claude to analyze your data. Now get instant, interactive charts — right in the conversation. No Excel. No screenshots. No breaking your flow.
           </p>
           <div class="mt-8 flex flex-wrap gap-4">
             <a href="#get-started" class="btn-primary">
-              Install in Claude
+              Get Started Free
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+            </a>
+            <a href="#real-examples" class="btn-secondary">
+              See Examples
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
             </a>
           </div>
         </div>
@@ -64,11 +68,11 @@
           <div class="p-4 space-y-4">
             <!-- User message -->
             <div class="mockup-user">
-              <p class="text-sm">Show me a bar chart of monthly revenue for the first half of 2025</p>
+              <p class="text-sm">Show me revenue growth for the first half of 2025</p>
             </div>
             <!-- Assistant message -->
             <div class="mockup-assistant">
-              <p class="text-sm text-secondary mb-3">Here's your monthly revenue chart:</p>
+              <p class="text-sm text-secondary mb-3">Here's your revenue growth chart:</p>
               <div class="chart-container" style="height: 220px;">
                 <canvas id="hero-chart"></canvas>
               </div>
@@ -80,43 +84,272 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 2. HOW IT WORKS                                             -->
+  <!-- 2. OLD WAY vs CHARTPANE WAY                                 -->
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section class="section bg-subtle">
-    <div class="mx-auto max-w-4xl px-6">
-      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">How it works</h2>
-      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">Three steps. No code, no config files, no API keys, no cost.</p>
+    <div class="mx-auto max-w-5xl px-6">
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Stop breaking your flow</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">Every time you leave your AI conversation to make a chart, you lose your train of thought.</p>
 
-      <div class="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3">
-        <!-- Step 1 -->
-        <div class="text-center">
-          <div class="step-number mx-auto">1</div>
-          <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);">Install</h3>
-          <p class="mt-2 text-sm text-secondary leading-relaxed">Add ChartPane to Claude Desktop, ChatGPT, VS Code, or any MCP-compatible client.</p>
+      <div class="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2">
+        <!-- Old Way -->
+        <div class="comparison-card comparison-card-old">
+          <h3 class="text-lg font-semibold mb-6" style="color: var(--text-secondary);">The old way</h3>
+          <div class="space-y-4">
+            <div class="comparison-step comparison-cross">
+              <span class="comparison-num comparison-num-old">1</span>
+              <span>Ask Claude to analyze your data</span>
+            </div>
+            <div class="comparison-step comparison-cross">
+              <span class="comparison-num comparison-num-old">2</span>
+              <span>Copy the numbers from the response</span>
+            </div>
+            <div class="comparison-step comparison-cross">
+              <span class="comparison-num comparison-num-old">3</span>
+              <span>Open Excel or Google Sheets</span>
+            </div>
+            <div class="comparison-step comparison-cross">
+              <span class="comparison-num comparison-num-old">4</span>
+              <span>Paste and format the data</span>
+            </div>
+            <div class="comparison-step comparison-cross">
+              <span class="comparison-num comparison-num-old">5</span>
+              <span>Create and style a chart</span>
+            </div>
+            <div class="comparison-step comparison-cross">
+              <span class="comparison-num comparison-num-old">6</span>
+              <span>Screenshot or export</span>
+            </div>
+            <div class="comparison-step comparison-cross">
+              <span class="comparison-num comparison-num-old">7</span>
+              <span>Switch back to Claude</span>
+            </div>
+            <div class="comparison-step comparison-cross">
+              <span class="comparison-num comparison-num-old">8</span>
+              <span>...where were you again?</span>
+            </div>
+          </div>
         </div>
-        <!-- Step 2 -->
-        <div class="text-center">
-          <div class="step-number mx-auto">2</div>
-          <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);">Ask</h3>
-          <p class="mt-2 text-sm text-secondary leading-relaxed">Describe the chart you want in plain English. Paste data, reference files, or let the AI generate sample data.</p>
-        </div>
-        <!-- Step 3 -->
-        <div class="text-center">
-          <div class="step-number mx-auto">3</div>
-          <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);">See</h3>
-          <p class="mt-2 text-sm text-secondary leading-relaxed">A live, interactive Chart.js chart appears directly in the conversation. Hover for tooltips, resize, and more.</p>
+
+        <!-- ChartPane Way -->
+        <div class="comparison-card comparison-card-new">
+          <h3 class="text-lg font-semibold mb-6" style="color: var(--accent);">With ChartPane</h3>
+          <div class="space-y-4">
+            <div class="comparison-step">
+              <span class="comparison-num comparison-num-new">1</span>
+              <span>Ask</span>
+            </div>
+            <div class="comparison-step">
+              <span class="comparison-num comparison-num-new">2</span>
+              <span>See your chart instantly</span>
+            </div>
+            <div class="comparison-step">
+              <span class="comparison-num comparison-num-new">3</span>
+              <span>Keep thinking</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 3. CHART GALLERY                                            -->
+  <!-- 3. HOW IT WORKS                                             -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="mx-auto max-w-4xl px-6">
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">How it works</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">Three steps. No code, no API keys, no cost.</p>
+
+      <div class="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3">
+        <!-- Step 1 -->
+        <div class="text-center">
+          <div class="step-number mx-auto">1</div>
+          <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);">Add to Claude</h3>
+          <p class="mt-2 text-sm text-secondary leading-relaxed">One URL, 30 seconds. Works with Claude Desktop, ChatGPT, VS Code, and more.</p>
+        </div>
+        <!-- Step 2 -->
+        <div class="text-center">
+          <div class="step-number mx-auto">2</div>
+          <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);">Ask in plain English</h3>
+          <p class="mt-2 text-sm text-secondary leading-relaxed">Describe what you want to see. Paste your data or let Claude work with what you're already discussing.</p>
+        </div>
+        <!-- Step 3 -->
+        <div class="text-center">
+          <div class="step-number mx-auto">3</div>
+          <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);">See it instantly</h3>
+          <p class="mt-2 text-sm text-secondary leading-relaxed">An interactive chart appears right in your conversation. Hover for details, keep your train of thought.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- 4. REAL EXAMPLES                                            -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section id="real-examples" class="section bg-subtle">
+    <div class="mx-auto max-w-6xl px-6">
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Real conversations, real charts</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">Here's what it looks like when you ask Claude to visualize your data.</p>
+
+      <div class="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <!-- Example 1: Growth Trend -->
+        <div class="mockup">
+          <div class="mockup-titlebar">
+            <div class="mockup-dot"></div>
+            <div class="mockup-dot"></div>
+            <div class="mockup-dot"></div>
+            <span class="ml-2 text-xs text-tertiary font-mono">Claude</span>
+          </div>
+          <div class="p-4 space-y-3">
+            <div class="mockup-user">
+              <p class="text-sm">My startup's monthly revenue: Jan $10k, Feb $15k, Mar $22k, Apr $31k, May $44k, Jun $58k. Show me the growth trend.</p>
+            </div>
+            <div class="mockup-assistant">
+              <p class="text-sm text-secondary mb-3">Here's your revenue growth trend:</p>
+              <div class="chart-container" style="height: 200px;">
+                <canvas id="example-growth"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example 2: Portfolio -->
+        <div class="mockup">
+          <div class="mockup-titlebar">
+            <div class="mockup-dot"></div>
+            <div class="mockup-dot"></div>
+            <div class="mockup-dot"></div>
+            <span class="ml-2 text-xs text-tertiary font-mono">Claude</span>
+          </div>
+          <div class="p-4 space-y-3">
+            <div class="mockup-user">
+              <p class="text-sm">My portfolio: 40% stocks, 30% bonds, 20% real estate, 10% cash. Visualize the allocation.</p>
+            </div>
+            <div class="mockup-assistant">
+              <p class="text-sm text-secondary mb-3">Here's your portfolio breakdown:</p>
+              <div class="chart-container" style="height: 200px;">
+                <canvas id="example-portfolio"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example 3: Comparison -->
+        <div class="mockup">
+          <div class="mockup-titlebar">
+            <div class="mockup-dot"></div>
+            <div class="mockup-dot"></div>
+            <div class="mockup-dot"></div>
+            <span class="ml-2 text-xs text-tertiary font-mono">Claude</span>
+          </div>
+          <div class="p-4 space-y-3">
+            <div class="mockup-user">
+              <p class="text-sm">Compare Q4 sales by region: North $340k, South $280k, East $195k, West $410k</p>
+            </div>
+            <div class="mockup-assistant">
+              <p class="text-sm text-secondary mb-3">Here's your regional comparison:</p>
+              <div class="chart-container" style="height: 200px;">
+                <canvas id="example-comparison"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- 5. WHO USES CHARTPANE                                       -->
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section class="section">
     <div class="mx-auto max-w-6xl px-6">
-      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Seven chart types, one tool</h2>
-      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">Bar, line, area, pie, doughnut, scatter, and radar — all rendered with Chart.js.</p>
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Built for people who work with data</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">Whether you're exploring, analyzing, or presenting — charts appear where you already think.</p>
+
+      <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Financial Analysts -->
+        <div class="persona-card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <h3 class="text-lg font-semibold" style="color: var(--text);">Financial Analysts</h3>
+          </div>
+          <p class="text-sm text-secondary leading-relaxed">Portfolio allocation, price trends, benchmark comparisons. Visualize financial data mid-analysis without exporting to a spreadsheet.</p>
+          <p class="persona-prompt">"Compare my tech stocks vs S&P 500 for the last year"</p>
+        </div>
+
+        <!-- Product Managers -->
+        <div class="persona-card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" /></svg>
+            </div>
+            <h3 class="text-lg font-semibold" style="color: var(--text);">Product Managers</h3>
+          </div>
+          <p class="text-sm text-secondary leading-relaxed">KPI dashboards, sprint velocity, funnel analysis. Ask for a multi-chart dashboard and get a complete view in one response.</p>
+          <p class="persona-prompt">"Show me conversion rates by channel this quarter"</p>
+        </div>
+
+        <!-- Business Analysts -->
+        <div class="persona-card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+            </div>
+            <h3 class="text-lg font-semibold" style="color: var(--text);">Business Analysts</h3>
+          </div>
+          <p class="text-sm text-secondary leading-relaxed">Revenue breakdowns, trend analysis, and cross-segment comparisons. Turn raw numbers into insight without leaving the conversation.</p>
+          <p class="persona-prompt">"Revenue by region, broken down by product line"</p>
+        </div>
+
+        <!-- Data Analysts -->
+        <div class="persona-card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" /></svg>
+            </div>
+            <h3 class="text-lg font-semibold" style="color: var(--text);">Data Analysts</h3>
+          </div>
+          <p class="text-sm text-secondary leading-relaxed">Quick exploratory visualization during conversation. Scatter plot a dataset, histogram a distribution, or compare categories — without switching tools.</p>
+          <p class="persona-prompt">"Scatter plot to check if price correlates with sales volume"</p>
+        </div>
+
+        <!-- Marketing Teams -->
+        <div class="persona-card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" /></svg>
+            </div>
+            <h3 class="text-lg font-semibold" style="color: var(--text);">Marketing Teams</h3>
+          </div>
+          <p class="text-sm text-secondary leading-relaxed">Campaign performance, channel attribution, budget allocation. See what's working without waiting for someone to build a dashboard.</p>
+          <p class="persona-prompt">"Campaign ROI comparison across all channels"</p>
+        </div>
+
+        <!-- Students & Researchers -->
+        <div class="persona-card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+            </div>
+            <h3 class="text-lg font-semibold" style="color: var(--text);">Students & Researchers</h3>
+          </div>
+          <p class="text-sm text-secondary leading-relaxed">Visualize survey results, experiment data, and statistical distributions. Great for quick exploration before formal analysis.</p>
+          <p class="persona-prompt">"Visualize the survey results from my dataset"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- 6. CHART GALLERY                                            -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section bg-subtle">
+    <div class="mx-auto max-w-6xl px-6">
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Every chart type you need</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">Bar, line, area, pie, doughnut, scatter, and radar — all interactive, all in your conversation.</p>
 
       <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <div class="chart-container" style="height: 260px;">
@@ -145,73 +378,13 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 4. USE CASES                                                -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <section class="section bg-subtle">
-    <div class="mx-auto max-w-6xl px-6">
-      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Built for people who work with data</h2>
-      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">Whether you're exploring, debugging, or presenting — charts appear where you already think.</p>
-
-      <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <!-- Data Analysts -->
-        <div class="bg-card border-default rounded-xl border p-6">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
-              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-            </div>
-            <h3 class="text-lg font-semibold" style="color: var(--text);">Data Analysts</h3>
-          </div>
-          <p class="text-sm text-secondary leading-relaxed">Quick exploratory visualization during conversation. Scatter plot a CSV to check for correlation, histogram a distribution, or compare categories — without switching tools.</p>
-          <p class="mt-3 text-xs font-mono text-tertiary">"Scatter plot this CSV to check for correlation"</p>
-        </div>
-
-        <!-- Developers -->
-        <div class="bg-card border-default rounded-xl border p-6">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
-              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
-            </div>
-            <h3 class="text-lg font-semibold" style="color: var(--text);">Developers</h3>
-          </div>
-          <p class="text-sm text-secondary leading-relaxed">Debug data visually. Benchmark results, API response times, memory usage over time — turn numbers into shapes while you're already in a debugging conversation.</p>
-          <p class="mt-3 text-xs font-mono text-tertiary">"Bar chart of response times by endpoint"</p>
-        </div>
-
-        <!-- Financial Analysts -->
-        <div class="bg-card border-default rounded-xl border p-6">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
-              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            </div>
-            <h3 class="text-lg font-semibold" style="color: var(--text);">Financial Analysts</h3>
-          </div>
-          <p class="text-sm text-secondary leading-relaxed">Portfolio allocation, price trends, benchmark comparisons. Visualize financial data mid-analysis without exporting to a spreadsheet.</p>
-          <p class="mt-3 text-xs font-mono text-tertiary">"Pie chart of portfolio by asset class"</p>
-        </div>
-
-        <!-- Product Managers -->
-        <div class="bg-card border-default rounded-xl border p-6">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
-              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" /></svg>
-            </div>
-            <h3 class="text-lg font-semibold" style="color: var(--text);">Product Managers</h3>
-          </div>
-          <p class="text-sm text-secondary leading-relaxed">KPI dashboards, sprint velocity, funnel analysis. Ask for a multi-chart dashboard and get a complete view in one response.</p>
-          <p class="mt-3 text-xs font-mono text-tertiary">"Dashboard: MRR trend + churn rate + NPS"</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 5. DASHBOARD DEMO                                           -->
+  <!-- 7. DASHBOARD DEMO                                           -->
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section class="section">
     <div class="mx-auto max-w-5xl px-6">
       <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Multi-chart dashboards</h2>
       <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">
-        Use <code class="font-mono text-sm px-1.5 py-0.5 rounded" style="background-color: var(--code-bg);">render_dashboard</code> to compose multiple charts in a single response.
+        Ask for a complete overview and get multiple charts in a single response.
       </p>
 
       <div class="mt-10 mockup">
@@ -248,12 +421,12 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 6. GET STARTED                                              -->
+  <!-- 8. GET STARTED                                              -->
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section id="get-started" class="section bg-subtle">
     <div class="mx-auto max-w-3xl px-6 text-center">
       <h2 class="text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Start charting in 30 seconds</h2>
-      <p class="mt-4 text-secondary text-lg">Add ChartPane to Claude, ChatGPT, VS Code, or any MCP-compatible client. Free.</p>
+      <p class="mt-4 text-secondary text-lg">Works with Claude Desktop, ChatGPT, VS Code, and any MCP-compatible client. Free, no API keys, no credit card.</p>
 
       <!-- Tab switcher -->
       <div class="mt-10 inline-flex rounded-lg p-1" style="background-color: var(--code-bg);">
@@ -292,25 +465,57 @@
 }</code></pre>
         </div>
         <p class="mt-4 text-sm text-secondary">
-          Add this to your <code class="font-mono text-xs px-1 py-0.5 rounded" style="background-color: var(--code-bg);">claude_desktop_config.json</code> and restart Claude Desktop. Requires Node.js.
+          Add this to your config file and restart your client. Requires Node.js.
         </p>
       </div>
 
       <div class="mt-8 flex flex-wrap justify-center gap-4">
         <button id="copy-install-btn" class="btn-primary" type="button">
-          <span class="btn-label">Copy URL</span>
+          <span class="btn-label">Get Started Free</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
         </button>
       </div>
-
-      <p class="mt-6 text-sm text-tertiary">
-        Works with Claude, ChatGPT, VS Code, and any MCP-compatible client.
-      </p>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 7. FOOTER                                                   -->
+  <!-- 9. FAQ                                                      -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="mx-auto max-w-3xl px-6">
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Frequently asked questions</h2>
+
+      <div class="mt-14 space-y-4">
+        <details class="faq-item" open>
+          <summary class="faq-summary">Is ChartPane free?</summary>
+          <p class="faq-answer">Yes, completely free. No API keys, no credit card, no usage limits.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">What data do you collect?</summary>
+          <p class="faq-answer">Charts render in your browser. We store chart data so you can access your chart history later. We never store your conversations or personal information.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">Which AI clients does it work with?</summary>
+          <p class="faq-answer">Claude, Claude Desktop, ChatGPT, VS Code, and other clients that support MCP Apps — including Goose, Postman, and MCPJam.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">Can I create dashboards with multiple charts?</summary>
+          <p class="faq-answer">Yes — just ask for a dashboard and get multiple charts in one response. You can request any combination of chart types.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">Do I need to know how to code?</summary>
+          <p class="faq-answer">No. Describe what you want in plain English and ChartPane handles the rest. If you're already asking Claude to analyze data, you already know how to use ChartPane.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- 10. FOOTER                                                  -->
   <!-- ═══════════════════════════════════════════════════════════ -->
   <footer class="section-sm" style="border-top: 1px solid var(--border);">
     <div class="mx-auto max-w-6xl px-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">

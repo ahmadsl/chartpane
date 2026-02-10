@@ -52,6 +52,9 @@
   --mockup-border: #e5e7eb;
   --mockup-user-bg: #eff6ff;
   --mockup-assistant-bg: #ffffff;
+  --comparison-old-bg: #fafafa;
+  --comparison-new-bg: rgba(79, 70, 229, 0.04);
+  --comparison-cross-color: #d1d5db;
 }
 
 /* Dark mode */
@@ -76,6 +79,9 @@
     --mockup-border: #27272a;
     --mockup-user-bg: #1e1b4b;
     --mockup-assistant-bg: #18181b;
+    --comparison-old-bg: #141416;
+    --comparison-new-bg: rgba(99, 102, 241, 0.06);
+    --comparison-cross-color: #3f3f46;
   }
 }
 
@@ -250,4 +256,113 @@ body {
   font-weight: 600;
   font-size: 1rem;
   flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Comparison cards (Old Way vs ChartPane Way)
+   ────────────────────────────────────────────────────────────── */
+.comparison-card {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+.comparison-card-old {
+  background-color: var(--comparison-old-bg);
+}
+.comparison-card-new {
+  background-color: var(--comparison-new-bg);
+  border-color: var(--accent);
+}
+.comparison-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--text);
+}
+.comparison-cross {
+  color: var(--text-tertiary);
+  text-decoration: line-through;
+  text-decoration-color: var(--comparison-cross-color);
+}
+.comparison-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.comparison-num-old {
+  background-color: var(--border);
+  color: var(--text-tertiary);
+}
+.comparison-num-new {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Persona cards (Who Uses ChartPane)
+   ────────────────────────────────────────────────────────────── */
+.persona-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+.persona-prompt {
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: var(--accent);
+  background-color: var(--accent-subtle);
+  border-radius: 0.5rem;
+  line-height: 1.5;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   FAQ accordion
+   ────────────────────────────────────────────────────────────── */
+.faq-item {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.faq-summary {
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.faq-summary::-webkit-details-marker {
+  display: none;
+}
+.faq-summary::after {
+  content: "+";
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--text-tertiary);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+details[open] > .faq-summary::after {
+  content: "\2212"; /* minus sign */
+}
+.faq-answer {
+  padding: 0 1.25rem 1rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
 }
