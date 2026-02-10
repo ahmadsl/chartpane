@@ -1,4 +1,10 @@
-import { App } from "@modelcontextprotocol/ext-apps";
+import {
+  App,
+  applyDocumentTheme,
+  applyHostStyleVariables,
+  applyHostFonts,
+} from "@modelcontextprotocol/ext-apps";
+import type { McpUiHostContext } from "@modelcontextprotocol/ext-apps";
 import { Chart, registerables } from "chart.js";
 import { buildChartConfig } from "../shared/config.js";
 import { calculateColumns } from "../shared/grid.js";
@@ -8,6 +14,7 @@ import type { RenderResult, ChartInput } from "../shared/types.js";
 Chart.register(...registerables);
 
 const charts: Chart[] = [];
+let lastResult: RenderResult | null = null;
 
 function destroyAllCharts(): void {
   for (const chart of charts) {
@@ -26,13 +33,23 @@ function hideElement(id: string): void {
   if (el) el.style.display = "none";
 }
 
-function applyThemeToChartDefaults(theme: string | undefined): void {
-  const isDark = theme === "dark";
-  const textColor = isDark ? "#e0e0e0" : "#1a1a1a";
-  const gridColor = isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)";
+function syncChartDefaults(): void {
+  const s = getComputedStyle(document.documentElement);
+  const text = s.getPropertyValue("--color-text-primary").trim();
+  const border = s.getPropertyValue("--color-border-secondary").trim();
+  const font = s.getPropertyValue("--font-sans").trim();
 
-  Chart.defaults.color = textColor;
-  Chart.defaults.borderColor = gridColor;
+  if (text) Chart.defaults.color = text;
+  if (border) Chart.defaults.borderColor = border;
+  if (font) Chart.defaults.font.family = font;
+}
+
+function applyHostContext(ctx: McpUiHostContext): void {
+  if (ctx.theme) applyDocumentTheme(ctx.theme);
+  if (ctx.styles?.variables) applyHostStyleVariables(ctx.styles.variables);
+  if (ctx.styles?.css?.fonts) applyHostFonts(ctx.styles.css.fonts);
+  syncChartDefaults();
+  if (lastResult) handleResult(lastResult);
 }
 
 function renderSingleChart(input: ChartInput, canvas: HTMLCanvasElement): void {
@@ -80,6 +97,7 @@ function showDashboard(
 }
 
 function handleResult(result: RenderResult): void {
+  lastResult = result;
   destroyAllCharts();
 
   if (result.mode === "chart") {
@@ -112,12 +130,10 @@ app.ontoolinput = (input) => {
   if (loadingEl) loadingEl.textContent = "Rendering chart...";
 };
 
-app.onhostcontextchanged = (context) => {
-  applyThemeToChartDefaults(context?.theme);
-
-  // Re-render existing charts with new theme if needed
-  // Chart.js defaults apply to new charts, so we'd need to rebuild
-  // For now, theme changes will apply on next tool result
+app.onhostcontextchanged = (ctx) => {
+  applyHostContext(ctx);
 };
 
 await app.connect();
+const initialCtx = app.getHostContext();
+if (initialCtx) applyHostContext(initialCtx);
