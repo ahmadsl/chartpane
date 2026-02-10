@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 npm run build          # Type-check (tsc --noEmit) + bundle UI into dist/mcp-app.html
-npm start              # Local Workers server via wrangler dev (port 8787)
+npm start              # wrangler dev + vite build --watch (port 8787)
 npm run dev            # wrangler dev + sandbox dev server (localhost:3456)
 npm run deploy         # Deploy to Cloudflare Workers
 npm test               # Run all tests (vitest)
@@ -35,7 +35,7 @@ The server is intentionally thin — it validates input and returns the raw `Cha
 ### Module Layout
 
 - **`server.ts`** — MCP server factory: `createServer(options: ServerOptions)` with `htmlLoader` and `onLog` params. Platform-agnostic (no `fs`/`path`/`url`). Tool registration via `registerAppTool`/`registerAppResource`.
-- **`worker.ts`** — Cloudflare Workers entry point: `createMcpHandler` from `agents/mcp` with `route: "/"`, `ASSETS` binding for static HTML, and `DB` binding for D1 request logging.
+- **`worker.ts`** — Cloudflare Workers entry point: `createMcpHandler` from `agents/mcp` with `apiRoute: "/mcp"`, `ASSETS` binding for static HTML, `DB` binding for D1 request logging, and `normalizeResourceParam()` workaround for OAuthProvider audience bug.
 - **`auth-handler.ts`** — Hono app with `/authorize` (GET/POST) and `/callback` routes for Google OAuth via `@cloudflare/workers-oauth-provider`. Uses `workers-oauth-utils.ts` for CSRF, state management, consent dialog.
 - **`workers-oauth-utils.ts`** — OAuth utilities: CSRF protection, KV-backed state, cookie signing, consent dialog HTML. Workers-only (uses `crypto.subtle.timingSafeEqual`).
 - **`src/mcp-app.ts`** — Browser-side UI: `App` from `@modelcontextprotocol/ext-apps`, `ontoolresult`/`ontoolinput`/`onhostcontextchanged` handlers, Chart.js rendering.
@@ -58,9 +58,10 @@ The server is intentionally thin — it validates input and returns the raw `Cha
 
 ## Testing
 
-- **Unit tests** (`tests/unit/`) — colors, config, validation, grid logic
-- **Integration tests** (`tests/integration/server.test.ts`) — MCP protocol using `InMemoryTransport.createLinkedPair()` from SDK
+- **Unit tests** (`tests/unit/`) — colors, config, validation, grid, server-userid logic
+- **Integration tests** (`tests/integration/server.test.ts`) — MCP protocol using `InMemoryTransport.createLinkedPair()` from SDK (includes userId tests)
 - **Fixtures** (`tests/fixtures/`) — 18 JSON configs covering all chart types and edge cases
+- **70 tests across 6 test files** as of Feb 2026
 
 ## Key Conventions
 
@@ -82,10 +83,20 @@ The server is intentionally thin — it validates input and returns the raw `Cha
 - **D1 database** — `DB` binding in `wrangler.jsonc`, database `chartpane-db`. `onLog` in `worker.ts` writes to `requests` table via `ctx.waitUntil()`.
 - **D1 migrations** — `wrangler d1 migrations create` requires the D1 binding in `wrangler.jsonc` first (will error otherwise).
 - **Local D1 state** — stored in `.wrangler/state/v3/d1/`. Query with `npx wrangler d1 execute chartpane-db --local --command "SELECT * FROM requests"`.
-- **`createMcpHandler` default route is `/mcp`** — must pass `{ route: "/" }` for root path
+- **`createMcpHandler` default route is `/mcp`** — matches `apiRoute: "/mcp"` in OAuthProvider config. Cannot use `"/"` when auth is enabled (prefix matching conflict).
 - **`agents` pins `@modelcontextprotocol/sdk` 1.25.2** — causes duplicate McpServer types. `worker-types.d.ts` bridges the mismatch with a widened declaration.
 - **Workers types** — `@cloudflare/workers-types` via triple-slash in `worker.ts` only. No `types` field in tsconfig (would break Node type auto-discovery for sandbox/tests).
 - **Authentication** — Optional Google OAuth via `@cloudflare/workers-oauth-provider`. Enabled when all three secrets are set: `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `COOKIE_ENCRYPTION_KEY`. Without them, Worker falls back to unauthenticated mode. `OAuthProvider` is lazy-initialized (not at module level). See `docs/adr/004-authentication.md`.
 - **OAUTH_KV** — KV namespace binding required for auth (tokens, clients, grants). Local state in `.wrangler/state/v3/kv/`.
+- **Custom domain** — `mcp.chartpane.com` routes to this Worker. Configured via Cloudflare dashboard; `custom_domains` in `wrangler.jsonc` is documentation-only (wrangler doesn't use it).
 - **Relogin** — `./scripts/relogin.sh` clears `~/.mcp-auth/mcp-remote-*/` to force re-authentication. Restart Claude Desktop after running.
+- **OAuthProvider audience bug** — `@cloudflare/workers-oauth-provider` validates token audience against `protocol://host` (no trailing slash/path), but its own metadata includes the apiRoute path, and `mcp-remote` normalizes URLs via `new URL().href` (adds trailing slash). `normalizeResourceParam()` in `worker.ts` fixes both by stripping to `.origin`. Our well-known handler overrides the library's metadata for the same reason.
+- **`apiRoute` cannot be `"/"`** — OAuthProvider uses prefix matching, so `"/"` catches all paths including `/authorize`, `/token`, `/register`. Must use a sub-path like `"/mcp"`.
+- **Request body in Workers** — Use `req.clone().text()` when reading POST body before passing `req` to another handler; body can only be consumed once.
+- **Debug local KV** — Blobs in `.wrangler/state/v3/kv/{namespace-id}/blobs/`, index in `miniflare-KVNamespaceObject/*.sqlite` (`SELECT key, blob_id FROM _mf_entries`).
+- **Claude Desktop custom connectors** — Now supports native remote MCP via "Add custom connector" UI (no `mcp-remote` needed for production). All MCP clients use URLs exactly as given — no auto-appending of `/mcp` or `/.well-known` discovery.
 - See `docs/adr/002-deployment-architecture.md` and `docs/adr/003-mcp-http-handler.md`
+
+## Landing Page (`landing/`)
+
+Self-contained Vite project (own `package.json`) for `chartpane.com` on Cloudflare Pages. Has its own `CLAUDE.md` with full details. Key thing: palette + `buildChartConfig()` are duplicated from `shared/` — update both if either changes.

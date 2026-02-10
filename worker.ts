@@ -59,6 +59,36 @@ function isAuthEnabled(env: Env): boolean {
   return !!(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET && env.COOKIE_ENCRYPTION_KEY);
 }
 
+/**
+ * Normalize the `resource` param to origin-only (no trailing slash).
+ * mcp-remote sends "http://host:8787/" (trailing slash from URL.href),
+ * but OAuthProvider validates audience against protocol://host (no slash).
+ * Handles both query params (GET /authorize) and form body (POST /token).
+ */
+async function normalizeResourceParam(req: Request): Promise<Request> {
+  // Query parameter (GET /authorize)
+  const reqUrl = new URL(req.url);
+  const qResource = reqUrl.searchParams.get("resource");
+  if (qResource) {
+    reqUrl.searchParams.set("resource", new URL(qResource).origin);
+    return new Request(reqUrl, req);
+  }
+  // Form body (POST /token)
+  if (req.method === "POST" && req.headers.get("content-type")?.includes("form-urlencoded")) {
+    const body = new URLSearchParams(await req.clone().text());
+    const bResource = body.get("resource");
+    if (bResource) {
+      body.set("resource", new URL(bResource).origin);
+      return new Request(req.url, {
+        method: req.method,
+        headers: req.headers,
+        body: body.toString(),
+      });
+    }
+  }
+  return req;
+}
+
 export default {
   async fetch(req: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const { method, url } = req;
@@ -79,15 +109,16 @@ export default {
       `[mcp] ${method} ${path}${rpcMethod ? ` → ${rpcMethod}` : ""}${sessionId ? ` [session=${sessionId.slice(0, 8)}]` : " [no-session]"}`,
     );
 
-    // RFC 9728: Protected Resource Metadata — lets clients skip the
-    // .well-known fallback chain (eliminates ~4 x 404s per reconnect cycle)
+    // RFC 9728: Protected Resource Metadata — override OAuthProvider's built-in
+    // response because it includes the apiRoute path in `resource`, but its own
+    // token validation checks audience against origin-only (protocol://host).
     if (
       path === "/.well-known/oauth-protected-resource" ||
       path === "/.well-known/oauth-protected-resource/mcp"
     ) {
       const origin = new URL(url).origin;
       return Response.json({
-        resource: `${origin}/mcp`,
+        resource: origin,
         authorization_servers: [`${origin}/`],
         bearer_methods_supported: ["header"],
       });
@@ -95,9 +126,10 @@ export default {
 
     if (isAuthEnabled(env)) {
       oauthProvider ??= createOAuthProvider();
+      req = await normalizeResourceParam(req);
       return oauthProvider.fetch(req, env, ctx);
     }
-    // Unauthenticated fallback — current behavior
-    return createMcpHandler_(env, ctx, "/")(req, env, ctx);
+    // Unauthenticated fallback
+    return createMcpHandler_(env, ctx, "/mcp")(req, env, ctx);
   },
 };

@@ -17,6 +17,7 @@
       "id": "c3d246efec6b4e6ab3bf1fefa16d5da8"
     }
   ],
+  "custom_domains": ["mcp.chartpane.com"],
   "d1_databases": [
     {
       "binding": "DB",
