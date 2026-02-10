@@ -226,7 +226,6 @@ function renderSuccessPage(
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="3;url=${safeRedirect}">
   <title>ChartPane - Signed In</title>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
@@ -241,11 +240,7 @@ function renderSuccessPage(
     h1{font-size:1.25rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.375rem}
     .sub{color:var(--text-2);font-size:.875rem;line-height:1.6;margin-bottom:1.5rem}
     .sub strong{color:var(--text);font-weight:600}
-    .redirect{display:flex;align-items:center;justify-content:center;gap:.5rem;font-size:.8125rem;color:var(--text-3)}
-    .redirect a{color:var(--blue);text-decoration:none}
-    .redirect a:hover{text-decoration:underline}
-    .spinner{width:14px;height:14px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}}
+    .status{font-size:.8125rem;color:var(--text-3)}
   </style>
 </head>
 <body>
@@ -254,9 +249,10 @@ function renderSuccessPage(
       <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
     </div>
     <h1>Welcome, ${safeName}</h1>
-    <p class="sub">You're signed in to <strong>ChartPane</strong>. You can close this tab and return to <strong>${safeClient}</strong>.</p>
-    <div class="redirect"><span class="spinner"></span> Redirecting&hellip; or <a href="${safeRedirect}">go now</a></div>
+    <p class="sub">You're signed in to <strong>ChartPane</strong>.</p>
+    <p class="status">You can close this tab and return to <strong>${safeClient}</strong>.</p>
   </div>
+  <script>window.location.href=${JSON.stringify(safeRedirect)};</script>
 </body>
 </html>`;
 }
