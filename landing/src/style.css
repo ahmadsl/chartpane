@@ -1,0 +1,234 @@
+@import "tailwindcss";
+
+@source "../index.html";
+@source "./main.js";
+
+/* Geist Sans — variable weight */
+@font-face {
+  font-family: "Geist Sans";
+  src: url("/fonts/GeistVF.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Geist Mono — variable weight */
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/fonts/GeistMonoVF.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --color-brand: #4f46e5;
+  --color-brand-light: #6366f1;
+  --color-accent: #0ea5e9;
+  --color-accent-light: #22d3ee;
+}
+
+/* Light mode (default) */
+:root {
+  --bg: #fafafa;
+  --bg-subtle: #f3f4f6;
+  --bg-card: #ffffff;
+  --text: #1a1a2e;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-subtle: rgba(79, 70, 229, 0.08);
+  --border: #e5e7eb;
+  --border-subtle: #f3f4f6;
+  --code-bg: #f3f4f6;
+  --chart-bg: #ffffff;
+  --chart-grid: rgba(0, 0, 0, 0.06);
+  --chart-text: #6b7280;
+  --mockup-bg: #f9fafb;
+  --mockup-border: #e5e7eb;
+  --mockup-user-bg: #eff6ff;
+  --mockup-assistant-bg: #ffffff;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a0a0b;
+    --bg-subtle: #141416;
+    --bg-card: #18181b;
+    --text: #e5e5e7;
+    --text-secondary: #9ca3af;
+    --text-tertiary: #6b7280;
+    --accent: #6366f1;
+    --accent-hover: #818cf8;
+    --accent-subtle: rgba(99, 102, 241, 0.1);
+    --border: #27272a;
+    --border-subtle: #1e1e21;
+    --code-bg: #1e1e21;
+    --chart-bg: #18181b;
+    --chart-grid: rgba(255, 255, 255, 0.06);
+    --chart-text: #9ca3af;
+    --mockup-bg: #141416;
+    --mockup-border: #27272a;
+    --mockup-user-bg: #1e1b4b;
+    --mockup-assistant-bg: #18181b;
+  }
+}
+
+/* Base */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Utility classes using CSS vars */
+.text-secondary {
+  color: var(--text-secondary);
+}
+.text-tertiary {
+  color: var(--text-tertiary);
+}
+.bg-subtle {
+  background-color: var(--bg-subtle);
+}
+.bg-card {
+  background-color: var(--bg-card);
+}
+.border-default {
+  border-color: var(--border);
+}
+.border-subtle {
+  border-color: var(--border-subtle);
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--accent);
+  color: #fff;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  transition: background-color 0.15s ease;
+}
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  color: var(--text);
+  font-weight: 500;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.btn-secondary:hover {
+  border-color: var(--accent);
+  background-color: var(--accent-subtle);
+}
+
+/* Code block */
+.code-block {
+  background-color: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.code-block pre {
+  padding: 1.25rem;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Chart container */
+.chart-container {
+  background-color: var(--chart-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+/* Conversation mockup */
+.mockup {
+  background-color: var(--mockup-bg);
+  border: 1px solid var(--mockup-border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.mockup-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--mockup-border);
+}
+.mockup-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: var(--border);
+}
+.mockup-user {
+  background-color: var(--mockup-user-bg);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+}
+.mockup-assistant {
+  background-color: var(--mockup-assistant-bg);
+  border: 1px solid var(--mockup-border);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+}
+
+/* Section spacing */
+.section {
+  padding: 5rem 0;
+}
+.section-sm {
+  padding: 3rem 0;
+}
+
+/* Copy button */
+.copy-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.copy-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Step connector line */
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  flex-shrink: 0;
+}

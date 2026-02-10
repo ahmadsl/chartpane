@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChartPane — Interactive Charts in Your AI Conversations</title>
+  <meta name="description" content="ChartPane renders live, interactive Chart.js charts directly inside Claude, ChatGPT, and other AI assistants. Bar, line, pie, scatter, radar — just ask." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ChartPane — Interactive Charts in AI Conversations" />
+  <meta property="og:description" content="Render live Chart.js charts inside Claude, ChatGPT, and 500+ AI clients. Just ask for a chart." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://chartpane.com" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ChartPane — Interactive Charts in AI Conversations" />
+  <meta name="twitter:description" content="Render live Chart.js charts inside Claude, ChatGPT, and 500+ AI clients." />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <!-- Font preload -->
+  <link rel="preload" href="/fonts/GeistVF.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/GeistMonoVF.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="font-sans antialiased">
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- 1. HERO                                                     -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section relative overflow-hidden">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+
+        <!-- Left: Text -->
+        <div class="max-w-xl">
+          <h1 class="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl" style="color: var(--text);">
+            Charts inside your<br />
+            <span style="color: var(--accent);">AI conversations</span>
+          </h1>
+          <p class="mt-6 text-lg leading-relaxed text-secondary">
+            ChartPane renders live, interactive charts directly in Claude, ChatGPT, and other AI assistants. Bar, line, pie, scatter, radar — just ask.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="#get-started" class="btn-primary">
+              Install in Claude
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+            </a>
+            <a href="https://github.com/AhmadMuj/chartpane" target="_blank" rel="noopener" class="btn-secondary">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Conversation Mockup -->
+        <div class="mockup">
+          <div class="mockup-titlebar">
+            <div class="mockup-dot"></div>
+            <div class="mockup-dot"></div>
+            <div class="mockup-dot"></div>
+            <span class="ml-2 text-xs text-tertiary font-mono">Claude</span>
+          </div>
+          <div class="p-4 space-y-4">
+            <!-- User message -->
+            <div class="mockup-user">
+              <p class="text-sm">Show me a bar chart of monthly revenue for the first half of 2025</p>
+            </div>
+            <!-- Assistant message -->
+            <div class="mockup-assistant">
+              <p class="text-sm text-secondary mb-3">Here's your monthly revenue chart:</p>
+              <div class="chart-container" style="height: 220px;">
+                <canvas id="hero-chart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- 2. HOW IT WORKS                                             -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section bg-subtle">
+    <div class="mx-auto max-w-4xl px-6">
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">How it works</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">Three steps. No code, no config files, no API keys.</p>
+
+      <div class="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3">
+        <!-- Step 1 -->
+        <div class="text-center">
+          <div class="step-number mx-auto">1</div>
+          <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);">Install</h3>
+          <p class="mt-2 text-sm text-secondary leading-relaxed">Add ChartPane to Claude Desktop, ChatGPT, VS Code, or any MCP-compatible client.</p>
+        </div>
+        <!-- Step 2 -->
+        <div class="text-center">
+          <div class="step-number mx-auto">2</div>
+          <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);">Ask</h3>
+          <p class="mt-2 text-sm text-secondary leading-relaxed">Describe the chart you want in plain English. Paste data, reference files, or let the AI generate sample data.</p>
+        </div>
+        <!-- Step 3 -->
+        <div class="text-center">
+          <div class="step-number mx-auto">3</div>
+          <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);">See</h3>
+          <p class="mt-2 text-sm text-secondary leading-relaxed">A live, interactive Chart.js chart appears directly in the conversation. Hover for tooltips, resize, and more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- 3. CHART GALLERY                                            -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="mx-auto max-w-6xl px-6">
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Seven chart types, one tool</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">Bar, line, area, pie, doughnut, scatter, and radar — all rendered with Chart.js.</p>
+
+      <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="chart-container" style="height: 260px;">
+          <canvas id="gallery-bar"></canvas>
+        </div>
+        <div class="chart-container" style="height: 260px;">
+          <canvas id="gallery-line"></canvas>
+        </div>
+        <div class="chart-container" style="height: 260px;">
+          <canvas id="gallery-area"></canvas>
+        </div>
+        <div class="chart-container" style="height: 260px;">
+          <canvas id="gallery-pie"></canvas>
+        </div>
+        <div class="chart-container" style="height: 260px;">
+          <canvas id="gallery-doughnut"></canvas>
+        </div>
+        <div class="chart-container" style="height: 260px;">
+          <canvas id="gallery-scatter"></canvas>
+        </div>
+        <div class="chart-container col-span-1 sm:col-span-2 lg:col-span-3 max-w-md mx-auto w-full" style="height: 260px;">
+          <canvas id="gallery-radar"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- 4. USE CASES                                                -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section bg-subtle">
+    <div class="mx-auto max-w-6xl px-6">
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Built for people who work with data</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">Whether you're exploring, debugging, or presenting — charts appear where you already think.</p>
+
+      <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <!-- Data Analysts -->
+        <div class="bg-card border-default rounded-xl border p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+            </div>
+            <h3 class="text-lg font-semibold" style="color: var(--text);">Data Analysts</h3>
+          </div>
+          <p class="text-sm text-secondary leading-relaxed">Quick exploratory visualization during conversation. Scatter plot a CSV to check for correlation, histogram a distribution, or compare categories — without switching tools.</p>
+          <p class="mt-3 text-xs font-mono text-tertiary">"Scatter plot this CSV to check for correlation"</p>
+        </div>
+
+        <!-- Developers -->
+        <div class="bg-card border-default rounded-xl border p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+            </div>
+            <h3 class="text-lg font-semibold" style="color: var(--text);">Developers</h3>
+          </div>
+          <p class="text-sm text-secondary leading-relaxed">Debug data visually. Benchmark results, API response times, memory usage over time — turn numbers into shapes while you're already in a debugging conversation.</p>
+          <p class="mt-3 text-xs font-mono text-tertiary">"Bar chart of response times by endpoint"</p>
+        </div>
+
+        <!-- Financial Analysts -->
+        <div class="bg-card border-default rounded-xl border p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <h3 class="text-lg font-semibold" style="color: var(--text);">Financial Analysts</h3>
+          </div>
+          <p class="text-sm text-secondary leading-relaxed">Portfolio allocation, price trends, benchmark comparisons. Visualize financial data mid-analysis without exporting to a spreadsheet.</p>
+          <p class="mt-3 text-xs font-mono text-tertiary">"Pie chart of portfolio by asset class"</p>
+        </div>
+
+        <!-- Product Managers -->
+        <div class="bg-card border-default rounded-xl border p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="flex items-center justify-center w-10 h-10 rounded-lg" style="background-color: var(--accent-subtle);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" /></svg>
+            </div>
+            <h3 class="text-lg font-semibold" style="color: var(--text);">Product Managers</h3>
+          </div>
+          <p class="text-sm text-secondary leading-relaxed">KPI dashboards, sprint velocity, funnel analysis. Ask for a multi-chart dashboard and get a complete view in one response.</p>
+          <p class="mt-3 text-xs font-mono text-tertiary">"Dashboard: MRR trend + churn rate + NPS"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- 5. DASHBOARD DEMO                                           -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="mx-auto max-w-5xl px-6">
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Multi-chart dashboards</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto">
+        Use <code class="font-mono text-sm px-1.5 py-0.5 rounded" style="background-color: var(--code-bg);">render_dashboard</code> to compose multiple charts in a single response.
+      </p>
+
+      <div class="mt-10 mockup">
+        <div class="mockup-titlebar">
+          <div class="mockup-dot"></div>
+          <div class="mockup-dot"></div>
+          <div class="mockup-dot"></div>
+          <span class="ml-2 text-xs text-tertiary font-mono">Claude</span>
+        </div>
+        <div class="p-4 space-y-4">
+          <div class="mockup-user">
+            <p class="text-sm">Create a Q1 business overview dashboard with revenue trend, revenue by region, top products, and customer segments</p>
+          </div>
+          <div class="mockup-assistant">
+            <p class="text-sm text-secondary mb-3">Here's your Q1 business overview:</p>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div class="chart-container" style="height: 200px;">
+                <canvas id="dashboard-1"></canvas>
+              </div>
+              <div class="chart-container" style="height: 200px;">
+                <canvas id="dashboard-2"></canvas>
+              </div>
+              <div class="chart-container" style="height: 200px;">
+                <canvas id="dashboard-3"></canvas>
+              </div>
+              <div class="chart-container" style="height: 200px;">
+                <canvas id="dashboard-4"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- 6. GET STARTED                                              -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section id="get-started" class="section bg-subtle">
+    <div class="mx-auto max-w-3xl px-6 text-center">
+      <h2 class="text-3xl font-semibold sm:text-4xl" style="color: var(--text);">Start charting in 30 seconds</h2>
+      <p class="mt-4 text-secondary text-lg">Add this to your Claude Desktop config and restart.</p>
+
+      <div class="mt-10 code-block text-left relative">
+        <div class="flex items-center justify-between px-4 py-2 border-b" style="border-color: var(--border);">
+          <span class="text-xs font-mono text-tertiary">claude_desktop_config.json</span>
+          <button id="copy-btn" class="copy-btn" type="button">Copy</button>
+        </div>
+        <pre class="font-mono"><code id="config-code">{
+  "mcpServers": {
+    "chartpane": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.chartpane.com/"]
+    }
+  }
+}</code></pre>
+      </div>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="#get-started" class="btn-primary" onclick="document.getElementById('copy-btn').click(); return false;">
+          Copy &amp; Install
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+        </a>
+        <a href="https://github.com/AhmadMuj/chartpane" target="_blank" rel="noopener" class="btn-secondary">
+          View on GitHub
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+        </a>
+      </div>
+
+      <p class="mt-6 text-sm text-tertiary">
+        Works with Claude Desktop, ChatGPT, VS Code, and any MCP-compatible client.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- 7. FOOTER                                                   -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <footer class="section-sm" style="border-top: 1px solid var(--border);">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+      <div class="flex items-center gap-2">
+        <img src="/favicon.svg" alt="ChartPane" class="w-6 h-6" />
+        <span class="font-semibold" style="color: var(--text);">ChartPane</span>
+      </div>
+      <p class="text-sm text-tertiary">
+        Built with <a href="https://www.chartjs.org" target="_blank" rel="noopener" class="underline hover:no-underline" style="color: var(--text-secondary);">Chart.js</a> + <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener" class="underline hover:no-underline" style="color: var(--text-secondary);">MCP</a>
+      </p>
+      <a href="https://github.com/AhmadMuj/chartpane" target="_blank" rel="noopener" class="text-secondary hover:underline text-sm">
+        GitHub
+      </a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
