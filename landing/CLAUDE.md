@@ -27,6 +27,24 @@ npm run deploy         # Build + wrangler pages deploy
 - `public/og-image.png` — OG/Twitter card image (1200x630)
 - `og-template.html` — Dev-only HTML template for generating the OG image (open at 1200x630, screenshot)
 
+## SEO Conventions
+
+Every page on chartpane.com must include:
+- `<link rel="canonical">` — self-referencing, full URL
+- `<title>` — under 60 chars, keyword-first, brand at end
+- `<meta name="description">` — under 160 chars
+- OG tags (`og:title`, `og:description`, `og:url`, `og:image`, `og:site_name`)
+- Proper heading hierarchy (single H1, then H2 > H3)
+- JSON-LD structured data where applicable (FAQPage, Article, HowTo, SoftwareApplication)
+
+When adding a new page:
+1. Add it to `public/sitemap.xml` with today's `<lastmod>`
+2. Add a `@source` directive in `src/style.css` for the new file
+3. Link to it from the homepage or other relevant pages
+4. Use "MCP App" terminology (not "MCP tool" or "MCP plugin") when referring to ChartPane
+
+See `CONTENT.md` for the full content backlog and publishing workflow.
+
 ## Key Conventions
 
 - **No imports from parent `shared/`** — the 12-color palette and `buildChartConfig()` are duplicated inline in `main.js`. If `shared/colors.ts` or `shared/config.ts` change, update the landing copy manually.
