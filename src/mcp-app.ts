@@ -398,16 +398,28 @@ document.addEventListener("click", () => {
 // Prevent popover clicks from closing it
 colorPopover?.addEventListener("click", (e) => e.stopPropagation());
 
-// Toolbar: Download as PNG
+// Toolbar: Copy chart image to clipboard
 document.getElementById("btn-download")?.addEventListener("click", () => {
   const chart = charts[0];
   if (!chart) return;
-  const title = lastSingleInput?.title ?? "chart";
-  const slug = title.replace(/[^a-z0-9]+/gi, "-").toLowerCase();
-  const a = document.createElement("a");
-  a.href = chart.toBase64Image();
-  a.download = `${slug}.png`;
-  a.click();
+  const canvas = chart.canvas;
+  canvas.toBlob((blob) => {
+    if (!blob) return;
+    navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]).then(() => {
+      const btn = document.getElementById("btn-download");
+      if (!btn) return;
+      const iconImage = btn.querySelector(".icon-image") as HTMLElement;
+      const iconCheck = btn.querySelector(".icon-check") as HTMLElement;
+      if (iconImage) iconImage.style.display = "none";
+      if (iconCheck) iconCheck.style.display = "";
+      btn.classList.add("copied");
+      setTimeout(() => {
+        if (iconImage) iconImage.style.display = "";
+        if (iconCheck) iconCheck.style.display = "none";
+        btn.classList.remove("copied");
+      }, 1500);
+    });
+  }, "image/png");
 });
 
 // Toolbar: Copy data as CSV

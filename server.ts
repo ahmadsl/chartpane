@@ -172,6 +172,11 @@ export function createServer(options: ServerOptions): McpServer {
             uri: RESOURCE_URI,
             mimeType: RESOURCE_MIME_TYPE,
             text: html,
+            _meta: {
+              ui: {
+                permissions: { clipboardWrite: {} },
+              },
+            },
           },
         ],
       };
