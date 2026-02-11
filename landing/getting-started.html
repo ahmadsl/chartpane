@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started with ChartPane — ChartPane</title>
+  <meta name="description" content="Set up ChartPane in under a minute. Step-by-step install guide for Claude Desktop, ChatGPT, VS Code, and other MCP clients." />
+
+  <link rel="canonical" href="https://chartpane.com/getting-started.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="ChartPane" />
+  <meta property="og:title" content="Getting Started with ChartPane" />
+  <meta property="og:description" content="Set up ChartPane in under a minute. Step-by-step install guide for Claude Desktop, ChatGPT, VS Code, and other MCP clients." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://chartpane.com/getting-started.html" />
+  <meta property="og:image" content="https://chartpane.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Getting Started with ChartPane" />
+  <meta name="twitter:description" content="Set up ChartPane in under a minute. Step-by-step install guide for Claude Desktop, ChatGPT, VS Code, and other MCP clients." />
+  <meta name="twitter:image" content="https://chartpane.com/og-image.png" />
+
+  <!-- JSON-LD HowTo -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Getting Started with ChartPane",
+    "description": "Set up ChartPane in under a minute. Works with Claude Desktop, ChatGPT, VS Code, and any MCP client.",
+    "url": "https://chartpane.com/getting-started.html",
+    "totalTime": "PT1M",
+    "supply": [],
+    "tool": [
+      { "@type": "HowToTool", "name": "An AI client that supports MCP Apps (Claude Desktop, ChatGPT, VS Code, etc.)" }
+    ],
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Copy the server URL",
+        "text": "Copy the ChartPane server URL: https://mcp.chartpane.com/mcp"
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Add ChartPane to your client",
+        "text": "Open your AI client's MCP settings and add ChartPane using the server URL or a JSON config snippet."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Ask for a chart",
+        "text": "Start a conversation and ask your AI to chart some data. ChartPane renders it inline."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <!-- Font preload -->
+  <link rel="preload" href="/fonts/GeistVF.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/GeistMonoVF.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="font-sans antialiased">
+
+  <header class="section-sm" style="border-bottom: 1px solid var(--border);">
+    <div class="mx-auto max-w-3xl px-6">
+      <a href="/" class="inline-flex items-center gap-2 text-secondary hover:text-[var(--text)] transition-colors">
+        <img src="/favicon.svg" alt="ChartPane" class="w-5 h-5" />
+        <span class="font-semibold" style="color: var(--text);">ChartPane</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="mx-auto max-w-3xl px-6">
+      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);">Getting Started with ChartPane</h1>
+      <p class="mt-3 text-secondary text-lg leading-relaxed">Add ChartPane to your AI client in under a minute. No API keys, no sign-up, no cost.</p>
+
+      <div class="mt-10 space-y-12">
+
+        <!-- Server URL -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">The server URL</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            Every installation method uses the same URL. Copy it once and use it for whichever client you prefer:
+          </p>
+          <div class="mt-4 code-block text-left">
+            <pre class="font-mono select-all"><code>https://mcp.chartpane.com/mcp</code></pre>
+          </div>
+        </section>
+
+        <!-- Claude Desktop -->
+        <section id="claude-desktop">
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Claude Desktop</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            Claude Desktop supports MCP Apps natively. There are two ways to connect:
+          </p>
+
+          <h3 class="mt-6 text-base font-semibold" style="color: var(--text);">Option A: Custom connector (recommended)</h3>
+          <ol class="mt-3 space-y-3 text-secondary leading-relaxed list-decimal list-inside">
+            <li>Open Claude Desktop and go to <strong style="color: var(--text);">Settings</strong>.</li>
+            <li>Navigate to <strong style="color: var(--text);">Connectors</strong>.</li>
+            <li>Click <strong style="color: var(--text);">Add custom connector</strong>.</li>
+            <li>Paste the server URL: <code class="px-1.5 py-0.5 rounded text-sm font-mono" style="background-color: var(--code-bg);">https://mcp.chartpane.com/mcp</code></li>
+            <li>Done. Start a new conversation and ask for a chart.</li>
+          </ol>
+
+          <h3 class="mt-8 text-base font-semibold" style="color: var(--text);">Option B: mcp-remote (JSON config)</h3>
+          <p class="mt-3 text-secondary leading-relaxed">
+            If you prefer editing config files directly, add this to your <code class="px-1.5 py-0.5 rounded text-sm font-mono" style="background-color: var(--code-bg);">claude_desktop_config.json</code>:
+          </p>
+          <div class="mt-4 code-block text-left">
+            <pre class="font-mono text-sm"><code>{
+  "mcpServers": {
+    "chartpane": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.chartpane.com/mcp"]
+    }
+  }
+}</code></pre>
+          </div>
+          <p class="mt-3 text-secondary leading-relaxed text-sm">
+            Requires <a href="https://nodejs.org" class="underline hover:text-[var(--accent)]" target="_blank" rel="noopener">Node.js</a> installed on your machine. Restart Claude Desktop after saving the file.
+          </p>
+          <p class="mt-2 text-secondary leading-relaxed text-sm">
+            <strong style="color: var(--text);">Config file location:</strong>
+          </p>
+          <ul class="mt-1 space-y-1 text-secondary text-sm leading-relaxed list-disc list-inside">
+            <li>macOS: <code class="px-1.5 py-0.5 rounded text-sm font-mono" style="background-color: var(--code-bg);">~/Library/Application Support/Claude/claude_desktop_config.json</code></li>
+            <li>Windows: <code class="px-1.5 py-0.5 rounded text-sm font-mono" style="background-color: var(--code-bg);">%APPDATA%\Claude\claude_desktop_config.json</code></li>
+          </ul>
+        </section>
+
+        <!-- ChatGPT -->
+        <section id="chatgpt">
+          <h2 class="text-xl font-semibold" style="color: var(--text);">ChatGPT</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            MCP support in ChatGPT requires developer mode to be enabled first.
+          </p>
+          <ol class="mt-4 space-y-3 text-secondary leading-relaxed list-decimal list-inside">
+            <li>Open <strong style="color: var(--text);">ChatGPT</strong> and go to <strong style="color: var(--text);">Settings</strong>.</li>
+            <li>Scroll down and enable <strong style="color: var(--text);">Developer mode</strong>.</li>
+            <li>Back in the chat, open the <strong style="color: var(--text);">sources panel</strong> (the book icon in the input area).</li>
+            <li>Click <strong style="color: var(--text);">Add MCP server</strong> and paste the URL: <code class="px-1.5 py-0.5 rounded text-sm font-mono" style="background-color: var(--code-bg);">https://mcp.chartpane.com/mcp</code></li>
+            <li>Start a new conversation and ask for a chart.</li>
+          </ol>
+        </section>
+
+        <!-- VS Code -->
+        <section id="vscode">
+          <h2 class="text-xl font-semibold" style="color: var(--text);">VS Code</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            VS Code supports MCP servers in its Copilot Chat. Add ChartPane to your workspace or user settings:
+          </p>
+          <div class="mt-4 code-block text-left">
+            <div class="flex items-center px-4 py-2 border-b" style="border-color: var(--border);">
+              <span class="text-xs font-mono text-tertiary">.vscode/settings.json</span>
+            </div>
+            <pre class="font-mono text-sm"><code>{
+  "mcp": {
+    "servers": {
+      "chartpane": {
+        "type": "http",
+        "url": "https://mcp.chartpane.com/mcp"
+      }
+    }
+  }
+}</code></pre>
+          </div>
+          <p class="mt-3 text-secondary leading-relaxed text-sm">
+            Open Copilot Chat and select <strong style="color: var(--text);">Agent</strong> mode to use MCP tools. Then ask for a chart.
+          </p>
+        </section>
+
+        <!-- Other clients -->
+        <section id="other-clients">
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Other clients</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            ChartPane works with any client that supports MCP, including Goose, Postman, MCPJam, and others. The setup is the same: find the MCP settings in your client and add the server URL.
+          </p>
+          <div class="mt-4 code-block text-left">
+            <pre class="font-mono select-all"><code>https://mcp.chartpane.com/mcp</code></pre>
+          </div>
+        </section>
+
+        <!-- Verify it works -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Verify it works</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            After setup, start a new conversation and try a prompt like:
+          </p>
+          <div class="mt-4 p-4 rounded-lg text-sm" style="background-color: var(--accent-subtle); color: var(--accent);">
+            <em>"Chart the population of the 5 largest US cities as a bar chart"</em>
+          </div>
+          <p class="mt-4 text-secondary leading-relaxed">
+            You should see an interactive chart rendered directly in the conversation. If it doesn't appear, make sure your client has MCP Apps enabled and restart it.
+          </p>
+        </section>
+
+        <!-- What's next -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">What's next</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            ChartPane supports bar, line, pie, doughnut, scatter, radar, area, and bubble charts, plus multi-chart dashboards. Just describe what you want in plain language and the AI will figure out the right chart type.
+          </p>
+          <ul class="mt-3 space-y-2 text-secondary leading-relaxed list-disc list-inside">
+            <li><a href="/" class="underline hover:text-[var(--accent)]">See examples on the homepage</a></li>
+            <li><a href="/what-is-an-mcp-app.html" class="underline hover:text-[var(--accent)]">Learn what an MCP App is</a></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="section-sm" style="border-top: 1px solid var(--border);">
+    <div class="mx-auto max-w-3xl px-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+      <div class="flex items-center gap-2">
+        <img src="/favicon.svg" alt="ChartPane" class="w-6 h-6" />
+        <span class="font-semibold" style="color: var(--text);">ChartPane</span>
+      </div>
+      <div class="flex items-center gap-6 text-sm text-secondary">
+        <a href="/" class="hover:text-[var(--accent)] transition-colors">Home</a>
+        <a href="/what-is-an-mcp-app.html" class="hover:text-[var(--accent)] transition-colors">What is an MCP App?</a>
+        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

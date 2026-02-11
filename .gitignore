@@ -3,3 +3,17 @@ dist/
 logs/
 .dev.vars
 .wrangler/
+
+# Internal docs
+.internal/
+landing/CONTENT.md
+
+# AI agent/IDE configs
+.agent/
+.agents/
+.claude/
+.continue/
+.cursor/
+.goose/
+.trae/
+.windsurf/
