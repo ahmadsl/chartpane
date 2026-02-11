@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Is an MCP App? — ChartPane</title>
+  <meta name="description" content="MCP Apps are interactive extensions that render visual UIs inside AI conversations. Learn how they work, how they differ from regular MCP tools, and see real examples." />
+
+  <link rel="canonical" href="https://chartpane.com/what-is-an-mcp-app.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="ChartPane" />
+  <meta property="og:title" content="What Is an MCP App?" />
+  <meta property="og:description" content="MCP Apps are interactive extensions that render visual UIs inside AI conversations. Learn how they work and see real examples." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://chartpane.com/what-is-an-mcp-app.html" />
+  <meta property="og:image" content="https://chartpane.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="What Is an MCP App?" />
+  <meta name="twitter:description" content="MCP Apps are interactive extensions that render visual UIs inside AI conversations. Learn how they work and see real examples." />
+  <meta name="twitter:image" content="https://chartpane.com/og-image.png" />
+
+  <!-- JSON-LD Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What Is an MCP App?",
+    "description": "MCP Apps are interactive extensions that render visual UIs inside AI conversations. Learn how they work, how they differ from regular MCP tools, and see real examples.",
+    "url": "https://chartpane.com/what-is-an-mcp-app.html",
+    "datePublished": "2026-02-11",
+    "dateModified": "2026-02-11",
+    "author": {
+      "@type": "Organization",
+      "name": "ChartPane",
+      "url": "https://chartpane.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ChartPane",
+      "url": "https://chartpane.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://chartpane.com/favicon.svg"
+      }
+    },
+    "image": "https://chartpane.com/og-image.png"
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <!-- Font preload -->
+  <link rel="preload" href="/fonts/GeistVF.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/GeistMonoVF.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="font-sans antialiased">
+
+  <header class="section-sm" style="border-bottom: 1px solid var(--border);">
+    <div class="mx-auto max-w-3xl px-6">
+      <a href="/" class="inline-flex items-center gap-2 text-secondary hover:text-[var(--text)] transition-colors">
+        <img src="/favicon.svg" alt="ChartPane" class="w-5 h-5" />
+        <span class="font-semibold" style="color: var(--text);">ChartPane</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="mx-auto max-w-3xl px-6">
+      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);">What Is an MCP App?</h1>
+      <p class="mt-3 text-secondary text-lg leading-relaxed">A short guide to interactive extensions for AI conversations.</p>
+
+      <div class="mt-10 space-y-10">
+
+        <!-- Intro -->
+        <section>
+          <p class="text-secondary leading-relaxed">
+            An <strong style="color: var(--text);">MCP App</strong> is an extension that renders a visual, interactive UI directly inside your AI conversation. Instead of getting a wall of text or a code block you need to copy-paste somewhere else, you see the result inline — a chart, a form, a map, a diagram — right where you asked for it.
+          </p>
+          <p class="mt-4 text-secondary leading-relaxed">
+            MCP stands for <strong style="color: var(--text);">Model Context Protocol</strong>, the open standard that connects AI assistants to external tools and data sources. MCP Apps build on this standard by adding a UI layer: the AI calls the tool, and the tool renders something you can see and interact with.
+          </p>
+        </section>
+
+        <!-- How MCP Apps differ from MCP tools -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">MCP tools vs. MCP Apps</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            A regular MCP tool returns text. Ask it to query a database and you get rows of data as plain text. Useful, but limited.
+          </p>
+          <p class="mt-3 text-secondary leading-relaxed">
+            An MCP App returns a visual UI. Ask it to chart that same data and you get an interactive chart — with tooltips, zoom, and export — rendered right in the conversation. The difference is like reading a spreadsheet vs. seeing a dashboard.
+          </p>
+
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            <div class="comparison-card comparison-card-old">
+              <p class="text-sm font-semibold mb-3" style="color: var(--text-tertiary);">MCP Tool (text only)</p>
+              <div class="space-y-2">
+                <div class="comparison-step"><span class="comparison-num comparison-num-old">1</span> AI calls the tool</div>
+                <div class="comparison-step"><span class="comparison-num comparison-num-old">2</span> Tool returns plain text</div>
+                <div class="comparison-step"><span class="comparison-num comparison-num-old">3</span> You read the text output</div>
+              </div>
+            </div>
+            <div class="comparison-card comparison-card-new">
+              <p class="text-sm font-semibold mb-3" style="color: var(--accent);">MCP App (visual UI)</p>
+              <div class="space-y-2">
+                <div class="comparison-step"><span class="comparison-num comparison-num-new">1</span> AI calls the tool</div>
+                <div class="comparison-step"><span class="comparison-num comparison-num-new">2</span> App renders interactive UI</div>
+                <div class="comparison-step"><span class="comparison-num comparison-num-new">3</span> You see and interact with it</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- How they work -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">How MCP Apps work</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            Under the hood, an MCP App is an MCP server that registers both tools and a UI resource. When the AI calls a tool, the server returns structured data along with a reference to its UI. The host application (Claude, ChatGPT, VS Code, etc.) loads the UI and passes the data to it. The UI renders client-side — no extra servers, no iframes pointing to third-party domains.
+          </p>
+          <p class="mt-3 text-secondary leading-relaxed">
+            This means your data stays local. The UI runs in your client, and the rendering happens in your browser. Nothing is sent to an external service beyond what you already shared with your AI assistant.
+          </p>
+        </section>
+
+        <!-- Where they work -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Where MCP Apps work</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            MCP Apps work in any client that supports the MCP Apps extension. As of early 2026, that includes:
+          </p>
+          <ul class="mt-3 space-y-2 text-secondary leading-relaxed list-disc list-inside">
+            <li><strong style="color: var(--text);">Claude</strong> and <strong style="color: var(--text);">Claude Desktop</strong></li>
+            <li><strong style="color: var(--text);">ChatGPT</strong></li>
+            <li><strong style="color: var(--text);">VS Code</strong> and <strong style="color: var(--text);">Cursor</strong></li>
+            <li><strong style="color: var(--text);">Goose</strong>, <strong style="color: var(--text);">Postman</strong>, <strong style="color: var(--text);">MCPJam</strong>, and others</li>
+          </ul>
+          <p class="mt-3 text-secondary leading-relaxed">
+            You install an MCP App once, and it works across all these clients. No per-client plugins or extensions to manage.
+          </p>
+        </section>
+
+        <!-- Examples -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Examples of MCP Apps</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            MCP Apps can render anything that makes sense as a visual response:
+          </p>
+          <ul class="mt-3 space-y-2 text-secondary leading-relaxed list-disc list-inside">
+            <li><strong style="color: var(--text);">Charts and dashboards</strong> — bar, line, pie, scatter, radar charts from data in your conversation</li>
+            <li><strong style="color: var(--text);">Maps</strong> — plot locations, routes, and geospatial data</li>
+            <li><strong style="color: var(--text);">Diagrams</strong> — flowcharts, architecture diagrams, entity relationships</li>
+            <li><strong style="color: var(--text);">Forms and controls</strong> — interactive inputs that feed back into the conversation</li>
+          </ul>
+          <p class="mt-3 text-secondary leading-relaxed">
+            <a href="/" class="underline hover:text-[var(--accent)]">ChartPane</a> is an MCP App for data visualization. Ask your AI assistant to chart something and you get interactive, production-quality charts rendered inline — with tooltips, legends, and one-click PNG export.
+          </p>
+        </section>
+
+        <!-- Getting started -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Try it yourself</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            The fastest way to experience an MCP App is to install <a href="/" class="underline hover:text-[var(--accent)]">ChartPane</a>. It takes about a minute: add a single URL to your AI client's MCP settings, and you're done. No API keys, no sign-up, no cost.
+          </p>
+          <div class="mt-6">
+            <a href="/#get-started" class="btn-primary">Get started with ChartPane</a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="section-sm" style="border-top: 1px solid var(--border);">
+    <div class="mx-auto max-w-3xl px-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+      <div class="flex items-center gap-2">
+        <img src="/favicon.svg" alt="ChartPane" class="w-6 h-6" />
+        <span class="font-semibold" style="color: var(--text);">ChartPane</span>
+      </div>
+      <div class="flex items-center gap-6 text-sm text-secondary">
+        <a href="/" class="hover:text-[var(--accent)] transition-colors">Home</a>
+        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors">Privacy</a>
+        <a href="mailto:support@chartpane.com" class="hover:text-[var(--accent)] transition-colors">Support</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
