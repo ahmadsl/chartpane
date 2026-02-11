@@ -2,6 +2,11 @@
   "name": "chartpane",
   "version": "1.0.0",
   "description": "MCP App that renders charts inline in Claude's UI",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahmadsl/chartpane.git"
+  },
   "type": "module",
   "scripts": {
     "build": "tsc --noEmit && INPUT=mcp-app.html vite build",

@@ -1,0 +1,7 @@
+# Optional: Google OAuth (all three required to enable auth)
+GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+COOKIE_ENCRYPTION_KEY=base64-encoded-32-byte-key
+
+# Optional: Sentry error monitoring
+SENTRY_DSN=https://your-sentry-dsn@o000000.ingest.us.sentry.io/0000000
