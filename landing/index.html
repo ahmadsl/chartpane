@@ -6,7 +6,10 @@
   <title>ChartPane — See Your Data Without Leaving Claude</title>
   <meta name="description" content="Get instant, interactive charts right in your AI conversation. No Excel, no screenshots, no breaking your flow. Works with Claude, ChatGPT, VS Code, and more." />
 
+  <link rel="canonical" href="https://chartpane.com/" />
+
   <!-- Open Graph -->
+  <meta property="og:site_name" content="ChartPane" />
   <meta property="og:title" content="ChartPane — See Your Data Without Leaving Claude" />
   <meta property="og:description" content="Get instant, interactive charts right in your AI conversation. No Excel, no screenshots, no breaking your flow." />
   <meta property="og:type" content="website" />
@@ -56,6 +59,91 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="/src/style.css" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ChartPane",
+    "url": "https://chartpane.com",
+    "description": "An MCP App that renders interactive charts right inside AI conversations. Works with Claude, ChatGPT, VS Code, Cursor, and any client that supports MCP Apps.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Bar charts",
+      "Line charts",
+      "Area charts",
+      "Pie charts",
+      "Doughnut charts",
+      "Scatter plots",
+      "Radar charts",
+      "Stacked charts",
+      "Multi-chart dashboards"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is ChartPane free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, completely free. No API keys, no credit card, no usage limits."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What data does ChartPane collect?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Charts render in your browser. We store chart data so you can access your chart history later. We never store your conversations or personal information."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is an MCP App?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An MCP App is an interactive extension that renders a visual UI right inside your AI conversation. Unlike regular MCP tools that only return text, MCP Apps can show rich content — like ChartPane's interactive charts. MCP (Model Context Protocol) is the open standard that makes this possible."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which AI clients does ChartPane work with?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Any client that supports MCP Apps: Claude, Claude Desktop, ChatGPT, VS Code, Cursor, Goose, Postman, MCPJam, and more."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I create dashboards with multiple charts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — just ask for a dashboard and get multiple charts in one response. You can request any combination of chart types."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to know how to code to use ChartPane?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Describe what you want in plain English and ChartPane handles the rest. If you're already asking Claude to analyze data, you already know how to use ChartPane."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="font-sans antialiased">
 
@@ -204,7 +292,7 @@
   <section class="section">
     <div class="mx-auto max-w-4xl px-6">
       <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);">How it works</h2>
-      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1">Three steps. No code, no API keys, no cost.</p>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1">ChartPane is an MCP App — a plugin that connects to your AI client. Three steps, no code, no API keys, no cost.</p>
 
       <div class="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3">
         <!-- Step 1 -->
@@ -399,7 +487,7 @@
   <section id="get-started" class="section">
     <div class="mx-auto max-w-3xl px-6 text-center">
       <h2 class="text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);">Start charting in 30 seconds</h2>
-      <p class="mt-4 text-secondary text-lg fade-in fade-delay-1">Works with Claude Desktop, ChatGPT, VS Code, and any MCP-compatible client. Free, no API keys, no credit card.</p>
+      <p class="mt-4 text-secondary text-lg fade-in fade-delay-1">Works with Claude Desktop, ChatGPT, VS Code, and any client that supports MCP Apps. Free, no API keys, no credit card.</p>
 
       <!-- Tab switcher -->
       <div class="mt-10 inline-flex rounded-lg p-1 fade-in fade-delay-2" style="background-color: var(--code-bg);">
@@ -470,8 +558,13 @@
         </details>
 
         <details class="faq-item">
+          <summary class="faq-summary">What is an MCP App?</summary>
+          <p class="faq-answer">An MCP App is an interactive extension that renders a visual UI right inside your AI conversation. Unlike regular MCP tools that only return text, MCP Apps can show rich content — like ChartPane's interactive charts. MCP (Model Context Protocol) is the open standard that makes this possible.</p>
+        </details>
+
+        <details class="faq-item">
           <summary class="faq-summary">Which AI clients does it work with?</summary>
-          <p class="faq-answer">Claude, Claude Desktop, ChatGPT, VS Code, and other clients that support MCP Apps — including Goose, Postman, and MCPJam.</p>
+          <p class="faq-answer">Any client that supports MCP Apps: Claude, Claude Desktop, ChatGPT, VS Code, Cursor, Goose, Postman, MCPJam, and more.</p>
         </details>
 
         <details class="faq-item">
