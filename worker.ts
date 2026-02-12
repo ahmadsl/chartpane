@@ -131,6 +131,14 @@ export default Sentry.withSentry(
         `[mcp] ${method} ${path}${rpcMethod ? ` → ${rpcMethod}` : ""}${sessionId ? ` [session=${sessionId.slice(0, 8)}]` : " [no-session]"}`,
       );
 
+      // Favicon — served for Google's favicon fetcher and browser tabs
+      if (path === "/favicon.ico" || path === "/favicon.svg") {
+        return new Response(
+          `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#4F46E5"/><rect x="6" y="18" width="4" height="8" rx="1" fill="#fff"/><rect x="12" y="12" width="4" height="14" rx="1" fill="#fff"/><rect x="18" y="8" width="4" height="18" rx="1" fill="#fff"/><rect x="24" y="14" width="4" height="12" rx="1" fill="#fff" opacity="0.7"/></svg>`,
+          { headers: { "Content-Type": "image/svg+xml", "Cache-Control": "public, max-age=86400" } },
+        );
+      }
+
       // RFC 9728: Protected Resource Metadata — override OAuthProvider's built-in
       // response because it includes the apiRoute path in `resource`, but its own
       // token validation checks audience against origin-only (protocol://host).
