@@ -97,6 +97,15 @@ The server is intentionally thin — it validates input and returns the raw `Cha
 - **Claude Desktop custom connectors** — Now supports native remote MCP via "Add custom connector" UI (no `mcp-remote` needed for production). All MCP clients use URLs exactly as given — no auto-appending of `/mcp` or `/.well-known` discovery.
 - See `docs/adr/002-deployment-architecture.md` and `docs/adr/003-mcp-http-handler.md`
 
+## MCP Registry (`server.json`)
+
+- **Published** to `registry.modelcontextprotocol.io` as `io.github.ahmadsl/chartpane` (remote-only, no npm package).
+- **`server.json`** at repo root — describes the server for registry discovery. `version` is stamped from git tag at publish time.
+- **`$schema` URL must use `https://static.modelcontextprotocol.io/schemas/YYYY-MM-DD/server.schema.json`** — raw GitHub URLs are rejected by `mcp-publisher`.
+- **CI workflow** (`.github/workflows/publish-mcp.yml`) — triggers on `v*` tags, uses GitHub OIDC auth (no secrets needed), publishes via `mcp-publisher`.
+- **To publish a new version:** `git tag v1.x.x && git push origin v1.x.x`
+- **Validate locally:** `npx ajv-cli validate -s <schema-url> -d server.json --spec=draft7 --strict=false`
+
 ## Landing Page (`landing/`)
 
 Self-contained Vite project (own `package.json`) for `chartpane.com` on Cloudflare Pages. Has its own `CLAUDE.md` with full details. Key thing: palette + `buildChartConfig()` are duplicated from `shared/` — update both if either changes.
