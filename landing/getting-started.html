@@ -6,6 +6,33 @@
   <title>Getting Started with ChartPane — ChartPane</title>
   <meta name="description" content="Set up ChartPane in under a minute. Step-by-step install guide for Claude Desktop, ChatGPT, VS Code, and other MCP clients." />
 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5DEV3CDE8M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5DEV3CDE8M');
+  </script>
+
+  <!-- Sentry error tracking (lazy-loaded CDN bundle) -->
+  <script>
+    window.sentryOnLoad = function () {
+      Sentry.init({
+        environment: "production",
+        tracesSampleRate: 0,
+        replaysSessionSampleRate: 0,
+        replaysOnErrorSampleRate: 0,
+        initialScope: { tags: { surface: "landing" } },
+      });
+    };
+  </script>
+  <script
+    src="https://js.sentry-cdn.com/15523aa4801cb0b9ac0b49b801f46069.min.js"
+    crossorigin="anonymous"
+    defer
+  ></script>
+
   <link rel="canonical" href="https://chartpane.com/getting-started.html" />
 
   <!-- Open Graph -->
@@ -14,6 +41,8 @@
   <meta property="og:description" content="Set up ChartPane in under a minute. Step-by-step install guide for Claude Desktop, ChatGPT, VS Code, and other MCP clients." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://chartpane.com/getting-started.html" />
+  <meta property="article:published_time" content="2026-02-11T00:00:00Z" />
+  <meta property="article:modified_time" content="2026-02-11T00:00:00Z" />
   <meta property="og:image" content="https://chartpane.com/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
