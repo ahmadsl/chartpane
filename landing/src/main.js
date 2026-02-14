@@ -324,6 +324,131 @@ const dashboardCharts = [
 ];
 
 // ──────────────────────────────────────────────────────────────
+// Chart type page demos (rendered on /charts/*.html pages)
+// ──────────────────────────────────────────────────────────────
+
+const chartPageDemos = [
+  {
+    id: "chartpage-bar",
+    input: {
+      type: "bar",
+      title: "Monthly Active Users by Platform",
+      data: {
+        labels: ["iOS", "Android", "Web", "Desktop", "API"],
+        datasets: [
+          { label: "2024", data: [8200, 12400, 6800, 3100, 1500] },
+          { label: "2025", data: [9400, 14100, 8500, 4200, 2300] },
+        ],
+      },
+    },
+  },
+  {
+    id: "chartpage-line",
+    input: {
+      type: "line",
+      title: "Daily Temperature — San Francisco vs New York",
+      data: {
+        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        datasets: [
+          { label: "San Francisco (°F)", data: [58, 61, 59, 63, 65, 62, 60] },
+          { label: "New York (°F)", data: [42, 38, 35, 40, 45, 48, 44] },
+        ],
+      },
+    },
+  },
+  {
+    id: "chartpage-area",
+    input: {
+      type: "area",
+      title: "Server Memory Usage (24h)",
+      data: {
+        labels: ["00:00", "04:00", "08:00", "12:00", "16:00", "20:00", "23:59"],
+        datasets: [
+          { label: "Used (GB)", data: [4.2, 3.8, 6.1, 11.5, 13.2, 9.8, 5.4] },
+        ],
+      },
+    },
+  },
+  {
+    id: "chartpage-pie",
+    input: {
+      type: "pie",
+      title: "Programming Language Popularity (2025)",
+      data: {
+        labels: ["Python", "JavaScript", "TypeScript", "Java", "Go", "Other"],
+        datasets: [{ label: "Usage", data: [28, 22, 15, 12, 8, 15] }],
+      },
+    },
+  },
+  {
+    id: "chartpage-doughnut",
+    input: {
+      type: "doughnut",
+      title: "Monthly Expenses Breakdown",
+      data: {
+        labels: ["Rent", "Food", "Transport", "Utilities", "Entertainment"],
+        datasets: [{ label: "Spending", data: [1800, 650, 320, 240, 180] }],
+      },
+    },
+  },
+  {
+    id: "chartpage-scatter",
+    input: {
+      type: "scatter",
+      title: "Study Hours vs Test Scores",
+      data: {
+        datasets: [
+          {
+            label: "Students",
+            data: [
+              { x: 2, y: 55 }, { x: 3, y: 62 }, { x: 4, y: 68 }, { x: 5, y: 74 },
+              { x: 6, y: 78 }, { x: 7, y: 85 }, { x: 8, y: 88 }, { x: 3.5, y: 60 },
+              { x: 5.5, y: 72 }, { x: 6.5, y: 82 }, { x: 9, y: 92 }, { x: 1, y: 45 },
+            ],
+          },
+        ],
+      },
+    },
+  },
+  {
+    id: "chartpage-radar",
+    input: {
+      type: "radar",
+      title: "Framework Comparison",
+      data: {
+        labels: ["Performance", "Ease of Use", "Ecosystem", "Documentation", "Community", "Learning Curve"],
+        datasets: [
+          { label: "React", data: [85, 70, 95, 90, 95, 65] },
+          { label: "Vue", data: [80, 90, 75, 85, 80, 85] },
+        ],
+      },
+    },
+  },
+  {
+    id: "chartpage-stacked",
+    input: {
+      type: "bar",
+      title: "Revenue by Channel",
+      stacked: true,
+      data: {
+        labels: ["Q1", "Q2", "Q3", "Q4"],
+        datasets: [
+          { label: "Direct Sales", data: [120, 150, 180, 220] },
+          { label: "Online Store", data: [80, 110, 140, 170] },
+          { label: "Partners", data: [40, 60, 80, 100] },
+        ],
+      },
+    },
+  },
+];
+
+// Hub page thumbnails — reuse gallery chart data
+const hubCharts = galleryCharts.map(c => ({
+  id: c.id.replace("gallery-", "hub-"),
+  input: c.input,
+}));
+
+// ──────────────────────────────────────────────────────────────
 // Theme detection & Chart.js defaults
 // ──────────────────────────────────────────────────────────────
 
@@ -375,6 +500,16 @@ function renderAll() {
 
   // Dashboard
   for (const item of dashboardCharts) {
+    renderChart(item.id, item.input);
+  }
+
+  // Chart type pages
+  for (const item of chartPageDemos) {
+    renderChart(item.id, item.input);
+  }
+
+  // Hub page thumbnails
+  for (const item of hubCharts) {
     renderChart(item.id, item.input);
   }
 }

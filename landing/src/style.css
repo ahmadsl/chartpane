@@ -5,6 +5,15 @@
 @source "../what-is-an-mcp-app.html";
 @source "../getting-started.html";
 @source "../terms.html";
+@source "../charts/index.html";
+@source "../charts/bar-chart.html";
+@source "../charts/line-chart.html";
+@source "../charts/area-chart.html";
+@source "../charts/pie-chart.html";
+@source "../charts/doughnut-chart.html";
+@source "../charts/scatter-plot.html";
+@source "../charts/radar-chart.html";
+@source "../charts/stacked-chart.html";
 @source "./main.js";
 
 /* Geist Sans — variable weight */
