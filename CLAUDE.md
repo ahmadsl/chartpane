@@ -60,8 +60,8 @@ The server is intentionally thin — it validates input and returns the raw `Cha
 
 - **Unit tests** (`tests/unit/`) — colors, config, validation, grid, server-userid logic
 - **Integration tests** (`tests/integration/server.test.ts`) — MCP protocol using `InMemoryTransport.createLinkedPair()` from SDK (includes userId tests)
-- **Fixtures** (`tests/fixtures/`) — 18 JSON configs covering all chart types and edge cases
-- **70 tests across 6 test files** as of Feb 2026
+- **Fixtures** (`tests/fixtures/`) — 19 JSON configs covering all chart types and edge cases
+- **75 tests across 6 test files** as of Feb 2026
 
 ## Key Conventions
 
@@ -70,7 +70,7 @@ The server is intentionally thin — it validates input and returns the raw `Cha
 - **Validation pattern** — `.safeParse()` for schema, then separate business rule function. Returns `{ success, data/error }`.
 - **`area` chart type** — Not a real Chart.js type. `config.ts` maps it to `line` with `fill: true`.
 - **Chart cleanup** — Always `chart.destroy()` before rendering new charts.
-- **Color assignment** — Pie/doughnut get per-slice color arrays; all other types get one color per dataset.
+- **Color assignment** — Pie/doughnut/polarArea get per-slice color arrays; all other types get one color per dataset.
 
 ## Package Versions
 

@@ -6,7 +6,7 @@ MCP App that renders interactive Chart.js charts inline in Claude's UI. Works wi
 
 ## Features
 
-- 7 chart types: bar, line, area, pie, doughnut, scatter, radar
+- 8 chart types: bar, line, area, pie, doughnut, polarArea, scatter, radar
 - Stacked and horizontal bar chart variants
 - Multi-chart dashboard grids (up to 4 columns)
 - Custom colors or automatic 12-color palette
@@ -15,7 +15,7 @@ MCP App that renders interactive Chart.js charts inline in Claude's UI. Works wi
 
 ## Tools
 
-- **`render_chart`** — Render a single chart (bar, line, area, pie, doughnut, scatter, radar, stacked)
+- **`render_chart`** — Render a single chart (bar, line, area, pie, doughnut, polarArea, scatter, radar, stacked)
 - **`render_dashboard`** — Render a multi-chart grid layout
 
 ## Quick Start
