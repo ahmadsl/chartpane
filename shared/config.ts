@@ -23,7 +23,7 @@ export function buildChartConfig(input: ChartInput): ChartConfiguration {
   const isRadar = type === "radar";
   const datasets = data.datasets.map((ds, i) => {
     const colors = colorSets[i];
-    const isPieOrDoughnut = type === "pie" || type === "doughnut";
+    const isPieOrDoughnut = type === "pie" || type === "doughnut" || type === "polarArea";
 
     return {
       label: ds.label,
@@ -50,7 +50,7 @@ export function buildChartConfig(input: ChartInput): ChartConfiguration {
 
   // Build scales (not applicable for pie/doughnut/radar)
   const noScales =
-    type === "pie" || type === "doughnut" || type === "radar";
+    type === "pie" || type === "doughnut" || type === "polarArea" || type === "radar";
   const scales = noScales
     ? undefined
     : {
@@ -66,7 +66,7 @@ export function buildChartConfig(input: ChartInput): ChartConfiguration {
 
   // Legend: hidden for single dataset (except pie/doughnut)
   const showLegend =
-    type === "pie" || type === "doughnut" || data.datasets.length > 1;
+    type === "pie" || type === "doughnut" || type === "polarArea" || data.datasets.length > 1;
 
   const config: ChartConfiguration = {
     type: chartJsType as ChartConfiguration["type"],

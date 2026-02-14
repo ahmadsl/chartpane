@@ -104,6 +104,24 @@ describe("validateChartInput", () => {
     }
   });
 
+  it("rejects polarArea with multiple datasets", () => {
+    const result = validateChartInput({
+      type: "polarArea",
+      title: "Bad Polar",
+      data: {
+        labels: ["A", "B"],
+        datasets: [
+          { label: "DS1", data: [1, 2] },
+          { label: "DS2", data: [3, 4] },
+        ],
+      },
+    });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error).toContain("polarArea");
+    }
+  });
+
   it("rejects doughnut with multiple datasets", () => {
     const result = validateChartInput({
       type: "doughnut",

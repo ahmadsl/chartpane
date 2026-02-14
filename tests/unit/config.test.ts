@@ -241,6 +241,50 @@ describe("buildChartConfig", () => {
     expect(bg).toEqual(["#ff0000", "#00ff00", "#0000ff"]);
   });
 
+  it("does not set scales for polarArea", () => {
+    const input: ChartInput = {
+      type: "polarArea",
+      title: "Polar",
+      data: {
+        labels: ["A", "B", "C"],
+        datasets: [{ label: "DS", data: [10, 20, 30] }],
+      },
+    };
+    const config = buildChartConfig(input);
+    const opts = config.options as any;
+    expect(opts.scales).toBeUndefined();
+  });
+
+  it("shows legend for polarArea even with single dataset", () => {
+    const input: ChartInput = {
+      type: "polarArea",
+      title: "Polar",
+      data: {
+        labels: ["A", "B", "C"],
+        datasets: [{ label: "DS", data: [10, 20, 30] }],
+      },
+    };
+    const config = buildChartConfig(input);
+    const opts = config.options as any;
+    expect(opts.plugins.legend.display).toBe(true);
+  });
+
+  it("assigns per-slice colors for polarArea", () => {
+    const input: ChartInput = {
+      type: "polarArea",
+      title: "Polar",
+      data: {
+        labels: ["A", "B", "C"],
+        datasets: [{ label: "DS", data: [10, 20, 30] }],
+      },
+    };
+    const config = buildChartConfig(input);
+    const bg = (config.data.datasets[0] as any).backgroundColor;
+    expect(Array.isArray(bg)).toBe(true);
+    expect(bg).toHaveLength(3);
+    expect(bg[0]).toBe(getColor(0));
+  });
+
   it("uses chart-level colors as palette for datasets", () => {
     const input: ChartInput = {
       type: "line",

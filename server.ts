@@ -47,7 +47,7 @@ export function createServer(options: ServerOptions): McpServer {
     {
       title: "Render Chart",
       description:
-        "Renders a single chart inline. Supports bar, line, area, pie, doughnut, scatter, and radar chart types. Provide structured data with labels and datasets.",
+        "Renders a single chart inline. Supports bar, line, area, pie, doughnut, polarArea, scatter, and radar chart types. Provide structured data with labels and datasets.",
       inputSchema: ChartInputSchema,
       annotations: {
         readOnlyHint: true,
@@ -107,7 +107,7 @@ export function createServer(options: ServerOptions): McpServer {
     {
       title: "Render Dashboard",
       description:
-        "Renders multiple charts in a grid layout. Each chart can be any supported type (bar, line, area, pie, doughnut, scatter, radar). Optionally specify the number of grid columns.",
+        "Renders multiple charts in a grid layout. Each chart can be any supported type (bar, line, area, pie, doughnut, polarArea, scatter, radar). Optionally specify the number of grid columns.",
       inputSchema: DashboardInputSchema,
       annotations: {
         readOnlyHint: true,

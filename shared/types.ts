@@ -6,6 +6,7 @@ export const ChartTypeSchema = z.enum([
   "area",
   "pie",
   "doughnut",
+  "polarArea",
   "scatter",
   "radar",
 ]);

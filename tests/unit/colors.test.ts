@@ -34,6 +34,15 @@ describe("assignColors", () => {
     expect(colors[0][2]).toBe(getColor(2));
   });
 
+  it("assigns per-slice colors for polarArea chart", () => {
+    const datasets = [{ label: "Activity", data: [12, 8, 15] }];
+    const colors = assignColors("polarArea", datasets);
+    expect(colors[0]).toHaveLength(3);
+    expect(colors[0][0]).toBe(getColor(0));
+    expect(colors[0][1]).toBe(getColor(1));
+    expect(colors[0][2]).toBe(getColor(2));
+  });
+
   it("assigns per-slice colors for doughnut chart", () => {
     const datasets = [{ label: "Sales", data: [10, 20] }];
     const colors = assignColors("doughnut", datasets);

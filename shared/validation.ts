@@ -27,7 +27,7 @@ function validateChartRules(input: ChartInput): string | null {
 
   // Pie/doughnut should have max 1 dataset
   if (
-    (input.type === "pie" || input.type === "doughnut") &&
+    (input.type === "pie" || input.type === "doughnut" || input.type === "polarArea") &&
     input.data.datasets.length > 1
   ) {
     return `${input.type} chart supports at most 1 dataset, got ${input.data.datasets.length}`;

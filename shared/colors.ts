@@ -24,7 +24,7 @@ export function assignColors(
   datasets: Dataset[],
   chartColors?: string[],
 ): string[][] {
-  if (type === "pie" || type === "doughnut") {
+  if (type === "pie" || type === "doughnut" || type === "polarArea") {
     // For pie/doughnut: each slice gets a different color
     return datasets.map((ds) =>
       ds.data.map((_, i) => chartColors?.[i] ?? getColor(i)),

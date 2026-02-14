@@ -1,0 +1,10 @@
+{
+  "type": "polarArea",
+  "title": "Activity Breakdown",
+  "data": {
+    "labels": ["Running", "Swimming", "Cycling", "Walking", "Hiking"],
+    "datasets": [
+      { "label": "Hours", "data": [12, 8, 15, 20, 6] }
+    ]
+  }
+}
