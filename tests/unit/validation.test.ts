@@ -46,7 +46,7 @@ describe("validateChartInput", () => {
   });
 
   it("rejects invalid type", () => {
-    const result = validateChartInput({ ...validBar, type: "bubble" });
+    const result = validateChartInput({ ...validBar, type: "histogram" });
     expect(result.success).toBe(false);
   });
 
@@ -135,6 +135,61 @@ describe("validateChartInput", () => {
       },
     });
     expect(result.success).toBe(false);
+  });
+
+  it("accepts a valid bubble chart", () => {
+    const result = validateChartInput({
+      type: "bubble",
+      title: "Bubble",
+      data: {
+        datasets: [
+          {
+            label: "Points",
+            data: [
+              { x: 1, y: 2, r: 10 },
+              { x: 3, y: 4, r: 5 },
+            ],
+          },
+        ],
+      },
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects bubble with number data", () => {
+    const result = validateChartInput({
+      type: "bubble",
+      title: "Bad Bubble",
+      data: {
+        datasets: [{ label: "DS", data: [1, 2, 3] }],
+      },
+    });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error).toContain("Bubble");
+    }
+  });
+
+  it("rejects bubble without r on data points", () => {
+    const result = validateChartInput({
+      type: "bubble",
+      title: "Bad Bubble",
+      data: {
+        datasets: [
+          {
+            label: "DS",
+            data: [
+              { x: 1, y: 2 },
+              { x: 3, y: 4 },
+            ],
+          },
+        ],
+      },
+    });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error).toContain("r");
+    }
   });
 
   it("rejects horizontal on non-bar chart", () => {

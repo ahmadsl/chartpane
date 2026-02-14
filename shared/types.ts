@@ -7,6 +7,7 @@ export const ChartTypeSchema = z.enum([
   "pie",
   "doughnut",
   "polarArea",
+  "bubble",
   "scatter",
   "radar",
 ]);
@@ -16,6 +17,7 @@ export type ChartType = z.infer<typeof ChartTypeSchema>;
 const ScatterPointSchema = z.object({
   x: z.number(),
   y: z.number(),
+  r: z.number().optional(),
 });
 
 export const DatasetSchema = z.object({

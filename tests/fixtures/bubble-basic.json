@@ -1,0 +1,18 @@
+{
+  "type": "bubble",
+  "title": "Project Risk Assessment",
+  "data": {
+    "datasets": [
+      {
+        "label": "Projects",
+        "data": [
+          { "x": 2, "y": 8, "r": 15 },
+          { "x": 5, "y": 5, "r": 10 },
+          { "x": 8, "y": 3, "r": 20 },
+          { "x": 3, "y": 7, "r": 8 },
+          { "x": 7, "y": 6, "r": 12 }
+        ]
+      }
+    ]
+  }
+}

@@ -60,8 +60,8 @@ The server is intentionally thin — it validates input and returns the raw `Cha
 
 - **Unit tests** (`tests/unit/`) — colors, config, validation, grid, server-userid logic
 - **Integration tests** (`tests/integration/server.test.ts`) — MCP protocol using `InMemoryTransport.createLinkedPair()` from SDK (includes userId tests)
-- **Fixtures** (`tests/fixtures/`) — 19 JSON configs covering all chart types and edge cases
-- **75 tests across 6 test files** as of Feb 2026
+- **Fixtures** (`tests/fixtures/`) — 20 JSON configs covering all chart types and edge cases
+- **79 tests across 6 test files** as of Feb 2026
 
 ## Key Conventions
 

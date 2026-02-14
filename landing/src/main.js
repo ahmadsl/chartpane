@@ -7,6 +7,7 @@ import {
   ScatterController,
   RadarController,
   PolarAreaController,
+  BubbleController,
   CategoryScale,
   LinearScale,
   RadialLinearScale,
@@ -28,6 +29,7 @@ Chart.register(
   ScatterController,
   RadarController,
   PolarAreaController,
+  BubbleController,
   CategoryScale,
   LinearScale,
   RadialLinearScale,
@@ -80,7 +82,7 @@ function buildChartConfig(input) {
   const scales = noScales ? undefined : {
     x: {
       ...(stacked ? { stacked: true } : {}),
-      ...(type === "scatter" ? { type: "linear" } : {}),
+      ...(type === "scatter" || type === "bubble" ? { type: "linear" } : {}),
     },
     y: {
       ...(stacked ? { stacked: true } : {}),

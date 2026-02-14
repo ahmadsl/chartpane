@@ -13,6 +13,14 @@
   height: 400px;
   padding: 16px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chart-container canvas {
+  flex: 1;
+  min-height: 0;
 }
 
 .chart-toolbar {

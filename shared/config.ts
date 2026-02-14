@@ -56,7 +56,7 @@ export function buildChartConfig(input: ChartInput): ChartConfiguration {
     : {
         x: {
           ...(stacked ? { stacked: true } : {}),
-          ...(type === "scatter" ? { type: "linear" as const } : {}),
+          ...(type === "scatter" || type === "bubble" ? { type: "linear" as const } : {}),
         },
         y: {
           ...(stacked ? { stacked: true } : {}),

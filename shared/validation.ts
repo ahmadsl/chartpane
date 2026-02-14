@@ -18,8 +18,22 @@ function validateChartRules(input: ChartInput): string | null {
     }
   }
 
-  // Non-scatter charts need labels
-  if (input.type !== "scatter") {
+  // Bubble charts need {x, y, r} data
+  if (input.type === "bubble") {
+    for (const ds of input.data.datasets) {
+      if (ds.data.length > 0 && typeof ds.data[0] === "number") {
+        return `Bubble chart requires {x, y, r} data points, got numbers in dataset "${ds.label}"`;
+      }
+      for (const pt of ds.data) {
+        if (typeof pt === "object" && (pt as { r?: number }).r == null) {
+          return `Bubble chart requires "r" (radius) on every data point in dataset "${ds.label}"`;
+        }
+      }
+    }
+  }
+
+  // Non-scatter/bubble charts need labels
+  if (input.type !== "scatter" && input.type !== "bubble") {
     if (!input.data.labels || input.data.labels.length === 0) {
       return `${input.type} chart requires labels`;
     }

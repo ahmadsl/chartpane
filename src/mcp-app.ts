@@ -426,17 +426,21 @@ document.getElementById("btn-download")?.addEventListener("click", () => {
 document.getElementById("btn-copy")?.addEventListener("click", () => {
   if (!lastSingleInput) return;
   const { data, type } = lastSingleInput;
-  const isScatter = type === "scatter";
+  const isPointBased = type === "scatter" || type === "bubble";
   let csv: string;
 
-  if (isScatter) {
-    const headers = data.datasets.flatMap((ds) => [`${ds.label}_x`, `${ds.label}_y`]);
+  if (isPointBased) {
+    const isBubble = type === "bubble";
+    const headers = data.datasets.flatMap((ds) =>
+      isBubble ? [`${ds.label}_x`, `${ds.label}_y`, `${ds.label}_r`] : [`${ds.label}_x`, `${ds.label}_y`],
+    );
     const maxLen = Math.max(...data.datasets.map((ds) => ds.data.length));
     const rows = [headers.join(",")];
     for (let i = 0; i < maxLen; i++) {
       const cells = data.datasets.flatMap((ds) => {
-        const pt = ds.data[i] as { x: number; y: number } | undefined;
-        return pt ? [String(pt.x), String(pt.y)] : ["", ""];
+        const pt = ds.data[i] as { x: number; y: number; r?: number } | undefined;
+        if (!pt) return isBubble ? ["", "", ""] : ["", ""];
+        return isBubble ? [String(pt.x), String(pt.y), String(pt.r ?? "")] : [String(pt.x), String(pt.y)];
       });
       rows.push(cells.join(","));
     }

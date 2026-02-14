@@ -285,6 +285,32 @@ describe("buildChartConfig", () => {
     expect(bg[0]).toBe(getColor(0));
   });
 
+  it("passes bubble data through with linear scales", () => {
+    const input: ChartInput = {
+      type: "bubble",
+      title: "Bubble",
+      data: {
+        datasets: [
+          {
+            label: "Points",
+            data: [
+              { x: 1, y: 2, r: 10 },
+              { x: 3, y: 4, r: 5 },
+            ],
+          },
+        ],
+      },
+    };
+    const config = buildChartConfig(input);
+    expect(config.type).toBe("bubble");
+    expect(config.data.datasets[0].data).toEqual([
+      { x: 1, y: 2, r: 10 },
+      { x: 3, y: 4, r: 5 },
+    ]);
+    const opts = config.options as any;
+    expect(opts.scales.x.type).toBe("linear");
+  });
+
   it("uses chart-level colors as palette for datasets", () => {
     const input: ChartInput = {
       type: "line",
