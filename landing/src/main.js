@@ -6,6 +6,7 @@ import {
   DoughnutController,
   ScatterController,
   RadarController,
+  PolarAreaController,
   CategoryScale,
   LinearScale,
   RadialLinearScale,
@@ -26,6 +27,7 @@ Chart.register(
   DoughnutController,
   ScatterController,
   RadarController,
+  PolarAreaController,
   CategoryScale,
   LinearScale,
   RadialLinearScale,
@@ -57,7 +59,7 @@ function getColor(i) {
 function buildChartConfig(input) {
   const { type, title, data, stacked, horizontal } = input;
   const chartJsType = type === "area" ? "line" : type;
-  const isPie = type === "pie" || type === "doughnut";
+  const isPie = type === "pie" || type === "doughnut" || type === "polarArea";
 
   const datasets = data.datasets.map((ds, i) => {
     const color = isPie
@@ -442,6 +444,69 @@ const chartPageDemos = [
   },
 ];
 
+// ──────────────────────────────────────────────────────────────
+// Example page demos (rendered on /examples/*.html pages)
+// ──────────────────────────────────────────────────────────────
+
+const salesDashboardCharts = [
+  {
+    id: "sales-revenue",
+    input: {
+      type: "line",
+      title: "Monthly Revenue (H1)",
+      data: {
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+        datasets: [{ label: "Revenue ($K)", data: [420, 385, 510, 475, 550, 610] }],
+      },
+    },
+  },
+  {
+    id: "sales-products",
+    input: {
+      type: "bar",
+      title: "Revenue by Product",
+      data: {
+        labels: ["Platform", "API", "Support", "Training"],
+        datasets: [{ label: "Revenue ($K)", data: [1800, 680, 320, 150] }],
+      },
+    },
+  },
+  {
+    id: "sales-regions",
+    input: {
+      type: "doughnut",
+      title: "Revenue by Region",
+      data: {
+        labels: ["North America", "Europe", "APAC", "LATAM"],
+        datasets: [{ label: "Share", data: [52, 28, 15, 5] }],
+      },
+    },
+  },
+  {
+    id: "sales-channels",
+    input: {
+      type: "bar",
+      title: "Sales by Channel (Q1 vs Q2)",
+      stacked: true,
+      data: {
+        labels: ["Direct", "Partner", "Self-serve"],
+        datasets: [
+          { label: "Q1", data: [580, 380, 290] },
+          { label: "Q2", data: [720, 510, 370] },
+        ],
+      },
+    },
+  },
+];
+
+// Examples hub thumbnail
+const examplesHubCharts = [
+  {
+    id: "exhub-sales",
+    input: salesDashboardCharts[0].input,
+  },
+];
+
 // Hub page thumbnails — reuse gallery chart data
 const hubCharts = galleryCharts.map(c => ({
   id: c.id.replace("gallery-", "hub-"),
@@ -510,6 +575,14 @@ function renderAll() {
 
   // Hub page thumbnails
   for (const item of hubCharts) {
+    renderChart(item.id, item.input);
+  }
+
+  // Example pages
+  for (const item of salesDashboardCharts) {
+    renderChart(item.id, item.input);
+  }
+  for (const item of examplesHubCharts) {
     renderChart(item.id, item.input);
   }
 }

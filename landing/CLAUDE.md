@@ -43,7 +43,7 @@ When adding a new page:
 3. Link to it from the homepage or other relevant pages
 4. Use "MCP App" terminology (not "MCP tool" or "MCP plugin") when referring to ChartPane
 
-See `CONTENT.md` for the full content backlog and publishing workflow.
+Content backlog and publishing schedule are in `.internal/content-todo.md` (local only, not committed). Use `/new-content-page` to create the next page from the schedule.
 
 ## Key Conventions
 

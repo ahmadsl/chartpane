@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales Dashboard Example — AI Charts | ChartPane</title>
+  <meta name="description" content="Build a complete sales dashboard with revenue trends, product breakdown, and regional performance. Sample data and prompts included — just paste into Claude." />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5DEV3CDE8M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5DEV3CDE8M');
+  </script>
+
+  <!-- Sentry error tracking (lazy-loaded CDN bundle) -->
+  <script>
+    window.sentryOnLoad = function () {
+      Sentry.init({
+        environment: "production",
+        tracesSampleRate: 0,
+        replaysSessionSampleRate: 0,
+        replaysOnErrorSampleRate: 0,
+        initialScope: { tags: { surface: "landing" } },
+      });
+    };
+  </script>
+  <script
+    src="https://js.sentry-cdn.com/15523aa4801cb0b9ac0b49b801f46069.min.js"
+    crossorigin="anonymous"
+    defer
+  ></script>
+
+  <link rel="canonical" href="https://chartpane.com/examples/sales-dashboard.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="ChartPane" />
+  <meta property="og:title" content="Sales Dashboard Example — AI Charts | ChartPane" />
+  <meta property="og:description" content="Build a complete sales dashboard with revenue trends, product breakdown, and regional performance. Sample data and prompts included." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://chartpane.com/examples/sales-dashboard.html" />
+  <meta property="article:published_time" content="2026-02-14T00:00:00Z" />
+  <meta property="article:modified_time" content="2026-02-14T00:00:00Z" />
+  <meta property="og:image" content="https://chartpane.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sales Dashboard Example — AI Charts | ChartPane" />
+  <meta name="twitter:description" content="Build a complete sales dashboard with revenue trends, product breakdown, and regional performance. Sample data and prompts included." />
+  <meta name="twitter:image" content="https://chartpane.com/og-image.png" />
+
+  <!-- JSON-LD Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Sales Dashboard Example",
+    "description": "Build a complete sales dashboard with revenue trends, product breakdown, and regional performance. Sample data and prompts included — just paste into Claude.",
+    "url": "https://chartpane.com/examples/sales-dashboard.html",
+    "datePublished": "2026-02-14",
+    "dateModified": "2026-02-14",
+    "author": { "@type": "Organization", "name": "ChartPane", "url": "https://chartpane.com" },
+    "publisher": { "@type": "Organization", "name": "ChartPane", "url": "https://chartpane.com", "logo": { "@type": "ImageObject", "url": "https://chartpane.com/favicon.svg" } },
+    "image": "https://chartpane.com/og-image.png"
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <!-- Font preload -->
+  <link rel="preload" href="/fonts/GeistVF.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/GeistMonoVF.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="font-sans antialiased">
+
+  <header class="section-sm" style="border-bottom: 1px solid var(--border);">
+    <div class="mx-auto max-w-3xl px-6">
+      <nav class="flex items-center gap-2 text-sm text-secondary">
+        <a href="/" class="inline-flex items-center gap-2 hover:text-[var(--text)] transition-colors">
+          <img src="/favicon.svg" alt="ChartPane" class="w-5 h-5" />
+          <span class="font-semibold" style="color: var(--text);">ChartPane</span>
+        </a>
+        <span>/</span>
+        <a href="/examples/" class="hover:text-[var(--text)] transition-colors">Examples</a>
+        <span>/</span>
+        <span style="color: var(--text);">Sales Dashboard</span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="mx-auto max-w-3xl px-6">
+      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);">Sales Dashboard</h1>
+      <p class="mt-3 text-secondary text-lg leading-relaxed">A four-chart overview showing monthly revenue, product performance, regional breakdown, and channel mix. The kind of dashboard a sales lead reviews every Monday.</p>
+
+      <div class="mt-10 space-y-10">
+
+        <!-- Scenario -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">The scenario</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            You're a sales manager at a mid-size SaaS company. It's the end of H1 and you need a quick overview for the team meeting: how revenue trended month by month, which product lines are carrying the load, where deals are closing geographically, and how much is coming through each sales channel.
+          </p>
+          <p class="mt-3 text-secondary leading-relaxed">
+            Instead of opening a spreadsheet and building charts manually, you paste the data into Claude and ask for a dashboard. ChartPane renders all four charts in one response.
+          </p>
+        </section>
+
+        <!-- Dashboard -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">The dashboard</h2>
+          <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div class="chart-container" style="height: 260px;">
+              <canvas id="sales-revenue"></canvas>
+            </div>
+            <div class="chart-container" style="height: 260px;">
+              <canvas id="sales-products"></canvas>
+            </div>
+            <div class="chart-container" style="height: 260px;">
+              <canvas id="sales-regions"></canvas>
+            </div>
+            <div class="chart-container" style="height: 260px;">
+              <canvas id="sales-channels"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- The data -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">The data</h2>
+          <p class="mt-3 text-secondary leading-relaxed">This example uses fictional H1 numbers for a B2B SaaS company. In practice, you'd paste real data from your CRM export, a CSV, or just describe the numbers from memory.</p>
+          <div class="mt-4 code-block">
+            <pre style="color: var(--text-secondary); font-size: 0.8125rem; line-height: 1.7;">Monthly Revenue (Jan–Jun): $420K, $385K, $510K, $475K, $550K, $610K
+Products: Platform ($1.8M), API ($680K), Support ($320K), Training ($150K)
+Regions: North America 52%, Europe 28%, APAC 15%, LATAM 5%
+Channels: Direct 45%, Partner 30%, Self-serve 25%</pre>
+          </div>
+        </section>
+
+        <!-- The prompt -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">The prompt</h2>
+          <p class="mt-3 text-secondary leading-relaxed">You can be as brief or as detailed as you like. Here's a prompt that produces the dashboard above:</p>
+          <div class="mt-4 code-block">
+            <pre style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.7;">Create a sales dashboard with 4 charts:
+
+1. Monthly revenue trend (line chart): Jan $420K, Feb $385K, Mar $510K, Apr $475K, May $550K, Jun $610K
+2. Revenue by product (bar chart): Platform $1.8M, API $680K, Support $320K, Training $150K
+3. Revenue by region (doughnut): NA 52%, Europe 28%, APAC 15%, LATAM 5%
+4. Sales by channel (stacked bar, Q1 vs Q2): Direct $580K/$720K, Partner $380K/$510K, Self-serve $290K/$370K</pre>
+          </div>
+        </section>
+
+        <!-- Variations -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Variations to try</h2>
+          <ul class="mt-3 space-y-2 text-secondary leading-relaxed list-disc list-inside">
+            <li>Add a target line: "Add a $500K target line to the revenue chart"</li>
+            <li>Compare periods: "Show H1 2025 vs H1 2024 as grouped bars"</li>
+            <li>Drill into a region: "Break down APAC revenue by country"</li>
+            <li>Switch chart types: "Show the channel mix as a pie chart instead"</li>
+          </ul>
+        </section>
+
+        <!-- Chart types used -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Chart types used</h2>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href="/charts/line-chart.html" class="btn-secondary text-sm">Line Chart</a>
+            <a href="/charts/bar-chart.html" class="btn-secondary text-sm">Bar Chart</a>
+            <a href="/charts/doughnut-chart.html" class="btn-secondary text-sm">Doughnut Chart</a>
+            <a href="/charts/stacked-chart.html" class="btn-secondary text-sm">Stacked Chart</a>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Build your own sales dashboard</h2>
+          <p class="mt-3 text-secondary leading-relaxed">Paste your data into Claude and describe the charts you want. ChartPane handles the rest.</p>
+          <div class="mt-6">
+            <a href="/#get-started" class="btn-primary">Get started with ChartPane</a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="section-sm" style="border-top: 1px solid var(--border);">
+    <div class="mx-auto max-w-3xl px-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+      <div class="flex items-center gap-2">
+        <img src="/favicon.svg" alt="ChartPane" class="w-6 h-6" />
+        <span class="font-semibold" style="color: var(--text);">ChartPane</span>
+      </div>
+      <div class="flex items-center gap-6 text-sm text-secondary">
+        <a href="/" class="hover:text-[var(--accent)] transition-colors">Home</a>
+        <a href="/examples/" class="hover:text-[var(--accent)] transition-colors">Examples</a>
+        <a href="/charts/" class="hover:text-[var(--accent)] transition-colors">Charts</a>
+        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors">Privacy</a>
+        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

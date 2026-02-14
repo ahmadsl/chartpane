@@ -22,6 +22,8 @@ export default defineConfig({
         "charts-scatter": resolve(__dirname, "charts/scatter-plot.html"),
         "charts-radar": resolve(__dirname, "charts/radar-chart.html"),
         "charts-stacked": resolve(__dirname, "charts/stacked-chart.html"),
+        "examples-index": resolve(__dirname, "examples/index.html"),
+        "examples-sales-dashboard": resolve(__dirname, "examples/sales-dashboard.html"),
       },
     },
   },
