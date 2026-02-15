@@ -10,6 +10,7 @@ ChartPane is listed on the following MCP registries and directories.
 | Smithery.ai | https://smithery.ai/servers/ahmadsl/chartpane | Published |
 | mcp.so | https://mcp.so/server/chart-pane/ahmadsl | Published |
 | PulseMCP | https://www.pulsemcp.com | Auto-ingests from official registry |
+| MCPServers.org | https://mcpservers.org/servers/ahmadsl/chartpane | Published |
 
 ## Pending Review
 
@@ -18,7 +19,6 @@ ChartPane is listed on the following MCP registries and directories.
 | awesome-mcp-servers | https://github.com/punkpeye/awesome-mcp-servers/pull/1992 | PR awaiting review |
 | Glama.ai | — | Auto-syncs after awesome-mcp-servers PR merges |
 | Cline Marketplace | https://github.com/cline/mcp-marketplace/issues/617 | Issue submitted |
-| MCPServers.org | https://mcpservers.org | Submitted, awaiting approval |
 | Cursor Directory | https://cursor.directory/mcp | Submitted |
 | LobeHub | https://lobehub.com/mcp | Submitted |
 | MCPMarket | https://mcpmarket.com | Submitted, in review |

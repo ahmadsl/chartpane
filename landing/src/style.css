@@ -382,6 +382,26 @@ details[open] > .faq-summary::after {
 }
 
 /* ──────────────────────────────────────────────────────────────
+   Registry trust badges
+   ────────────────────────────────────────────────────────────── */
+.registry-badge {
+  display: inline-block;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.registry-badge:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ──────────────────────────────────────────────────────────────
    Scroll reveal animations
    ────────────────────────────────────────────────────────────── */
 .fade-in {
