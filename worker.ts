@@ -8,7 +8,7 @@ import { googleHandler } from "./auth-handler.js";
 type Env = {
   ASSETS: Fetcher;
   DB: D1Database;
-  OAUTH_KV: KVNamespace;
+  CHARTPANE_OAUTH_KV: KVNamespace;
   GOOGLE_CLIENT_ID: string;
   GOOGLE_CLIENT_SECRET: string;
   COOKIE_ENCRYPTION_KEY: string;

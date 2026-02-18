@@ -21,7 +21,7 @@ export type Props = { userId: string; email: string; name: string };
 
 type Env = {
   OAUTH_PROVIDER: OAuthHelpers;
-  OAUTH_KV: KVNamespace;
+  CHARTPANE_OAUTH_KV: KVNamespace;
   DB: D1Database;
   GOOGLE_CLIENT_ID: string;
   GOOGLE_CLIENT_SECRET: string;
@@ -38,7 +38,7 @@ app.get("/authorize", async (c) => {
 
   // If client already approved, skip consent dialog
   if (await isClientApproved(c.req.raw, clientId, c.env.COOKIE_ENCRYPTION_KEY)) {
-    const { stateToken } = await createOAuthState(oauthReqInfo, c.env.OAUTH_KV);
+    const { stateToken } = await createOAuthState(oauthReqInfo, c.env.CHARTPANE_OAUTH_KV);
     const { setCookie } = await bindStateToSession(stateToken);
     return redirectToGoogle(c.req.raw, stateToken, c.env.GOOGLE_CLIENT_ID, {
       "Set-Cookie": setCookie,
@@ -90,7 +90,7 @@ app.post("/authorize", async (c) => {
     );
 
     // Create state and bind to session
-    const { stateToken } = await createOAuthState(state.oauthReqInfo, c.env.OAUTH_KV);
+    const { stateToken } = await createOAuthState(state.oauthReqInfo, c.env.CHARTPANE_OAUTH_KV);
     const { setCookie: sessionCookie } = await bindStateToSession(stateToken);
 
     const headers = new Headers();
@@ -118,7 +118,7 @@ app.get("/callback", async (c) => {
   let clearSessionCookie: string;
 
   try {
-    const result = await validateOAuthState(c.req.raw, c.env.OAUTH_KV);
+    const result = await validateOAuthState(c.req.raw, c.env.CHARTPANE_OAUTH_KV);
     oauthReqInfo = result.oauthReqInfo;
     clearSessionCookie = result.clearCookie;
   } catch (error: unknown) {
