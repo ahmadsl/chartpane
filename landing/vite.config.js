@@ -24,6 +24,8 @@ export default defineConfig({
         "charts-stacked": resolve(__dirname, "charts/stacked-chart.html"),
         "examples-index": resolve(__dirname, "examples/index.html"),
         "examples-sales-dashboard": resolve(__dirname, "examples/sales-dashboard.html"),
+        "integrations-index": resolve(__dirname, "integrations/index.html"),
+        "integrations-claude-desktop": resolve(__dirname, "integrations/claude-desktop.html"),
       },
     },
   },
