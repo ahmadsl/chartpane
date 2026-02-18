@@ -3,36 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chart Examples — Real-World Dashboards | ChartPane</title>
-  <meta name="description" content="Real-world chart and dashboard examples built with ChartPane. Sales dashboards, survey results, budget trackers, and more — with sample data and prompts." />
+  <title>ChartPane Comparisons — How It Stacks Up | ChartPane</title>
+  <meta name="description" content="See how ChartPane compares to Claude Artifacts, Excel, Google Sheets, and other charting tools. Feature comparisons and honest trade-offs." />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5DEV3CDE8M"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5DEV3CDE8M');</script>
   <script>window.sentryOnLoad=function(){Sentry.init({environment:"production",tracesSampleRate:0,replaysSessionSampleRate:0,replaysOnErrorSampleRate:0,initialScope:{tags:{surface:"landing"}}})};</script>
   <script src="https://js.sentry-cdn.com/15523aa4801cb0b9ac0b49b801f46069.min.js" crossorigin="anonymous" defer></script>
 
-  <link rel="canonical" href="https://chartpane.com/examples/" />
+  <link rel="canonical" href="https://chartpane.com/compare/" />
 
   <meta property="og:site_name" content="ChartPane" />
-  <meta property="og:title" content="Chart Examples — Real-World Dashboards | ChartPane" />
-  <meta property="og:description" content="Real-world chart and dashboard examples built with ChartPane. Sales dashboards, survey results, budget trackers, and more." />
+  <meta property="og:title" content="ChartPane Comparisons — How It Stacks Up" />
+  <meta property="og:description" content="See how ChartPane compares to Claude Artifacts, Excel, Google Sheets, and other charting tools." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://chartpane.com/examples/" />
+  <meta property="og:url" content="https://chartpane.com/compare/" />
   <meta property="og:image" content="https://chartpane.com/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chart Examples — Real-World Dashboards | ChartPane" />
-  <meta name="twitter:description" content="Real-world chart and dashboard examples built with ChartPane. Sales dashboards, survey results, budget trackers, and more." />
+  <meta name="twitter:title" content="ChartPane Comparisons — How It Stacks Up" />
+  <meta name="twitter:description" content="See how ChartPane compares to Claude Artifacts, Excel, Google Sheets, and other charting tools." />
   <meta name="twitter:image" content="https://chartpane.com/og-image.png" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Chart Examples",
-    "description": "Real-world chart and dashboard examples built with ChartPane. Sales dashboards, survey results, budget trackers, and more — with sample data and prompts.",
-    "url": "https://chartpane.com/examples/",
+    "name": "ChartPane Comparisons",
+    "description": "See how ChartPane compares to Claude Artifacts, Excel, Google Sheets, and other charting tools. Feature comparisons and honest trade-offs.",
+    "url": "https://chartpane.com/compare/",
     "publisher": { "@type": "Organization", "name": "ChartPane", "url": "https://chartpane.com", "logo": { "@type": "ImageObject", "url": "https://chartpane.com/favicon.svg" } }
   }
   </script>
@@ -52,41 +52,33 @@
           <span class="font-semibold" style="color: var(--text);">ChartPane</span>
         </a>
         <span>/</span>
-        <span style="color: var(--text);">Examples</span>
+        <span style="color: var(--text);">Compare</span>
       </nav>
     </div>
   </header>
 
   <main class="section">
     <div class="mx-auto max-w-5xl px-6">
-      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);">Chart Examples</h1>
-      <p class="mt-3 text-secondary text-lg leading-relaxed max-w-2xl">Real-world scenarios with sample data. Each example shows a complete dashboard you can recreate by describing your data to Claude.</p>
+      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);">Comparisons</h1>
+      <p class="mt-3 text-secondary text-lg leading-relaxed max-w-2xl">Different tools solve different problems. These comparisons lay out the trade-offs so you can pick what fits your workflow.</p>
 
-      <div class="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
-        <a href="/examples/sales-dashboard.html" class="group block">
-          <div class="chart-container transition-all group-hover:border-[var(--accent)]" style="height: 200px;">
-            <canvas id="exhub-sales"></canvas>
-          </div>
-          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);">Sales Dashboard</h2>
-          <p class="mt-1 text-sm text-secondary">Revenue trends, product breakdown, and regional performance</p>
+        <a href="/compare/claude-artifacts.html" class="group block chart-container transition-all group-hover:border-[var(--accent)] p-6">
+          <h2 class="text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);">ChartPane vs Claude Artifacts</h2>
+          <p class="mt-2 text-sm text-secondary">Both live inside Claude, but they work differently. When to use which.</p>
         </a>
 
-        <a href="/examples/survey-results.html" class="group block">
-          <div class="chart-container transition-all group-hover:border-[var(--accent)]" style="height: 200px;">
-            <canvas id="exhub-survey"></canvas>
-          </div>
-          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);">Survey Results</h2>
-          <p class="mt-1 text-sm text-secondary">Satisfaction scores, response distribution, and category ratings</p>
-        </a>
-
-      </div>
-
-      <div class="mt-16 text-center">
-        <p class="text-secondary text-lg">New examples published regularly. Want a specific scenario?</p>
-        <div class="mt-6">
-          <a href="mailto:support@chartpane.com" class="btn-secondary">Suggest an example</a>
+        <div class="chart-container p-6" style="opacity: 0.5;">
+          <h2 class="text-lg font-semibold" style="color: var(--text);">ChartPane vs Excel</h2>
+          <p class="mt-2 text-sm text-secondary">Coming soon</p>
         </div>
+
+        <div class="chart-container p-6" style="opacity: 0.5;">
+          <h2 class="text-lg font-semibold" style="color: var(--text);">ChartPane vs Google Sheets</h2>
+          <p class="mt-2 text-sm text-secondary">Coming soon</p>
+        </div>
+
       </div>
 
     </div>
@@ -100,6 +92,8 @@
       </div>
       <div class="flex items-center gap-6 text-sm text-secondary">
         <a href="/" class="hover:text-[var(--accent)] transition-colors">Home</a>
+        <a href="/examples/" class="hover:text-[var(--accent)] transition-colors">Examples</a>
+        <a href="/integrations/" class="hover:text-[var(--accent)] transition-colors">Integrations</a>
         <a href="/charts/" class="hover:text-[var(--accent)] transition-colors">Charts</a>
         <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors">Privacy</a>
         <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors">Terms</a>

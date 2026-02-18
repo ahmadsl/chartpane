@@ -16,8 +16,11 @@
 @source "../charts/stacked-chart.html";
 @source "../examples/index.html";
 @source "../examples/sales-dashboard.html";
+@source "../examples/survey-results.html";
 @source "../integrations/index.html";
 @source "../integrations/claude-desktop.html";
+@source "../compare/index.html";
+@source "../compare/claude-artifacts.html";
 @source "./main.js";
 
 /* Geist Sans — variable weight */

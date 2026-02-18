@@ -501,11 +501,52 @@ const salesDashboardCharts = [
   },
 ];
 
+const surveyResultsCharts = [
+  {
+    id: "survey-satisfaction",
+    input: {
+      type: "bar",
+      title: "Satisfaction by Role",
+      indexAxis: "y",
+      data: {
+        labels: ["Executives", "Engineers", "Designers", "PMs"],
+        datasets: [{ label: "Satisfaction %", data: [88, 82, 76, 71] }],
+      },
+    },
+  },
+  {
+    id: "survey-distribution",
+    input: {
+      type: "doughnut",
+      title: "Overall Satisfaction",
+      data: {
+        labels: ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very Dissatisfied"],
+        datasets: [{ label: "Responses", data: [38, 31, 18, 9, 4] }],
+      },
+    },
+  },
+  {
+    id: "survey-categories",
+    input: {
+      type: "radar",
+      title: "Category Scores (out of 10)",
+      data: {
+        labels: ["Ease of Use", "Performance", "Documentation", "Support", "Pricing", "Features"],
+        datasets: [{ label: "Avg Score", data: [8.2, 7.5, 6.8, 7.9, 6.3, 8.0] }],
+      },
+    },
+  },
+];
+
 // Examples hub thumbnail
 const examplesHubCharts = [
   {
     id: "exhub-sales",
     input: salesDashboardCharts[0].input,
+  },
+  {
+    id: "exhub-survey",
+    input: surveyResultsCharts[1].input,
   },
 ];
 
@@ -582,6 +623,9 @@ function renderAll() {
 
   // Example pages
   for (const item of salesDashboardCharts) {
+    renderChart(item.id, item.input);
+  }
+  for (const item of surveyResultsCharts) {
     renderChart(item.id, item.input);
   }
   for (const item of examplesHubCharts) {

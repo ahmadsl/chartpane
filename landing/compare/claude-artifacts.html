@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChartPane vs Claude Artifacts for Charts | ChartPane</title>
+  <meta name="description" content="ChartPane renders charts inline in your conversation. Artifacts generates code in a sandbox. Here's when to use each and what the trade-offs are." />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5DEV3CDE8M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5DEV3CDE8M');
+  </script>
+
+  <!-- Sentry error tracking (lazy-loaded CDN bundle) -->
+  <script>
+    window.sentryOnLoad = function () {
+      Sentry.init({
+        environment: "production",
+        tracesSampleRate: 0,
+        replaysSessionSampleRate: 0,
+        replaysOnErrorSampleRate: 0,
+        initialScope: { tags: { surface: "landing" } },
+      });
+    };
+  </script>
+  <script
+    src="https://js.sentry-cdn.com/15523aa4801cb0b9ac0b49b801f46069.min.js"
+    crossorigin="anonymous"
+    defer
+  ></script>
+
+  <link rel="canonical" href="https://chartpane.com/compare/claude-artifacts.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="ChartPane" />
+  <meta property="og:title" content="ChartPane vs Claude Artifacts for Charts" />
+  <meta property="og:description" content="ChartPane renders charts inline. Artifacts generates code in a sandbox. Here's when to use each." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://chartpane.com/compare/claude-artifacts.html" />
+  <meta property="article:published_time" content="2026-02-18T00:00:00Z" />
+  <meta property="article:modified_time" content="2026-02-18T00:00:00Z" />
+  <meta property="og:image" content="https://chartpane.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ChartPane vs Claude Artifacts for Charts" />
+  <meta name="twitter:description" content="ChartPane renders charts inline. Artifacts generates code in a sandbox. Here's when to use each." />
+  <meta name="twitter:image" content="https://chartpane.com/og-image.png" />
+
+  <!-- JSON-LD Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "ChartPane vs Claude Artifacts for Charts",
+    "description": "ChartPane renders charts inline in your conversation. Artifacts generates code in a sandbox. Here's when to use each and what the trade-offs are.",
+    "url": "https://chartpane.com/compare/claude-artifacts.html",
+    "datePublished": "2026-02-18",
+    "dateModified": "2026-02-18",
+    "author": { "@type": "Organization", "name": "ChartPane", "url": "https://chartpane.com" },
+    "publisher": { "@type": "Organization", "name": "ChartPane", "url": "https://chartpane.com", "logo": { "@type": "ImageObject", "url": "https://chartpane.com/favicon.svg" } },
+    "image": "https://chartpane.com/og-image.png"
+  }
+  </script>
+
+  <!-- JSON-LD FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between ChartPane and Claude Artifacts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ChartPane is an MCP App that renders interactive Chart.js charts inline in your conversation. Claude Artifacts is a built-in sandbox that generates and runs arbitrary code (HTML, JS, React) in a side panel. ChartPane is purpose-built for charts; Artifacts is general-purpose."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use ChartPane and Artifacts together?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. They don't conflict. You might use ChartPane for quick data charts during a conversation and Artifacts when you need a fully custom visualization with bespoke code."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does ChartPane work outside of Claude?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. ChartPane works with any MCP-compatible client including ChatGPT, VS Code, and Cursor. Artifacts is exclusive to Claude."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <!-- Font preload -->
+  <link rel="preload" href="/fonts/GeistVF.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/GeistMonoVF.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="font-sans antialiased">
+
+  <header class="section-sm" style="border-bottom: 1px solid var(--border);">
+    <div class="mx-auto max-w-3xl px-6">
+      <nav class="flex items-center gap-2 text-sm text-secondary">
+        <a href="/" class="inline-flex items-center gap-2 hover:text-[var(--text)] transition-colors">
+          <img src="/favicon.svg" alt="ChartPane" class="w-5 h-5" />
+          <span class="font-semibold" style="color: var(--text);">ChartPane</span>
+        </a>
+        <span>/</span>
+        <a href="/compare/" class="hover:text-[var(--text)] transition-colors">Compare</a>
+        <span>/</span>
+        <span style="color: var(--text);">vs Claude Artifacts</span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="mx-auto max-w-3xl px-6">
+      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);">ChartPane vs Claude Artifacts</h1>
+      <p class="mt-3 text-secondary text-lg leading-relaxed">Both can produce charts inside Claude. They take fundamentally different approaches, and each is better suited to different tasks.</p>
+
+      <div class="mt-10 space-y-10">
+
+        <!-- Quick summary -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">The short version</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            <strong style="color: var(--text);">ChartPane</strong> is an MCP App that renders charts inline in the conversation. You describe your data, Claude calls ChartPane, and an interactive chart appears right in the chat thread. No code is written or shown.
+          </p>
+          <p class="mt-3 text-secondary leading-relaxed">
+            <strong style="color: var(--text);">Claude Artifacts</strong> is a built-in code sandbox. When you ask for a chart, Claude writes HTML/JS/React code that runs in a side panel. You see both the code and the rendered output.
+          </p>
+        </section>
+
+        <!-- Comparison table -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Feature comparison</h2>
+          <div class="mt-6 overflow-x-auto">
+            <table class="w-full text-sm" style="border-collapse: collapse;">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--border);">
+                  <th class="text-left py-3 pr-4 font-semibold" style="color: var(--text); min-width: 160px;"></th>
+                  <th class="text-left py-3 px-4 font-semibold" style="color: var(--accent);">ChartPane</th>
+                  <th class="text-left py-3 pl-4 font-semibold" style="color: var(--text);">Claude Artifacts</th>
+                </tr>
+              </thead>
+              <tbody class="text-secondary">
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td class="py-3 pr-4 font-medium" style="color: var(--text);">How it works</td>
+                  <td class="py-3 px-4">MCP App &mdash; structured data in, chart out</td>
+                  <td class="py-3 pl-4">Code sandbox &mdash; Claude writes JS/React</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td class="py-3 pr-4 font-medium" style="color: var(--text);">Chart appears</td>
+                  <td class="py-3 px-4">Inline in conversation</td>
+                  <td class="py-3 pl-4">In a side panel</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td class="py-3 pr-4 font-medium" style="color: var(--text);">Code visible</td>
+                  <td class="py-3 px-4">No &mdash; data goes in, chart comes out</td>
+                  <td class="py-3 pl-4">Yes &mdash; full source code shown</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td class="py-3 pr-4 font-medium" style="color: var(--text);">Reliability</td>
+                  <td class="py-3 px-4">Deterministic &mdash; same data, same chart</td>
+                  <td class="py-3 pl-4">Variable &mdash; generated code may have bugs</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td class="py-3 pr-4 font-medium" style="color: var(--text);">Chart library</td>
+                  <td class="py-3 px-4">Chart.js (10 chart types)</td>
+                  <td class="py-3 pl-4">Any &mdash; Recharts, D3, Canvas, SVG, etc.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td class="py-3 pr-4 font-medium" style="color: var(--text);">Multi-chart dashboards</td>
+                  <td class="py-3 px-4">Built-in grid layout (up to 6)</td>
+                  <td class="py-3 pl-4">Possible but requires more code</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td class="py-3 pr-4 font-medium" style="color: var(--text);">Dark mode</td>
+                  <td class="py-3 px-4">Automatic &mdash; matches system theme</td>
+                  <td class="py-3 pl-4">Only if the generated code handles it</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td class="py-3 pr-4 font-medium" style="color: var(--text);">Token cost</td>
+                  <td class="py-3 px-4">Low &mdash; small tool call, no code output</td>
+                  <td class="py-3 pl-4">Higher &mdash; Claude writes full source code</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td class="py-3 pr-4 font-medium" style="color: var(--text);">Customization</td>
+                  <td class="py-3 px-4">Chart.js options (titles, colors, axes)</td>
+                  <td class="py-3 pl-4">Unlimited &mdash; any HTML/CSS/JS</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td class="py-3 pr-4 font-medium" style="color: var(--text);">Works outside Claude</td>
+                  <td class="py-3 px-4">Yes &mdash; ChatGPT, VS Code, Cursor, etc.</td>
+                  <td class="py-3 pl-4">No &mdash; Claude only</td>
+                </tr>
+                <tr>
+                  <td class="py-3 pr-4 font-medium" style="color: var(--text);">Setup required</td>
+                  <td class="py-3 px-4">Add MCP connector (one-time)</td>
+                  <td class="py-3 pl-4">None &mdash; built into Claude</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- When to use ChartPane -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">When ChartPane is the better choice</h2>
+          <ul class="mt-3 space-y-3 text-secondary leading-relaxed list-disc list-inside">
+            <li><strong style="color: var(--text);">Quick data visualization</strong> &mdash; you have numbers and want a chart, not a coding exercise. Paste your data, get a chart in seconds.</li>
+            <li><strong style="color: var(--text);">Consistency matters</strong> &mdash; ChartPane produces the same chart every time for the same input. No debugging generated code that broke between attempts.</li>
+            <li><strong style="color: var(--text);">Multiple charts at once</strong> &mdash; the dashboard tool renders up to 6 charts in a grid with a single request.</li>
+            <li><strong style="color: var(--text);">Staying in the conversation</strong> &mdash; charts render inline, so your flow isn't interrupted by switching to a side panel.</li>
+            <li><strong style="color: var(--text);">Cross-platform</strong> &mdash; the same setup works in Claude Desktop, ChatGPT, VS Code, and any other MCP client.</li>
+          </ul>
+        </section>
+
+        <!-- When to use Artifacts -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">When Artifacts is the better choice</h2>
+          <ul class="mt-3 space-y-3 text-secondary leading-relaxed list-disc list-inside">
+            <li><strong style="color: var(--text);">Custom visualizations</strong> &mdash; if you need a Sankey diagram, a force-directed graph, or any chart type ChartPane doesn't support, Artifacts can generate it with D3 or any library.</li>
+            <li><strong style="color: var(--text);">You want the code</strong> &mdash; Artifacts shows you the source. If your goal is to get working code to embed in a website or app, that's what Artifacts is for.</li>
+            <li><strong style="color: var(--text);">Pixel-perfect design</strong> &mdash; need exact colors, custom fonts, specific layout beyond what Chart.js configuration allows? Artifacts gives you full CSS control.</li>
+            <li><strong style="color: var(--text);">Interactive prototypes</strong> &mdash; Artifacts can build interactive UIs with buttons, filters, and state, not just static charts.</li>
+          </ul>
+        </section>
+
+        <!-- Can you use both? -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Can you use both?</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            Yes. They don't conflict. ChartPane is an MCP App that connects via a server URL; Artifacts is built into Claude. You can use ChartPane for quick charts during a data conversation and switch to Artifacts when you need something more custom. Claude will naturally use whichever is more appropriate based on your request.
+          </p>
+        </section>
+
+        <!-- FAQ -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Common questions</h2>
+          <div class="mt-4 space-y-3">
+            <details class="faq-item">
+              <summary class="faq-summary">Does ChartPane use Artifacts under the hood?</summary>
+              <div class="faq-answer">No. ChartPane is a separate MCP App that runs on its own server. It receives structured data from Claude and returns a rendered chart. Artifacts runs code in a browser sandbox within Claude. They're independent systems.</div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-summary">Which is faster?</summary>
+              <div class="faq-answer">ChartPane is typically faster because Claude only needs to make a small tool call with your data. With Artifacts, Claude has to generate potentially hundreds of lines of code before the chart renders.</div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-summary">Which costs more tokens?</summary>
+              <div class="faq-answer">Artifacts uses more tokens because Claude writes and outputs full source code. ChartPane's tool calls are compact — just the chart type, labels, and data values.</div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-summary">Can Artifacts charts match ChartPane's look?</summary>
+              <div class="faq-answer">With enough prompting, yes. But you'd need to specify the styling every time. ChartPane's consistent design is automatic — same palette, same typography, same dark mode behavior, every time.</div>
+            </details>
+          </div>
+        </section>
+
+        <!-- Related -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Related</h2>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href="/integrations/claude-desktop.html" class="btn-secondary text-sm">Claude Desktop Setup</a>
+            <a href="/charts/" class="btn-secondary text-sm">Chart Types</a>
+            <a href="/examples/" class="btn-secondary text-sm">Examples</a>
+            <a href="/what-is-an-mcp-app.html" class="btn-secondary text-sm">What is an MCP App?</a>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Try ChartPane</h2>
+          <p class="mt-3 text-secondary leading-relaxed">Add ChartPane to Claude Desktop and see how it compares for your workflow. Setup takes under a minute.</p>
+          <div class="mt-6">
+            <a href="/#get-started" class="btn-primary">Get started with ChartPane</a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="section-sm" style="border-top: 1px solid var(--border);">
+    <div class="mx-auto max-w-3xl px-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+      <div class="flex items-center gap-2">
+        <img src="/favicon.svg" alt="ChartPane" class="w-6 h-6" />
+        <span class="font-semibold" style="color: var(--text);">ChartPane</span>
+      </div>
+      <div class="flex items-center gap-6 text-sm text-secondary">
+        <a href="/" class="hover:text-[var(--accent)] transition-colors">Home</a>
+        <a href="/compare/" class="hover:text-[var(--accent)] transition-colors">Compare</a>
+        <a href="/integrations/" class="hover:text-[var(--accent)] transition-colors">Integrations</a>
+        <a href="/examples/" class="hover:text-[var(--accent)] transition-colors">Examples</a>
+        <a href="/charts/" class="hover:text-[var(--accent)] transition-colors">Charts</a>
+        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors">Privacy</a>
+        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
