@@ -25,6 +25,7 @@ export default defineConfig({
         "examples-index": resolve(__dirname, "examples/index.html"),
         "examples-sales-dashboard": resolve(__dirname, "examples/sales-dashboard.html"),
         "examples-survey-results": resolve(__dirname, "examples/survey-results.html"),
+        "examples-budget-tracker": resolve(__dirname, "examples/budget-tracker.html"),
         "integrations-index": resolve(__dirname, "integrations/index.html"),
         "integrations-claude-desktop": resolve(__dirname, "integrations/claude-desktop.html"),
         "compare-index": resolve(__dirname, "compare/index.html"),

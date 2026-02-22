@@ -538,6 +538,46 @@ const surveyResultsCharts = [
   },
 ];
 
+const budgetTrackerCharts = [
+  {
+    id: "budget-breakdown",
+    input: {
+      type: "doughnut",
+      title: "Spending Breakdown",
+      data: {
+        labels: ["Housing", "Food", "Transport", "Entertainment", "Utilities", "Healthcare", "Savings"],
+        datasets: [{ label: "Actual ($)", data: [1850, 720, 380, 310, 175, 95, 500] }],
+      },
+    },
+  },
+  {
+    id: "budget-vs-actual",
+    input: {
+      type: "bar",
+      title: "Budget vs Actual",
+      indexAxis: "y",
+      data: {
+        labels: ["Housing", "Food", "Transport", "Entertainment", "Utilities", "Healthcare", "Savings"],
+        datasets: [
+          { label: "Budgeted ($)", data: [1800, 600, 400, 200, 180, 120, 700] },
+          { label: "Actual ($)", data: [1850, 720, 380, 310, 175, 95, 500] },
+        ],
+      },
+    },
+  },
+  {
+    id: "budget-trend",
+    input: {
+      type: "area",
+      title: "Monthly Spending (Jan–Jun)",
+      data: {
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+        datasets: [{ label: "Total Spending ($)", data: [4950, 5100, 4780, 5230, 5120, 4830] }],
+      },
+    },
+  },
+];
+
 // Examples hub thumbnail
 const examplesHubCharts = [
   {
@@ -547,6 +587,10 @@ const examplesHubCharts = [
   {
     id: "exhub-survey",
     input: surveyResultsCharts[1].input,
+  },
+  {
+    id: "exhub-budget",
+    input: budgetTrackerCharts[0].input,
   },
 ];
 
@@ -626,6 +670,9 @@ function renderAll() {
     renderChart(item.id, item.input);
   }
   for (const item of surveyResultsCharts) {
+    renderChart(item.id, item.input);
+  }
+  for (const item of budgetTrackerCharts) {
     renderChart(item.id, item.input);
   }
   for (const item of examplesHubCharts) {

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Budget Tracker Chart — Expense Breakdown | ChartPane</title>
+  <meta name="description" content="Visualize monthly budget vs actual spending with doughnut and bar charts. Sample data and prompts included — paste into Claude to recreate." />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5DEV3CDE8M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5DEV3CDE8M');
+  </script>
+
+  <!-- Sentry error tracking (lazy-loaded CDN bundle) -->
+  <script>
+    window.sentryOnLoad = function () {
+      Sentry.init({
+        environment: "production",
+        tracesSampleRate: 0,
+        replaysSessionSampleRate: 0,
+        replaysOnErrorSampleRate: 0,
+        initialScope: { tags: { surface: "landing" } },
+      });
+    };
+  </script>
+  <script
+    src="https://js.sentry-cdn.com/15523aa4801cb0b9ac0b49b801f46069.min.js"
+    crossorigin="anonymous"
+    defer
+  ></script>
+
+  <link rel="canonical" href="https://chartpane.com/examples/budget-tracker.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="ChartPane" />
+  <meta property="og:title" content="Budget Tracker Chart — Expense Breakdown | ChartPane" />
+  <meta property="og:description" content="Visualize monthly budget vs actual spending with doughnut and bar charts. Sample data and prompts included." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://chartpane.com/examples/budget-tracker.html" />
+  <meta property="article:published_time" content="2026-02-22T00:00:00Z" />
+  <meta property="article:modified_time" content="2026-02-22T00:00:00Z" />
+  <meta property="og:image" content="https://chartpane.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Budget Tracker Chart — Expense Breakdown | ChartPane" />
+  <meta name="twitter:description" content="Visualize monthly budget vs actual spending with doughnut and bar charts. Sample data and prompts included." />
+  <meta name="twitter:image" content="https://chartpane.com/og-image.png" />
+
+  <!-- JSON-LD Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Budget Tracker Chart Example",
+    "description": "Visualize monthly budget vs actual spending with doughnut and bar charts. Sample data and prompts included — paste into Claude to recreate.",
+    "url": "https://chartpane.com/examples/budget-tracker.html",
+    "datePublished": "2026-02-22",
+    "dateModified": "2026-02-22",
+    "author": { "@type": "Organization", "name": "ChartPane", "url": "https://chartpane.com" },
+    "publisher": { "@type": "Organization", "name": "ChartPane", "url": "https://chartpane.com", "logo": { "@type": "ImageObject", "url": "https://chartpane.com/favicon.svg" } },
+    "image": "https://chartpane.com/og-image.png"
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <!-- Font preload -->
+  <link rel="preload" href="/fonts/GeistVF.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/GeistMonoVF.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="font-sans antialiased">
+
+  <header class="section-sm" style="border-bottom: 1px solid var(--border);">
+    <div class="mx-auto max-w-3xl px-6">
+      <nav class="flex items-center gap-2 text-sm text-secondary">
+        <a href="/" class="inline-flex items-center gap-2 hover:text-[var(--text)] transition-colors">
+          <img src="/favicon.svg" alt="ChartPane" class="w-5 h-5" />
+          <span class="font-semibold" style="color: var(--text);">ChartPane</span>
+        </a>
+        <span>/</span>
+        <a href="/examples/" class="hover:text-[var(--text)] transition-colors">Examples</a>
+        <span>/</span>
+        <span style="color: var(--text);">Budget Tracker</span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="mx-auto max-w-3xl px-6">
+      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);">Budget Tracker</h1>
+      <p class="mt-3 text-secondary text-lg leading-relaxed">A three-chart dashboard showing spending by category, budget vs actual comparison, and monthly spending trends. The kind of view you'd want when reviewing where the money actually went.</p>
+
+      <div class="mt-10 space-y-10">
+
+        <!-- Scenario -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">The scenario</h2>
+          <p class="mt-3 text-secondary leading-relaxed">
+            You've got a monthly budget split across housing, food, transport, and other categories. You want to see where you overspent, what the overall breakdown looks like, and how this month compares to previous months.
+          </p>
+          <p class="mt-3 text-secondary leading-relaxed">
+            Paste your numbers into Claude and describe the charts you want. ChartPane renders them inline, so you can screenshot the dashboard or keep asking follow-up questions.
+          </p>
+        </section>
+
+        <!-- Charts -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">The charts</h2>
+          <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div class="chart-container" style="height: 260px;">
+              <canvas id="budget-breakdown"></canvas>
+            </div>
+            <div class="chart-container" style="height: 260px;">
+              <canvas id="budget-vs-actual"></canvas>
+            </div>
+            <div class="chart-container sm:col-span-2" style="height: 280px;">
+              <canvas id="budget-trend"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- The data -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">The data</h2>
+          <p class="mt-3 text-secondary leading-relaxed">Fictional monthly budget for a household of two. Swap in your own categories and numbers.</p>
+          <div class="mt-4 code-block">
+            <pre style="color: var(--text-secondary); font-size: 0.8125rem; line-height: 1.7;">Budget vs actual (monthly, USD):
+  Housing:       budgeted $1,800  /  actual $1,850
+  Food:          budgeted $600    /  actual $720
+  Transport:     budgeted $400    /  actual $380
+  Entertainment: budgeted $200    /  actual $310
+  Utilities:     budgeted $180    /  actual $175
+  Healthcare:    budgeted $120    /  actual $95
+  Savings:       budgeted $700    /  actual $500
+
+Monthly total spending (Jan–Jun): $4,950 / $5,100 / $4,780 / $5,230 / $5,120 / $4,830</pre>
+          </div>
+        </section>
+
+        <!-- The prompt -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">The prompt</h2>
+          <p class="mt-3 text-secondary leading-relaxed">Here's a prompt that produces the dashboard above:</p>
+          <div class="mt-4 code-block">
+            <pre style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.7;">Create a budget tracker dashboard with 3 charts:
+
+1. Spending breakdown (doughnut): Housing $1850, Food $720, Transport $380,
+   Entertainment $310, Utilities $175, Healthcare $95, Savings $500
+
+2. Budget vs actual (horizontal bar, two datasets): show budgeted and actual
+   side by side for Housing, Food, Transport, Entertainment, Utilities,
+   Healthcare, Savings
+
+3. Monthly spending trend (area chart): Jan $4950, Feb $5100, Mar $4780,
+   Apr $5230, May $5120, Jun $4830</pre>
+          </div>
+        </section>
+
+        <!-- Variations -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Variations to try</h2>
+          <ul class="mt-3 space-y-2 text-secondary leading-relaxed list-disc list-inside">
+            <li>Year-to-date view: "Show cumulative spending vs budget target as a line chart across 12 months"</li>
+            <li>Category deep-dive: "Break down Food into groceries, restaurants, and coffee shops"</li>
+            <li>Savings rate: "Bar chart of monthly savings rate as a percentage of income for Jan–Jun"</li>
+            <li>Overspend highlight: "Show only categories where actual exceeded budget, sorted by overspend amount"</li>
+          </ul>
+        </section>
+
+        <!-- Chart types used -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Chart types used</h2>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href="/charts/doughnut-chart.html" class="btn-secondary text-sm">Doughnut Chart</a>
+            <a href="/charts/bar-chart.html" class="btn-secondary text-sm">Bar Chart</a>
+            <a href="/charts/area-chart.html" class="btn-secondary text-sm">Area Chart</a>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <section>
+          <h2 class="text-xl font-semibold" style="color: var(--text);">Visualize your budget</h2>
+          <p class="mt-3 text-secondary leading-relaxed">Paste your budget data into Claude and describe the charts you want. ChartPane handles the rest.</p>
+          <div class="mt-6">
+            <a href="/#get-started" class="btn-primary">Get started with ChartPane</a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="section-sm" style="border-top: 1px solid var(--border);">
+    <div class="mx-auto max-w-3xl px-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+      <div class="flex items-center gap-2">
+        <img src="/favicon.svg" alt="ChartPane" class="w-6 h-6" />
+        <span class="font-semibold" style="color: var(--text);">ChartPane</span>
+      </div>
+      <div class="flex items-center gap-6 text-sm text-secondary">
+        <a href="/" class="hover:text-[var(--accent)] transition-colors">Home</a>
+        <a href="/examples/" class="hover:text-[var(--accent)] transition-colors">Examples</a>
+        <a href="/charts/" class="hover:text-[var(--accent)] transition-colors">Charts</a>
+        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors">Privacy</a>
+        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
