@@ -3,7 +3,17 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [tailwindcss()],
+  plugins: [
+    tailwindcss(),
+    {
+      name: "generate-i18n",
+      apply: "build",
+      closeBundle: async () => {
+        const { generateI18n } = await import("./scripts/generate-i18n.mjs");
+        await generateI18n();
+      },
+    },
+  ],
   build: {
     outDir: "dist",
     rollupOptions: {

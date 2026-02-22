@@ -685,10 +685,12 @@ function renderAll() {
 // ──────────────────────────────────────────────────────────────
 
 function copyText(text, btn) {
-  const label = btn.textContent;
+  // Use data attributes for translated labels (set by generate-i18n.mjs build script)
+  const label = btn.dataset.copyLabel || btn.textContent;
+  const copiedLabel = btn.dataset.copiedLabel || "Copied!";
   try {
     navigator.clipboard.writeText(text);
-    btn.textContent = "Copied!";
+    btn.textContent = copiedLabel;
     setTimeout(() => { btn.textContent = label; }, 2000);
   } catch {
     const el = document.createElement("textarea");
@@ -697,7 +699,7 @@ function copyText(text, btn) {
     el.select();
     document.execCommand("copy");
     document.body.removeChild(el);
-    btn.textContent = "Copied!";
+    btn.textContent = copiedLabel;
     setTimeout(() => { btn.textContent = label; }, 2000);
   }
 }
@@ -716,6 +718,9 @@ function initInstallSection() {
   let activeTab = "connector";
 
   const btnLabel = copyInstallBtn?.querySelector(".btn-label");
+  // Capture translated labels at init time (data attrs set by generate-i18n.mjs)
+  const ctaOriginalLabel = btnLabel?.textContent?.trim() || "Get Started Free";
+  const copyConfigLabel = btnLabel?.dataset?.labelCopyConfig || "Copy Config";
 
   function switchTab(tab) {
     activeTab = tab;
@@ -724,13 +729,13 @@ function initInstallSection() {
       tabMcpRemote.classList.remove("install-tab-active");
       panelConnector.classList.remove("hidden");
       panelMcpRemote.classList.add("hidden");
-      if (btnLabel) btnLabel.textContent = "Get Started Free";
+      if (btnLabel) btnLabel.textContent = ctaOriginalLabel;
     } else {
       tabMcpRemote.classList.add("install-tab-active");
       tabConnector.classList.remove("install-tab-active");
       panelMcpRemote.classList.remove("hidden");
       panelConnector.classList.add("hidden");
-      if (btnLabel) btnLabel.textContent = "Copy Config";
+      if (btnLabel) btnLabel.textContent = copyConfigLabel;
     }
   }
 
@@ -752,8 +757,10 @@ function initInstallSection() {
       : document.getElementById("config-code").textContent;
     const target = btnLabel || copyInstallBtn;
     const original = target.textContent;
+    // Use translated "Copied!" from the btn's data attribute if available
+    const copiedText = (copyInstallBtn.dataset?.copiedLabel) || "Copied!";
     navigator.clipboard.writeText(text).then(() => {
-      target.textContent = "Copied!";
+      target.textContent = copiedText;
       setTimeout(() => { target.textContent = original; }, 2000);
     }).catch(() => {
       const el = document.createElement("textarea");
@@ -762,7 +769,7 @@ function initInstallSection() {
       el.select();
       document.execCommand("copy");
       document.body.removeChild(el);
-      target.textContent = "Copied!";
+      target.textContent = copiedText;
       setTimeout(() => { target.textContent = original; }, 2000);
     });
   });
@@ -789,9 +796,45 @@ function initScrollAnimations() {
   document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
 }
 
+// ──────────────────────────────────────────────────────────────
+// Language switcher
+// ──────────────────────────────────────────────────────────────
+
+function initLangSwitcher() {
+  const trigger = document.getElementById("lang-trigger");
+  const dropdown = document.getElementById("lang-dropdown");
+  if (!trigger || !dropdown) return;
+
+  trigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = dropdown.classList.contains("open");
+    dropdown.classList.toggle("open");
+    trigger.setAttribute("aria-expanded", String(!isOpen));
+  });
+
+  // Close on outside click
+  document.addEventListener("click", () => {
+    dropdown.classList.remove("open");
+    trigger.setAttribute("aria-expanded", "false");
+  });
+
+  // Set lang cookie on language select, then navigate via href
+  for (const opt of dropdown.querySelectorAll("[data-lang]")) {
+    opt.addEventListener("click", () => {
+      const lang = opt.getAttribute("data-lang");
+      if (lang) {
+        // Set persistent lang cookie (1 year)
+        document.cookie = `lang=${lang}; path=/; max-age=31536000; SameSite=Lax`;
+      }
+      // Navigation follows the anchor href naturally
+    });
+  }
+}
+
 renderAll();
 initInstallSection();
 initScrollAnimations();
+initLangSwitcher();
 
 // Re-render on theme change
 darkMq.addEventListener("change", () => {

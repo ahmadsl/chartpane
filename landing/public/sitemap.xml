@@ -1,10 +1,188 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- ── English (default) ──────────────────────────────────── -->
   <url>
     <loc>https://chartpane.com/</loc>
-    <lastmod>2026-02-11</lastmod>
+    <lastmod>2026-02-22</lastmod>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh"        href="https://chartpane.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="hi"        href="https://chartpane.com/hi/"/>
+    <xhtml:link rel="alternate" hreflang="es"        href="https://chartpane.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://chartpane.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="ar"        href="https://chartpane.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="bn"        href="https://chartpane.com/bn/"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://chartpane.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="pt"        href="https://chartpane.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="id"        href="https://chartpane.com/id/"/>
   </url>
+
+  <!-- ── Mandarin Chinese ───────────────────────────────────── -->
+  <url>
+    <loc>https://chartpane.com/zh/</loc>
+    <lastmod>2026-02-22</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh"        href="https://chartpane.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="hi"        href="https://chartpane.com/hi/"/>
+    <xhtml:link rel="alternate" hreflang="es"        href="https://chartpane.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://chartpane.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="ar"        href="https://chartpane.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="bn"        href="https://chartpane.com/bn/"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://chartpane.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="pt"        href="https://chartpane.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="id"        href="https://chartpane.com/id/"/>
+  </url>
+
+  <!-- ── Hindi ──────────────────────────────────────────────── -->
+  <url>
+    <loc>https://chartpane.com/hi/</loc>
+    <lastmod>2026-02-22</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh"        href="https://chartpane.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="hi"        href="https://chartpane.com/hi/"/>
+    <xhtml:link rel="alternate" hreflang="es"        href="https://chartpane.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://chartpane.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="ar"        href="https://chartpane.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="bn"        href="https://chartpane.com/bn/"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://chartpane.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="pt"        href="https://chartpane.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="id"        href="https://chartpane.com/id/"/>
+  </url>
+
+  <!-- ── Spanish ────────────────────────────────────────────── -->
+  <url>
+    <loc>https://chartpane.com/es/</loc>
+    <lastmod>2026-02-22</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh"        href="https://chartpane.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="hi"        href="https://chartpane.com/hi/"/>
+    <xhtml:link rel="alternate" hreflang="es"        href="https://chartpane.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://chartpane.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="ar"        href="https://chartpane.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="bn"        href="https://chartpane.com/bn/"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://chartpane.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="pt"        href="https://chartpane.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="id"        href="https://chartpane.com/id/"/>
+  </url>
+
+  <!-- ── French ─────────────────────────────────────────────── -->
+  <url>
+    <loc>https://chartpane.com/fr/</loc>
+    <lastmod>2026-02-22</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh"        href="https://chartpane.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="hi"        href="https://chartpane.com/hi/"/>
+    <xhtml:link rel="alternate" hreflang="es"        href="https://chartpane.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://chartpane.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="ar"        href="https://chartpane.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="bn"        href="https://chartpane.com/bn/"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://chartpane.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="pt"        href="https://chartpane.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="id"        href="https://chartpane.com/id/"/>
+  </url>
+
+  <!-- ── Arabic ─────────────────────────────────────────────── -->
+  <url>
+    <loc>https://chartpane.com/ar/</loc>
+    <lastmod>2026-02-22</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh"        href="https://chartpane.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="hi"        href="https://chartpane.com/hi/"/>
+    <xhtml:link rel="alternate" hreflang="es"        href="https://chartpane.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://chartpane.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="ar"        href="https://chartpane.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="bn"        href="https://chartpane.com/bn/"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://chartpane.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="pt"        href="https://chartpane.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="id"        href="https://chartpane.com/id/"/>
+  </url>
+
+  <!-- ── Bengali ────────────────────────────────────────────── -->
+  <url>
+    <loc>https://chartpane.com/bn/</loc>
+    <lastmod>2026-02-22</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh"        href="https://chartpane.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="hi"        href="https://chartpane.com/hi/"/>
+    <xhtml:link rel="alternate" hreflang="es"        href="https://chartpane.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://chartpane.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="ar"        href="https://chartpane.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="bn"        href="https://chartpane.com/bn/"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://chartpane.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="pt"        href="https://chartpane.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="id"        href="https://chartpane.com/id/"/>
+  </url>
+
+  <!-- ── Russian ────────────────────────────────────────────── -->
+  <url>
+    <loc>https://chartpane.com/ru/</loc>
+    <lastmod>2026-02-22</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh"        href="https://chartpane.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="hi"        href="https://chartpane.com/hi/"/>
+    <xhtml:link rel="alternate" hreflang="es"        href="https://chartpane.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://chartpane.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="ar"        href="https://chartpane.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="bn"        href="https://chartpane.com/bn/"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://chartpane.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="pt"        href="https://chartpane.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="id"        href="https://chartpane.com/id/"/>
+  </url>
+
+  <!-- ── Portuguese ────────────────────────────────────────── -->
+  <url>
+    <loc>https://chartpane.com/pt/</loc>
+    <lastmod>2026-02-22</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh"        href="https://chartpane.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="hi"        href="https://chartpane.com/hi/"/>
+    <xhtml:link rel="alternate" hreflang="es"        href="https://chartpane.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://chartpane.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="ar"        href="https://chartpane.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="bn"        href="https://chartpane.com/bn/"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://chartpane.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="pt"        href="https://chartpane.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="id"        href="https://chartpane.com/id/"/>
+  </url>
+
+  <!-- ── Indonesian ─────────────────────────────────────────── -->
+  <url>
+    <loc>https://chartpane.com/id/</loc>
+    <lastmod>2026-02-22</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://chartpane.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh"        href="https://chartpane.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="hi"        href="https://chartpane.com/hi/"/>
+    <xhtml:link rel="alternate" hreflang="es"        href="https://chartpane.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://chartpane.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="ar"        href="https://chartpane.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="bn"        href="https://chartpane.com/bn/"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://chartpane.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="pt"        href="https://chartpane.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="id"        href="https://chartpane.com/id/"/>
+  </url>
+
+  <!-- ── Other pages (English only) ────────────────────────── -->
   <url>
     <loc>https://chartpane.com/privacy.html</loc>
     <lastmod>2026-02-11</lastmod>

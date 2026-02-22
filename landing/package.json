@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.0",
+    "node-html-parser": "^6.1.13",
     "tailwindcss": "^4.0.0",
     "vite": "^6.0.0",
     "wrangler": "^3.0.0"

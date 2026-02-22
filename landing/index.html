@@ -162,6 +162,28 @@
 </head>
 <body class="font-sans antialiased">
 
+  <!-- Language Switcher -->
+  <div class="lang-nav">
+    <div class="lang-switcher" id="lang-switcher">
+      <button class="lang-trigger" id="lang-trigger" type="button" aria-label="Select language" aria-expanded="false" aria-haspopup="listbox">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="lang-current-label">EN</span>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Select language">
+        <a href="/" class="lang-option lang-option-active" data-lang="en" role="option" aria-selected="true">English</a>
+        <a href="/zh/" class="lang-option" data-lang="zh" role="option" aria-selected="false">中文</a>
+        <a href="/hi/" class="lang-option" data-lang="hi" role="option" aria-selected="false">हिन्दी</a>
+        <a href="/es/" class="lang-option" data-lang="es" role="option" aria-selected="false">Español</a>
+        <a href="/fr/" class="lang-option" data-lang="fr" role="option" aria-selected="false">Français</a>
+        <a href="/ar/" class="lang-option" data-lang="ar" role="option" aria-selected="false">العربية</a>
+        <a href="/bn/" class="lang-option" data-lang="bn" role="option" aria-selected="false">বাংলা</a>
+        <a href="/ru/" class="lang-option" data-lang="ru" role="option" aria-selected="false">Русский</a>
+        <a href="/pt/" class="lang-option" data-lang="pt" role="option" aria-selected="false">Português</a>
+        <a href="/id/" class="lang-option" data-lang="id" role="option" aria-selected="false">Bahasa Indonesia</a>
+      </div>
+    </div>
+  </div>
+
   <!-- ═══════════════════════════════════════════════════════════ -->
   <!-- 1. HERO                                                     -->
   <!-- ═══════════════════════════════════════════════════════════ -->
@@ -174,25 +196,25 @@
         <!-- Left: Text -->
         <div class="max-w-xl fade-in">
           <h1 class="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl" style="color: var(--text);">
-            See your data<br />
-            <span style="color: var(--accent);">without leaving Claude</span>
+            <span data-i18n="hero.headline_line1">See your data</span><br />
+            <span style="color: var(--accent);" data-i18n="hero.headline_line2">without leaving Claude</span>
           </h1>
-          <p class="mt-6 text-lg leading-relaxed text-secondary">
+          <p class="mt-6 text-lg leading-relaxed text-secondary" data-i18n="hero.subheadline">
             You're already asking Claude to analyze your data. Now get instant, interactive charts — right in the conversation. No Excel. No screenshots. No breaking your flow.
           </p>
           <div class="mt-8 flex flex-wrap gap-4">
             <a href="#get-started" class="btn-primary">
-              Get Started Free
+              <span data-i18n="hero.cta_primary">Get Started Free</span>
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
             </a>
             <a href="#real-examples" class="btn-secondary">
-              See Examples
+              <span data-i18n="hero.cta_secondary">See Examples</span>
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
             </a>
           </div>
           <!-- Trust signal: Works with -->
           <div class="mt-8 flex items-center gap-3 flex-wrap">
-            <span class="text-xs font-medium uppercase tracking-wider text-tertiary">Works with</span>
+            <span class="text-xs font-medium uppercase tracking-wider text-tertiary" data-i18n="hero.works_with">Works with</span>
             <span class="text-sm font-medium text-secondary">Claude</span>
             <span class="text-tertiary text-xs">·</span>
             <span class="text-sm font-medium text-secondary">ChatGPT</span>
@@ -236,64 +258,64 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section class="section bg-subtle">
     <div class="mx-auto max-w-5xl px-6">
-      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);">Stop breaking your flow</h2>
-      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1">Every time you leave your AI conversation to make a chart, you lose your train of thought.</p>
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);" data-i18n="comparison.headline">Stop breaking your flow</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1" data-i18n="comparison.subheadline">Every time you leave your AI conversation to make a chart, you lose your train of thought.</p>
 
       <div class="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2">
         <!-- Old Way -->
         <div class="comparison-card comparison-card-old fade-in fade-delay-2">
-          <h3 class="text-lg font-semibold mb-6" style="color: var(--text-secondary);">The old way</h3>
+          <h3 class="text-lg font-semibold mb-6" style="color: var(--text-secondary);" data-i18n="comparison.old_title">The old way</h3>
           <div class="space-y-4">
             <div class="comparison-step comparison-cross">
               <span class="comparison-num comparison-num-old">1</span>
-              <span>Ask Claude to analyze your data</span>
+              <span data-i18n="comparison.old_1">Ask Claude to analyze your data</span>
             </div>
             <div class="comparison-step comparison-cross">
               <span class="comparison-num comparison-num-old">2</span>
-              <span>Copy the numbers from the response</span>
+              <span data-i18n="comparison.old_2">Copy the numbers from the response</span>
             </div>
             <div class="comparison-step comparison-cross">
               <span class="comparison-num comparison-num-old">3</span>
-              <span>Open Excel or Google Sheets</span>
+              <span data-i18n="comparison.old_3">Open Excel or Google Sheets</span>
             </div>
             <div class="comparison-step comparison-cross">
               <span class="comparison-num comparison-num-old">4</span>
-              <span>Paste and format the data</span>
+              <span data-i18n="comparison.old_4">Paste and format the data</span>
             </div>
             <div class="comparison-step comparison-cross">
               <span class="comparison-num comparison-num-old">5</span>
-              <span>Create and style a chart</span>
+              <span data-i18n="comparison.old_5">Create and style a chart</span>
             </div>
             <div class="comparison-step comparison-cross">
               <span class="comparison-num comparison-num-old">6</span>
-              <span>Screenshot or export</span>
+              <span data-i18n="comparison.old_6">Screenshot or export</span>
             </div>
             <div class="comparison-step comparison-cross">
               <span class="comparison-num comparison-num-old">7</span>
-              <span>Switch back to Claude</span>
+              <span data-i18n="comparison.old_7">Switch back to Claude</span>
             </div>
             <div class="comparison-step comparison-cross">
               <span class="comparison-num comparison-num-old">8</span>
-              <span>...where were you again?</span>
+              <span data-i18n="comparison.old_8">...where were you again?</span>
             </div>
           </div>
         </div>
 
         <!-- ChartPane Way -->
         <div class="comparison-card comparison-card-new fade-in fade-delay-3">
-          <h3 class="text-lg font-semibold mb-6" style="color: var(--accent);">With ChartPane</h3>
+          <h3 class="text-lg font-semibold mb-6" style="color: var(--accent);" data-i18n="comparison.new_title">With ChartPane</h3>
           <div class="space-y-4">
             <div class="comparison-step">
               <span class="comparison-num comparison-num-new">1</span>
-              <span>Ask</span>
+              <span data-i18n="comparison.new_1">Ask</span>
             </div>
             <div class="comparison-step">
               <span class="comparison-num comparison-num-new">2</span>
-              <span>See your chart instantly</span>
+              <span data-i18n="comparison.new_2">See your chart instantly</span>
             </div>
             <div class="comparison-step">
               <span class="comparison-num comparison-num-new">3</span>
-              <span>Keep thinking</span>
+              <span data-i18n="comparison.new_3">Keep thinking</span>
             </div>
           </div>
         </div>
@@ -306,27 +328,27 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section class="section">
     <div class="mx-auto max-w-4xl px-6">
-      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);">How it works</h2>
-      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1">ChartPane is an MCP App — a plugin that connects to your AI client. Three steps, no code, no API keys, no cost.</p>
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);" data-i18n="how.headline">How it works</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1" data-i18n="how.subheadline">ChartPane is an MCP App — a plugin that connects to your AI client. Three steps, no code, no API keys, no cost.</p>
 
       <div class="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3">
         <!-- Step 1 -->
         <div class="text-center fade-in fade-delay-2">
           <div class="step-number mx-auto">1</div>
-          <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);">Add to Claude</h3>
-          <p class="mt-2 text-sm text-secondary leading-relaxed">One URL, 30 seconds. Works with Claude Desktop, ChatGPT, VS Code, and more.</p>
+          <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);" data-i18n="how.step1_title">Add to Claude</h3>
+          <p class="mt-2 text-sm text-secondary leading-relaxed" data-i18n="how.step1_desc">One URL, 30 seconds. Works with Claude Desktop, ChatGPT, VS Code, and more.</p>
         </div>
         <!-- Step 2 -->
         <div class="text-center fade-in fade-delay-3">
           <div class="step-number mx-auto">2</div>
-          <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);">Ask in plain English</h3>
-          <p class="mt-2 text-sm text-secondary leading-relaxed">Describe what you want to see. Paste your data or let Claude work with what you're already discussing.</p>
+          <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);" data-i18n="how.step2_title">Ask in plain English</h3>
+          <p class="mt-2 text-sm text-secondary leading-relaxed" data-i18n="how.step2_desc">Describe what you want to see. Paste your data or let Claude work with what you're already discussing.</p>
         </div>
         <!-- Step 3 -->
         <div class="text-center fade-in fade-delay-4">
           <div class="step-number mx-auto">3</div>
-          <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);">See it instantly</h3>
-          <p class="mt-2 text-sm text-secondary leading-relaxed">An interactive chart appears right in your conversation. Hover for details, keep your train of thought.</p>
+          <h3 class="mt-4 text-lg font-semibold" style="color: var(--text);" data-i18n="how.step3_title">See it instantly</h3>
+          <p class="mt-2 text-sm text-secondary leading-relaxed" data-i18n="how.step3_desc">An interactive chart appears right in your conversation. Hover for details, keep your train of thought.</p>
         </div>
       </div>
     </div>
@@ -337,13 +359,13 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section id="real-examples" class="section bg-subtle">
     <div class="mx-auto max-w-6xl px-6">
-      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);">Real conversations, real charts</h2>
-      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1">Here's what it looks like when you ask Claude to visualize your data.</p>
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);" data-i18n="examples.headline">Real conversations, real charts</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1" data-i18n="examples.subheadline">Here's what it looks like when you ask Claude to visualize your data.</p>
 
       <div class="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-3">
         <!-- Example 1: Growth Trend -->
         <div class="fade-in fade-delay-2">
-          <div class="example-tag" style="background: rgba(34, 197, 94, 0.1); color: #16a34a;">Founder</div>
+          <div class="example-tag" style="background: rgba(34, 197, 94, 0.1); color: #16a34a;" data-i18n="examples.tag_founder">Founder</div>
           <div class="mockup">
             <div class="mockup-titlebar">
               <div class="mockup-dot"></div>
@@ -367,7 +389,7 @@
 
         <!-- Example 2: Portfolio -->
         <div class="fade-in fade-delay-3">
-          <div class="example-tag" style="background: rgba(37, 99, 235, 0.1); color: #2563eb;">Financial Analyst</div>
+          <div class="example-tag" style="background: rgba(37, 99, 235, 0.1); color: #2563eb;" data-i18n="examples.tag_analyst">Financial Analyst</div>
           <div class="mockup">
             <div class="mockup-titlebar">
               <div class="mockup-dot"></div>
@@ -391,7 +413,7 @@
 
         <!-- Example 3: Comparison -->
         <div class="fade-in fade-delay-4">
-          <div class="example-tag" style="background: rgba(217, 119, 6, 0.1); color: #d97706;">Sales Lead</div>
+          <div class="example-tag" style="background: rgba(217, 119, 6, 0.1); color: #d97706;" data-i18n="examples.tag_sales">Sales Lead</div>
           <div class="mockup">
             <div class="mockup-titlebar">
               <div class="mockup-dot"></div>
@@ -421,8 +443,8 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section class="section">
     <div class="mx-auto max-w-6xl px-6">
-      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);">Every chart type you need</h2>
-      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1">Bar, line, area, pie, doughnut, polar area, bubble, scatter, radar, and stacked — all interactive, all in your conversation.</p>
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);" data-i18n="gallery.headline">Every chart type you need</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1" data-i18n="gallery.subheadline">Bar, line, area, pie, doughnut, polar area, bubble, scatter, radar, and stacked — all interactive, all in your conversation.</p>
 
       <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <div class="chart-container fade-in fade-delay-2" style="height: 240px;">
@@ -452,7 +474,7 @@
       </div>
 
       <div class="mt-10 text-center fade-in">
-        <a href="/charts/" class="btn-secondary">See all chart types &rarr;</a>
+        <a href="/charts/" class="btn-secondary" data-i18n="gallery.all_types_link">See all chart types &rarr;</a>
       </div>
     </div>
   </section>
@@ -462,8 +484,8 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section class="section bg-subtle">
     <div class="mx-auto max-w-5xl px-6">
-      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);">Multi-chart dashboards</h2>
-      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1">
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);" data-i18n="dashboard.headline">Multi-chart dashboards</h2>
+      <p class="mt-4 text-center text-secondary text-lg max-w-2xl mx-auto fade-in fade-delay-1" data-i18n="dashboard.subheadline">
         Ask for a complete overview and get multiple charts in a single response.
       </p>
 
@@ -505,7 +527,7 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section class="section-sm" style="border-top: 1px solid var(--border);">
     <div class="mx-auto max-w-4xl px-6 text-center">
-      <span class="text-xs font-medium uppercase tracking-wider text-tertiary fade-in">Available on</span>
+      <span class="text-xs font-medium uppercase tracking-wider text-tertiary fade-in" data-i18n="available.label">Available on</span>
       <div class="mt-4 flex flex-wrap items-center justify-center gap-3 fade-in fade-delay-1">
         <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=chartpane" target="_blank" rel="noopener" class="registry-badge">MCP Registry</a>
         <a href="https://smithery.ai/servers/ahmadsl/chartpane" target="_blank" rel="noopener" class="registry-badge">Smithery</a>
@@ -522,13 +544,13 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section id="get-started" class="section">
     <div class="mx-auto max-w-3xl px-6 text-center">
-      <h2 class="text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);">Start charting in 30 seconds</h2>
-      <p class="mt-4 text-secondary text-lg fade-in fade-delay-1">Works with Claude Desktop, ChatGPT, VS Code, and any client that supports MCP Apps. Free, no API keys, no credit card.</p>
+      <h2 class="text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);" data-i18n="getstarted.headline">Start charting in 30 seconds</h2>
+      <p class="mt-4 text-secondary text-lg fade-in fade-delay-1" data-i18n="getstarted.subheadline">Works with Claude Desktop, ChatGPT, VS Code, and any client that supports MCP Apps. Free, no API keys, no credit card.</p>
 
       <!-- Tab switcher -->
       <div class="mt-10 inline-flex rounded-lg p-1 fade-in fade-delay-2" style="background-color: var(--code-bg);">
-        <button id="tab-connector" class="install-tab install-tab-active" type="button">Custom Connector</button>
-        <button id="tab-mcp-remote" class="install-tab" type="button">mcp-remote</button>
+        <button id="tab-connector" class="install-tab install-tab-active" type="button" data-i18n="getstarted.tab_connector">Custom Connector</button>
+        <button id="tab-mcp-remote" class="install-tab" type="button" data-i18n="getstarted.tab_mcp_remote">mcp-remote</button>
       </div>
 
       <!-- Option 1: Custom Connector (default) -->
@@ -536,11 +558,13 @@
         <div class="code-block text-left relative">
           <div class="flex items-center justify-between px-4 py-2 border-b" style="border-color: var(--border);">
             <span class="text-xs font-mono text-tertiary">Server URL</span>
-            <button id="copy-url-btn" class="copy-btn" type="button">Copy</button>
+            <button id="copy-url-btn" class="copy-btn" type="button"
+              data-copy-label="Copy" data-copied-label="Copied!"
+              data-i18n-attr="data-copy-label:getstarted.copy,data-copied-label:getstarted.copied">Copy</button>
           </div>
           <pre class="font-mono"><code id="connector-url">https://mcp.chartpane.com/mcp</code></pre>
         </div>
-        <p class="mt-4 text-sm text-secondary">
+        <p class="mt-4 text-sm text-secondary" data-i18n="getstarted.connector_desc">
           Open Claude Desktop → Settings → Connectors → <strong>Add custom connector</strong> → paste the URL above.
         </p>
       </div>
@@ -550,7 +574,9 @@
         <div class="code-block text-left relative">
           <div class="flex items-center justify-between px-4 py-2 border-b" style="border-color: var(--border);">
             <span class="text-xs font-mono text-tertiary">claude_desktop_config.json</span>
-            <button id="copy-config-btn" class="copy-btn" type="button">Copy</button>
+            <button id="copy-config-btn" class="copy-btn" type="button"
+              data-copy-label="Copy" data-copied-label="Copied!"
+              data-i18n-attr="data-copy-label:getstarted.copy,data-copied-label:getstarted.copied">Copy</button>
           </div>
           <pre class="font-mono"><code id="config-code">{
   "mcpServers": {
@@ -561,18 +587,20 @@
   }
 }</code></pre>
         </div>
-        <p class="mt-4 text-sm text-secondary">
+        <p class="mt-4 text-sm text-secondary" data-i18n="getstarted.mcp_remote_desc">
           Add this to your config file and restart your client. Requires Node.js.
         </p>
       </div>
 
       <div class="mt-8 flex flex-wrap justify-center gap-4">
         <button id="copy-install-btn" class="btn-primary" type="button">
-          <span class="btn-label">Get Started Free</span>
+          <span class="btn-label" data-i18n="getstarted.cta"
+            data-label-copy-config="Copy Config"
+            data-i18n-attr="data-label-copy-config:getstarted.copy_config">Get Started Free</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
         </button>
       </div>
-      <p class="mt-4 text-sm text-secondary fade-in fade-delay-4">Using ChatGPT, VS Code, or another client? See the <a href="/getting-started.html" class="underline hover:text-[var(--accent)]">full setup guide</a>.</p>
+      <p class="mt-4 text-sm text-secondary fade-in fade-delay-4" data-i18n="getstarted.other_clients">Using ChatGPT, VS Code, or another client? See the <a href="/getting-started.html" class="underline hover:text-[var(--accent)]">full setup guide</a>.</p>
     </div>
   </section>
 
@@ -581,37 +609,37 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <section class="section bg-subtle">
     <div class="mx-auto max-w-3xl px-6">
-      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);">Frequently asked questions</h2>
+      <h2 class="text-center text-3xl font-semibold sm:text-4xl fade-in" style="color: var(--text);" data-i18n="faq.headline">Frequently asked questions</h2>
 
       <div class="mt-14 space-y-4 fade-in fade-delay-1">
         <details class="faq-item" open>
-          <summary class="faq-summary">Is ChartPane free?</summary>
-          <p class="faq-answer">Yes, completely free. No API keys, no credit card, no usage limits.</p>
+          <summary class="faq-summary" data-i18n="faq.q1">Is ChartPane free?</summary>
+          <p class="faq-answer" data-i18n="faq.a1">Yes, completely free. No API keys, no credit card, no usage limits.</p>
         </details>
 
         <details class="faq-item">
-          <summary class="faq-summary">What data do you collect?</summary>
-          <p class="faq-answer">Charts render in your browser. We store chart data so you can access your chart history later. We never store your conversations or personal information.</p>
+          <summary class="faq-summary" data-i18n="faq.q2">What data do you collect?</summary>
+          <p class="faq-answer" data-i18n="faq.a2">Charts render in your browser. We store chart data so you can access your chart history later. We never store your conversations or personal information.</p>
         </details>
 
         <details class="faq-item">
-          <summary class="faq-summary">What is an MCP App?</summary>
-          <p class="faq-answer">An MCP App is an interactive extension that renders a visual UI right inside your AI conversation. Unlike regular MCP tools that only return text, MCP Apps can show rich content — like ChartPane's interactive charts. MCP (Model Context Protocol) is the open standard that makes this possible.</p>
+          <summary class="faq-summary" data-i18n="faq.q3">What is an MCP App?</summary>
+          <p class="faq-answer" data-i18n="faq.a3">An MCP App is an interactive extension that renders a visual UI right inside your AI conversation. Unlike regular MCP tools that only return text, MCP Apps can show rich content — like ChartPane's interactive charts. MCP (Model Context Protocol) is the open standard that makes this possible.</p>
         </details>
 
         <details class="faq-item">
-          <summary class="faq-summary">Which AI clients does it work with?</summary>
-          <p class="faq-answer">Any client that supports MCP Apps: Claude, Claude Desktop, ChatGPT, VS Code, Cursor, Goose, Postman, MCPJam, and more.</p>
+          <summary class="faq-summary" data-i18n="faq.q4">Which AI clients does it work with?</summary>
+          <p class="faq-answer" data-i18n="faq.a4">Any client that supports MCP Apps: Claude, Claude Desktop, ChatGPT, VS Code, Cursor, Goose, Postman, MCPJam, and more.</p>
         </details>
 
         <details class="faq-item">
-          <summary class="faq-summary">Can I create dashboards with multiple charts?</summary>
-          <p class="faq-answer">Yes — just ask for a dashboard and get multiple charts in one response. You can request any combination of chart types.</p>
+          <summary class="faq-summary" data-i18n="faq.q5">Can I create dashboards with multiple charts?</summary>
+          <p class="faq-answer" data-i18n="faq.a5">Yes — just ask for a dashboard and get multiple charts in one response. You can request any combination of chart types.</p>
         </details>
 
         <details class="faq-item">
-          <summary class="faq-summary">Do I need to know how to code?</summary>
-          <p class="faq-answer">No. Describe what you want in plain English and ChartPane handles the rest. If you're already asking Claude to analyze data, you already know how to use ChartPane.</p>
+          <summary class="faq-summary" data-i18n="faq.q6">Do I need to know how to code?</summary>
+          <p class="faq-answer" data-i18n="faq.a6">No. Describe what you want in plain English and ChartPane handles the rest. If you're already asking Claude to analyze data, you already know how to use ChartPane.</p>
         </details>
       </div>
     </div>
