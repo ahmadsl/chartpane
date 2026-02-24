@@ -805,6 +805,20 @@ function initLangSwitcher() {
   const dropdown = document.getElementById("lang-dropdown");
   if (!trigger || !dropdown) return;
 
+  // Compute locale-aware hrefs for every language option.
+  // Strips any existing locale prefix from the current path so switching
+  // languages on e.g. /fr/charts/bar-chart.html goes to /zh/charts/bar-chart.html.
+  const NON_EN = ['zh', 'hi', 'es', 'fr', 'ar', 'bn', 'ru', 'pt', 'id'];
+  const localeRe = new RegExp(`^/(${NON_EN.join('|')})(/.*)?$`);
+  const rawPath = window.location.pathname;
+  const match = rawPath.match(localeRe);
+  const cleanPath = match ? (match[2] || '/') : rawPath;
+
+  for (const opt of dropdown.querySelectorAll('[data-lang]')) {
+    const lang = opt.getAttribute('data-lang');
+    opt.href = lang === 'en' ? cleanPath : `/${lang}${cleanPath === '/' ? '/' : cleanPath}`;
+  }
+
   trigger.addEventListener("click", (e) => {
     e.stopPropagation();
     const isOpen = dropdown.classList.contains("open");
@@ -831,10 +845,34 @@ function initLangSwitcher() {
   }
 }
 
+// ──────────────────────────────────────────────────────────────
+// Rewrite internal links on locale pages
+// ──────────────────────────────────────────────────────────────
+
+function rewriteInternalLinks() {
+  const NON_EN = ['zh', 'hi', 'es', 'fr', 'ar', 'bn', 'ru', 'pt', 'id'];
+  const localeRe = new RegExp(`^/(${NON_EN.join('|')})(/.*)?$`);
+  const match = window.location.pathname.match(localeRe);
+  if (!match) return; // English — no rewrite needed
+
+  const locale = match[1];
+  const alreadyLocale = new RegExp(`^/(${NON_EN.join('|')})/`);
+
+  for (const a of document.querySelectorAll('a[href]')) {
+    const href = a.getAttribute('href');
+    // Only rewrite root-relative internal links (starts with / but not //)
+    if (!href.startsWith('/') || href.startsWith('//')) continue;
+    // Skip links already prefixed with a locale
+    if (alreadyLocale.test(href)) continue;
+    a.setAttribute('href', `/${locale}${href === '/' ? '/' : href}`);
+  }
+}
+
 renderAll();
 initInstallSection();
 initScrollAnimations();
 initLangSwitcher();
+rewriteInternalLinks();
 
 // Re-render on theme change
 darkMq.addEventListener("change", () => {

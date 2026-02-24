@@ -57,6 +57,28 @@
 </head>
 <body class="font-sans antialiased">
 
+  <!-- Language Switcher -->
+  <div class="lang-nav">
+    <div class="lang-switcher" id="lang-switcher">
+      <button class="lang-trigger" id="lang-trigger" type="button" aria-label="Select language" aria-expanded="false" aria-haspopup="listbox">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="lang-current-label">EN</span>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Select language">
+        <a href="/charts/area-chart.html" class="lang-option lang-option-active" data-lang="en" role="option" aria-selected="true">English</a>
+        <a href="/zh/charts/area-chart.html" class="lang-option" data-lang="zh" role="option" aria-selected="false">中文</a>
+        <a href="/hi/charts/area-chart.html" class="lang-option" data-lang="hi" role="option" aria-selected="false">हिन्दी</a>
+        <a href="/es/charts/area-chart.html" class="lang-option" data-lang="es" role="option" aria-selected="false">Español</a>
+        <a href="/fr/charts/area-chart.html" class="lang-option" data-lang="fr" role="option" aria-selected="false">Français</a>
+        <a href="/ar/charts/area-chart.html" class="lang-option" data-lang="ar" role="option" aria-selected="false">العربية</a>
+        <a href="/bn/charts/area-chart.html" class="lang-option" data-lang="bn" role="option" aria-selected="false">বাংলা</a>
+        <a href="/ru/charts/area-chart.html" class="lang-option" data-lang="ru" role="option" aria-selected="false">Русский</a>
+        <a href="/pt/charts/area-chart.html" class="lang-option" data-lang="pt" role="option" aria-selected="false">Português</a>
+        <a href="/id/charts/area-chart.html" class="lang-option" data-lang="id" role="option" aria-selected="false">Bahasa Indonesia</a>
+      </div>
+    </div>
+  </div>
+
   <header class="section-sm" style="border-bottom: 1px solid var(--border);">
     <div class="mx-auto max-w-3xl px-6">
       <nav class="flex items-center gap-2 text-sm text-secondary">
@@ -65,73 +87,73 @@
           <span class="font-semibold" style="color: var(--text);">ChartPane</span>
         </a>
         <span>/</span>
-        <a href="/charts/" class="hover:text-[var(--text)] transition-colors">Charts</a>
+        <a href="/charts/" class="hover:text-[var(--text)] transition-colors" data-i18n="nav.charts">Charts</a>
         <span>/</span>
-        <span style="color: var(--text);">Area Chart</span>
+        <span style="color: var(--text);" data-i18n="charts_area.h1">Area Chart</span>
       </nav>
     </div>
   </header>
 
   <main class="section">
     <div class="mx-auto max-w-3xl px-6">
-      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);">Area Chart</h1>
-      <p class="mt-3 text-secondary text-lg leading-relaxed">A line chart with the area below filled in, emphasizing volume and magnitude over time.</p>
+      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);" data-i18n="charts_area.h1">Area Chart</h1>
+      <p class="mt-3 text-secondary text-lg leading-relaxed" data-i18n="charts_area.subheadline">A line chart with the area below filled in, emphasizing volume and magnitude over time.</p>
 
       <div class="mt-10 space-y-10">
 
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">What is an area chart?</h2>
-          <p class="mt-3 text-secondary leading-relaxed">
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="charts_area.h2_what">What is an area chart?</h2>
+          <p class="mt-3 text-secondary leading-relaxed" data-i18n="charts_area.p_what_1">
             An area chart is a line chart where the space between the line and the x-axis is filled with color. This fill draws attention to the magnitude of values rather than just the trend. The colored region makes it easier to perceive total volume and how it changes over time.
           </p>
-          <p class="mt-3 text-secondary leading-relaxed">
+          <p class="mt-3 text-secondary leading-relaxed" data-i18n="charts_area.p_what_2">
             Area charts work particularly well for showing cumulative totals, resource usage over time, or any metric where the "amount" matters as much as the direction of change. Stacked area charts can show how individual components contribute to a total.
           </p>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">When to use an area chart</h2>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="charts_area.h2_when">When to use an area chart</h2>
           <ul class="mt-3 space-y-2 text-secondary leading-relaxed list-disc list-inside">
-            <li>Showing volume or magnitude over time (memory usage, traffic, inventory)</li>
-            <li>Emphasizing the total amount rather than individual values</li>
-            <li>Displaying cumulative metrics</li>
-            <li>Showing how parts contribute to a whole over time (stacked area)</li>
-            <li>When a line chart feels too sparse and you want more visual weight</li>
+            <li data-i18n="charts_area.when_1">Showing volume or magnitude over time (memory usage, traffic, inventory)</li>
+            <li data-i18n="charts_area.when_2">Emphasizing the total amount rather than individual values</li>
+            <li data-i18n="charts_area.when_3">Displaying cumulative metrics</li>
+            <li data-i18n="charts_area.when_4">Showing how parts contribute to a whole over time (stacked area)</li>
+            <li data-i18n="charts_area.when_5">When a line chart feels too sparse and you want more visual weight</li>
           </ul>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">Best practices</h2>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="charts_area.h2_best_practices">Best practices</h2>
           <ul class="mt-3 space-y-2 text-secondary leading-relaxed list-disc list-inside">
-            <li>Use semi-transparent fills so overlapping areas remain visible</li>
-            <li>Limit to 3-4 series to avoid visual noise</li>
-            <li>Put the most important or largest series at the bottom in stacked charts</li>
-            <li>Start the y-axis at zero to preserve accurate area proportions</li>
-            <li>Consider a line chart instead if precise point-to-point comparison matters more than volume</li>
+            <li data-i18n="charts_area.best_1">Use semi-transparent fills so overlapping areas remain visible</li>
+            <li data-i18n="charts_area.best_2">Limit to 3-4 series to avoid visual noise</li>
+            <li data-i18n="charts_area.best_3">Put the most important or largest series at the bottom in stacked charts</li>
+            <li data-i18n="charts_area.best_4">Start the y-axis at zero to preserve accurate area proportions</li>
+            <li data-i18n="charts_area.best_5">Consider a line chart instead if precise point-to-point comparison matters more than volume</li>
           </ul>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">Example</h2>
-          <p class="mt-3 text-secondary leading-relaxed">Server memory usage over a 24-hour period, showing peak load during business hours.</p>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="charts_area.h2_example">Example</h2>
+          <p class="mt-3 text-secondary leading-relaxed" data-i18n="charts_area.p_example">Server memory usage over a 24-hour period, showing peak load during business hours.</p>
           <div class="mt-6 chart-container" style="height: 340px;">
             <canvas id="chartpage-area"></canvas>
           </div>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">Make this in Claude</h2>
-          <p class="mt-3 text-secondary leading-relaxed">With ChartPane installed, just describe what you want:</p>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="charts_area.h2_make">Make this in Claude</h2>
+          <p class="mt-3 text-secondary leading-relaxed" data-i18n="charts_area.p_make">With ChartPane installed, just describe what you want:</p>
           <div class="mt-4 code-block">
             <pre style="color: var(--text-secondary);">Show our server memory usage over the last 24 hours as an area chart</pre>
           </div>
           <div class="mt-6">
-            <a href="/#get-started" class="btn-primary">Get started with ChartPane</a>
+            <a href="/#get-started" class="btn-primary" data-i18n="charts_area.cta">Get started with ChartPane</a>
           </div>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">Related chart types</h2>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="charts_area.h2_related">Related chart types</h2>
           <div class="mt-4 flex flex-wrap gap-3">
             <a href="/charts/line-chart.html" class="btn-secondary text-sm">Line Chart</a>
             <a href="/charts/stacked-chart.html" class="btn-secondary text-sm">Stacked Chart</a>
@@ -150,10 +172,10 @@
         <span class="font-semibold" style="color: var(--text);">ChartPane</span>
       </div>
       <div class="flex items-center gap-6 text-sm text-secondary">
-        <a href="/" class="hover:text-[var(--accent)] transition-colors">Home</a>
-        <a href="/charts/" class="hover:text-[var(--accent)] transition-colors">Charts</a>
-        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors">Privacy</a>
-        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors">Terms</a>
+        <a href="/" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.home">Home</a>
+        <a href="/charts/" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.charts">Charts</a>
+        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.privacy">Privacy</a>
+        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.terms">Terms</a>
       </div>
     </div>
   </footer>

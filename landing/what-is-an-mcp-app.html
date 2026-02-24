@@ -93,6 +93,28 @@
 </head>
 <body class="font-sans antialiased">
 
+  <!-- Language Switcher -->
+  <div class="lang-nav">
+    <div class="lang-switcher" id="lang-switcher">
+      <button class="lang-trigger" id="lang-trigger" type="button" aria-label="Select language" aria-expanded="false" aria-haspopup="listbox">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="lang-current-label">EN</span>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Select language">
+        <a href="/what-is-an-mcp-app.html" class="lang-option lang-option-active" data-lang="en" role="option" aria-selected="true">English</a>
+        <a href="/zh/what-is-an-mcp-app.html" class="lang-option" data-lang="zh" role="option" aria-selected="false">中文</a>
+        <a href="/hi/what-is-an-mcp-app.html" class="lang-option" data-lang="hi" role="option" aria-selected="false">हिन्दी</a>
+        <a href="/es/what-is-an-mcp-app.html" class="lang-option" data-lang="es" role="option" aria-selected="false">Español</a>
+        <a href="/fr/what-is-an-mcp-app.html" class="lang-option" data-lang="fr" role="option" aria-selected="false">Français</a>
+        <a href="/ar/what-is-an-mcp-app.html" class="lang-option" data-lang="ar" role="option" aria-selected="false">العربية</a>
+        <a href="/bn/what-is-an-mcp-app.html" class="lang-option" data-lang="bn" role="option" aria-selected="false">বাংলা</a>
+        <a href="/ru/what-is-an-mcp-app.html" class="lang-option" data-lang="ru" role="option" aria-selected="false">Русский</a>
+        <a href="/pt/what-is-an-mcp-app.html" class="lang-option" data-lang="pt" role="option" aria-selected="false">Português</a>
+        <a href="/id/what-is-an-mcp-app.html" class="lang-option" data-lang="id" role="option" aria-selected="false">Bahasa Indonesia</a>
+      </div>
+    </div>
+  </div>
+
   <header class="section-sm" style="border-bottom: 1px solid var(--border);">
     <div class="mx-auto max-w-3xl px-6">
       <a href="/" class="inline-flex items-center gap-2 text-secondary hover:text-[var(--text)] transition-colors">
@@ -104,8 +126,8 @@
 
   <main class="section">
     <div class="mx-auto max-w-3xl px-6">
-      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);">What Is an MCP App?</h1>
-      <p class="mt-3 text-secondary text-lg leading-relaxed">A short guide to interactive extensions for AI conversations.</p>
+      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);" data-i18n="mcp.h1">What Is an MCP App?</h1>
+      <p class="mt-3 text-secondary text-lg leading-relaxed" data-i18n="mcp.subheadline">A short guide to interactive extensions for AI conversations.</p>
 
       <div class="mt-10 space-y-10">
 
@@ -121,7 +143,7 @@
 
         <!-- How MCP Apps differ from MCP tools -->
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">MCP tools vs. MCP Apps</h2>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="mcp.h2_tools_vs_apps">MCP tools vs. MCP Apps</h2>
           <p class="mt-3 text-secondary leading-relaxed">
             A regular MCP tool returns text. Ask it to query a database and you get rows of data as plain text. Useful, but limited.
           </p>
@@ -151,19 +173,19 @@
 
         <!-- How they work -->
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">How MCP Apps work</h2>
-          <p class="mt-3 text-secondary leading-relaxed">
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="mcp.h2_how_they_work">How MCP Apps work</h2>
+          <p class="mt-3 text-secondary leading-relaxed" data-i18n="mcp.p_how_they_work_1">
             Under the hood, an MCP App is an MCP server that registers both tools and a UI resource. When the AI calls a tool, the server returns structured data along with a reference to its UI. The host application (Claude, ChatGPT, VS Code, etc.) loads the UI and passes the data to it. The UI renders client-side — no extra servers, no iframes pointing to third-party domains.
           </p>
-          <p class="mt-3 text-secondary leading-relaxed">
+          <p class="mt-3 text-secondary leading-relaxed" data-i18n="mcp.p_how_they_work_2">
             This means your data stays local. The UI runs in your client, and the rendering happens in your browser. Nothing is sent to an external service beyond what you already shared with your AI assistant.
           </p>
         </section>
 
         <!-- Where they work -->
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">Where MCP Apps work</h2>
-          <p class="mt-3 text-secondary leading-relaxed">
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="mcp.h2_where_they_work">Where MCP Apps work</h2>
+          <p class="mt-3 text-secondary leading-relaxed" data-i18n="mcp.p_where_they_work">
             MCP Apps work in any client that supports the MCP Apps extension. As of early 2026, that includes:
           </p>
           <ul class="mt-3 space-y-2 text-secondary leading-relaxed list-disc list-inside">
@@ -172,22 +194,22 @@
             <li><strong style="color: var(--text);">VS Code</strong> and <strong style="color: var(--text);">Cursor</strong></li>
             <li><strong style="color: var(--text);">Goose</strong>, <strong style="color: var(--text);">Postman</strong>, <strong style="color: var(--text);">MCPJam</strong>, and others</li>
           </ul>
-          <p class="mt-3 text-secondary leading-relaxed">
+          <p class="mt-3 text-secondary leading-relaxed" data-i18n="mcp.p_install_once">
             You install an MCP App once, and it works across all these clients. No per-client plugins or extensions to manage.
           </p>
         </section>
 
         <!-- Examples -->
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">Examples of MCP Apps</h2>
-          <p class="mt-3 text-secondary leading-relaxed">
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="mcp.h2_examples">Examples of MCP Apps</h2>
+          <p class="mt-3 text-secondary leading-relaxed" data-i18n="mcp.p_examples_intro">
             MCP Apps can render anything that makes sense as a visual response:
           </p>
           <ul class="mt-3 space-y-2 text-secondary leading-relaxed list-disc list-inside">
-            <li><strong style="color: var(--text);">Charts and dashboards</strong> — bar, line, pie, scatter, radar charts from data in your conversation</li>
-            <li><strong style="color: var(--text);">Maps</strong> — plot locations, routes, and geospatial data</li>
-            <li><strong style="color: var(--text);">Diagrams</strong> — flowcharts, architecture diagrams, entity relationships</li>
-            <li><strong style="color: var(--text);">Forms and controls</strong> — interactive inputs that feed back into the conversation</li>
+            <li data-i18n="mcp.li_charts_apps"><strong style="color: var(--text);">Charts and dashboards</strong> — bar, line, pie, scatter, radar charts from data in your conversation</li>
+            <li data-i18n="mcp.li_maps"><strong style="color: var(--text);">Maps</strong> — plot locations, routes, and geospatial data</li>
+            <li data-i18n="mcp.li_diagrams"><strong style="color: var(--text);">Diagrams</strong> — flowcharts, architecture diagrams, entity relationships</li>
+            <li data-i18n="mcp.li_forms"><strong style="color: var(--text);">Forms and controls</strong> — interactive inputs that feed back into the conversation</li>
           </ul>
           <p class="mt-3 text-secondary leading-relaxed">
             <a href="/" class="underline hover:text-[var(--accent)]">ChartPane</a> is an MCP App for data visualization. Ask your AI assistant to chart something and you get interactive, production-quality charts rendered inline — with tooltips, legends, and one-click PNG export.
@@ -196,12 +218,12 @@
 
         <!-- Getting started -->
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">Try it yourself</h2>
-          <p class="mt-3 text-secondary leading-relaxed">
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="mcp.h2_try_it">Try it yourself</h2>
+          <p class="mt-3 text-secondary leading-relaxed" data-i18n="mcp.p_try_it">
             The fastest way to experience an MCP App is to install <a href="/" class="underline hover:text-[var(--accent)]">ChartPane</a>. It takes about a minute: add a single URL to your AI client's MCP settings, and you're done. No API keys, no sign-up, no cost.
           </p>
           <div class="mt-6">
-            <a href="/#get-started" class="btn-primary">Get started with ChartPane</a>
+            <a href="/#get-started" class="btn-primary" data-i18n="mcp.cta">Get started with ChartPane</a>
           </div>
         </section>
 
@@ -216,10 +238,10 @@
         <span class="font-semibold" style="color: var(--text);">ChartPane</span>
       </div>
       <div class="flex items-center gap-6 text-sm text-secondary">
-        <a href="/" class="hover:text-[var(--accent)] transition-colors">Home</a>
-        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors">Privacy</a>
-        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors">Terms</a>
-        <a href="mailto:support@chartpane.com" class="hover:text-[var(--accent)] transition-colors">Support</a>
+        <a href="/" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.home">Home</a>
+        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.privacy">Privacy</a>
+        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.terms">Terms</a>
+        <a href="mailto:support@chartpane.com" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.support">Support</a>
       </div>
     </div>
   </footer>

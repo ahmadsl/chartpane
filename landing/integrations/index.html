@@ -44,6 +44,28 @@
 </head>
 <body class="font-sans antialiased">
 
+  <!-- Language Switcher -->
+  <div class="lang-nav">
+    <div class="lang-switcher" id="lang-switcher">
+      <button class="lang-trigger" id="lang-trigger" type="button" aria-label="Select language" aria-expanded="false" aria-haspopup="listbox">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="lang-current-label">EN</span>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Select language">
+        <a href="/integrations/" class="lang-option lang-option-active" data-lang="en" role="option" aria-selected="true">English</a>
+        <a href="/zh/integrations/" class="lang-option" data-lang="zh" role="option" aria-selected="false">中文</a>
+        <a href="/hi/integrations/" class="lang-option" data-lang="hi" role="option" aria-selected="false">हिन्दी</a>
+        <a href="/es/integrations/" class="lang-option" data-lang="es" role="option" aria-selected="false">Español</a>
+        <a href="/fr/integrations/" class="lang-option" data-lang="fr" role="option" aria-selected="false">Français</a>
+        <a href="/ar/integrations/" class="lang-option" data-lang="ar" role="option" aria-selected="false">العربية</a>
+        <a href="/bn/integrations/" class="lang-option" data-lang="bn" role="option" aria-selected="false">বাংলা</a>
+        <a href="/ru/integrations/" class="lang-option" data-lang="ru" role="option" aria-selected="false">Русский</a>
+        <a href="/pt/integrations/" class="lang-option" data-lang="pt" role="option" aria-selected="false">Português</a>
+        <a href="/id/integrations/" class="lang-option" data-lang="id" role="option" aria-selected="false">Bahasa Indonesia</a>
+      </div>
+    </div>
+  </div>
+
   <header class="section-sm" style="border-bottom: 1px solid var(--border);">
     <div class="mx-auto max-w-5xl px-6">
       <nav class="flex items-center gap-2 text-sm text-secondary">
@@ -59,8 +81,8 @@
 
   <main class="section">
     <div class="mx-auto max-w-5xl px-6">
-      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);">Integrations</h1>
-      <p class="mt-3 text-secondary text-lg leading-relaxed max-w-2xl">ChartPane works with any MCP-compatible client. Pick your platform for a detailed setup guide.</p>
+      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);" data-i18n="int_hub.h1">Integrations</h1>
+      <p class="mt-3 text-secondary text-lg leading-relaxed max-w-2xl" data-i18n="int_hub.subheadline">ChartPane works with any MCP-compatible client. Pick your platform for a detailed setup guide.</p>
 
       <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
@@ -68,8 +90,8 @@
           <div class="text-2xl mb-3">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           </div>
-          <h2 class="text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);">Claude Desktop</h2>
-          <p class="mt-2 text-sm text-secondary">Native MCP App support with inline chart rendering. The most complete ChartPane experience.</p>
+          <h2 class="text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);" data-i18n="int_hub.card_claude_title">Claude Desktop</h2>
+          <p class="mt-2 text-sm text-secondary" data-i18n="int_hub.card_claude_desc">Native MCP App support with inline chart rendering. The most complete ChartPane experience.</p>
         </a>
 
         <div class="chart-container p-6" style="opacity: 0.5;">
@@ -99,7 +121,7 @@
       </div>
 
       <div class="mt-16">
-        <h2 class="text-xl font-semibold" style="color: var(--text);">Any MCP client</h2>
+        <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="int_hub.h2_any_client">Any MCP client</h2>
         <p class="mt-3 text-secondary leading-relaxed">Don't see your client listed? ChartPane works with any app that supports the <a href="/what-is-an-mcp-app.html" class="underline hover:text-[var(--accent)]">Model Context Protocol</a>. Add this server URL in your client's MCP settings:</p>
         <div class="mt-4 code-block text-left">
           <pre class="font-mono select-all"><code>https://mcp.chartpane.com/mcp</code></pre>
@@ -117,11 +139,11 @@
         <span class="font-semibold" style="color: var(--text);">ChartPane</span>
       </div>
       <div class="flex items-center gap-6 text-sm text-secondary">
-        <a href="/" class="hover:text-[var(--accent)] transition-colors">Home</a>
-        <a href="/examples/" class="hover:text-[var(--accent)] transition-colors">Examples</a>
-        <a href="/charts/" class="hover:text-[var(--accent)] transition-colors">Charts</a>
-        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors">Privacy</a>
-        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors">Terms</a>
+        <a href="/" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.home">Home</a>
+        <a href="/examples/" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.examples">Examples</a>
+        <a href="/charts/" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.charts">Charts</a>
+        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.privacy">Privacy</a>
+        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.terms">Terms</a>
       </div>
     </div>
   </footer>

@@ -81,6 +81,28 @@
 </head>
 <body class="font-sans antialiased">
 
+  <!-- Language Switcher -->
+  <div class="lang-nav">
+    <div class="lang-switcher" id="lang-switcher">
+      <button class="lang-trigger" id="lang-trigger" type="button" aria-label="Select language" aria-expanded="false" aria-haspopup="listbox">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="lang-current-label">EN</span>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Select language">
+        <a href="/examples/budget-tracker.html" class="lang-option lang-option-active" data-lang="en" role="option" aria-selected="true">English</a>
+        <a href="/zh/examples/budget-tracker.html" class="lang-option" data-lang="zh" role="option" aria-selected="false">中文</a>
+        <a href="/hi/examples/budget-tracker.html" class="lang-option" data-lang="hi" role="option" aria-selected="false">हिन्दी</a>
+        <a href="/es/examples/budget-tracker.html" class="lang-option" data-lang="es" role="option" aria-selected="false">Español</a>
+        <a href="/fr/examples/budget-tracker.html" class="lang-option" data-lang="fr" role="option" aria-selected="false">Français</a>
+        <a href="/ar/examples/budget-tracker.html" class="lang-option" data-lang="ar" role="option" aria-selected="false">العربية</a>
+        <a href="/bn/examples/budget-tracker.html" class="lang-option" data-lang="bn" role="option" aria-selected="false">বাংলা</a>
+        <a href="/ru/examples/budget-tracker.html" class="lang-option" data-lang="ru" role="option" aria-selected="false">Русский</a>
+        <a href="/pt/examples/budget-tracker.html" class="lang-option" data-lang="pt" role="option" aria-selected="false">Português</a>
+        <a href="/id/examples/budget-tracker.html" class="lang-option" data-lang="id" role="option" aria-selected="false">Bahasa Indonesia</a>
+      </div>
+    </div>
+  </div>
+
   <header class="section-sm" style="border-bottom: 1px solid var(--border);">
     <div class="mx-auto max-w-3xl px-6">
       <nav class="flex items-center gap-2 text-sm text-secondary">
@@ -98,14 +120,14 @@
 
   <main class="section">
     <div class="mx-auto max-w-3xl px-6">
-      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);">Budget Tracker</h1>
-      <p class="mt-3 text-secondary text-lg leading-relaxed">A three-chart dashboard showing spending by category, budget vs actual comparison, and monthly spending trends. The kind of view you'd want when reviewing where the money actually went.</p>
+      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);" data-i18n="ex_budget.h1">Budget Tracker</h1>
+      <p class="mt-3 text-secondary text-lg leading-relaxed" data-i18n="ex_budget.subheadline">A three-chart dashboard showing spending by category, budget vs actual comparison, and monthly spending trends. The kind of view you'd want when reviewing where the money actually went.</p>
 
       <div class="mt-10 space-y-10">
 
         <!-- Scenario -->
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">The scenario</h2>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="ex_budget.h2_scenario">The scenario</h2>
           <p class="mt-3 text-secondary leading-relaxed">
             You've got a monthly budget split across housing, food, transport, and other categories. You want to see where you overspent, what the overall breakdown looks like, and how this month compares to previous months.
           </p>
@@ -116,7 +138,7 @@
 
         <!-- Charts -->
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">The charts</h2>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="ex_budget.h2_charts">The charts</h2>
           <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div class="chart-container" style="height: 260px;">
               <canvas id="budget-breakdown"></canvas>
@@ -132,7 +154,7 @@
 
         <!-- The data -->
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">The data</h2>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="ex_budget.h2_data">The data</h2>
           <p class="mt-3 text-secondary leading-relaxed">Fictional monthly budget for a household of two. Swap in your own categories and numbers.</p>
           <div class="mt-4 code-block">
             <pre style="color: var(--text-secondary); font-size: 0.8125rem; line-height: 1.7;">Budget vs actual (monthly, USD):
@@ -150,8 +172,8 @@ Monthly total spending (Jan–Jun): $4,950 / $5,100 / $4,780 / $5,230 / $5,120 /
 
         <!-- The prompt -->
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">The prompt</h2>
-          <p class="mt-3 text-secondary leading-relaxed">Here's a prompt that produces the dashboard above:</p>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="ex_budget.h2_prompt">The prompt</h2>
+          <p class="mt-3 text-secondary leading-relaxed" data-i18n="ex_budget.p_prompt">Here's a prompt that produces the dashboard above:</p>
           <div class="mt-4 code-block">
             <pre style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.7;">Create a budget tracker dashboard with 3 charts:
 
@@ -169,7 +191,7 @@ Monthly total spending (Jan–Jun): $4,950 / $5,100 / $4,780 / $5,230 / $5,120 /
 
         <!-- Variations -->
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">Variations to try</h2>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="ex_budget.h2_variations">Variations to try</h2>
           <ul class="mt-3 space-y-2 text-secondary leading-relaxed list-disc list-inside">
             <li>Year-to-date view: "Show cumulative spending vs budget target as a line chart across 12 months"</li>
             <li>Category deep-dive: "Break down Food into groceries, restaurants, and coffee shops"</li>
@@ -180,7 +202,7 @@ Monthly total spending (Jan–Jun): $4,950 / $5,100 / $4,780 / $5,230 / $5,120 /
 
         <!-- Chart types used -->
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">Chart types used</h2>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="ex_budget.h2_chart_types">Chart types used</h2>
           <div class="mt-4 flex flex-wrap gap-3">
             <a href="/charts/doughnut-chart.html" class="btn-secondary text-sm">Doughnut Chart</a>
             <a href="/charts/bar-chart.html" class="btn-secondary text-sm">Bar Chart</a>
@@ -190,8 +212,8 @@ Monthly total spending (Jan–Jun): $4,950 / $5,100 / $4,780 / $5,230 / $5,120 /
 
         <!-- CTA -->
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">Visualize your budget</h2>
-          <p class="mt-3 text-secondary leading-relaxed">Paste your budget data into Claude and describe the charts you want. ChartPane handles the rest.</p>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="ex_budget.h2_cta">Visualize your budget</h2>
+          <p class="mt-3 text-secondary leading-relaxed" data-i18n="ex_budget.p_cta">Paste your budget data into Claude and describe the charts you want. ChartPane handles the rest.</p>
           <div class="mt-6">
             <a href="/#get-started" class="btn-primary">Get started with ChartPane</a>
           </div>
@@ -208,11 +230,11 @@ Monthly total spending (Jan–Jun): $4,950 / $5,100 / $4,780 / $5,230 / $5,120 /
         <span class="font-semibold" style="color: var(--text);">ChartPane</span>
       </div>
       <div class="flex items-center gap-6 text-sm text-secondary">
-        <a href="/" class="hover:text-[var(--accent)] transition-colors">Home</a>
-        <a href="/examples/" class="hover:text-[var(--accent)] transition-colors">Examples</a>
-        <a href="/charts/" class="hover:text-[var(--accent)] transition-colors">Charts</a>
-        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors">Privacy</a>
-        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors">Terms</a>
+        <a href="/" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.home">Home</a>
+        <a href="/examples/" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.examples">Examples</a>
+        <a href="/charts/" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.charts">Charts</a>
+        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.privacy">Privacy</a>
+        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.terms">Terms</a>
       </div>
     </div>
   </footer>

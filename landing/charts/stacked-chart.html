@@ -48,6 +48,28 @@
 </head>
 <body class="font-sans antialiased">
 
+  <!-- Language Switcher -->
+  <div class="lang-nav">
+    <div class="lang-switcher" id="lang-switcher">
+      <button class="lang-trigger" id="lang-trigger" type="button" aria-label="Select language" aria-expanded="false" aria-haspopup="listbox">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="lang-current-label">EN</span>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Select language">
+        <a href="/charts/stacked-chart.html" class="lang-option lang-option-active" data-lang="en" role="option" aria-selected="true">English</a>
+        <a href="/zh/charts/stacked-chart.html" class="lang-option" data-lang="zh" role="option" aria-selected="false">中文</a>
+        <a href="/hi/charts/stacked-chart.html" class="lang-option" data-lang="hi" role="option" aria-selected="false">हिन्दी</a>
+        <a href="/es/charts/stacked-chart.html" class="lang-option" data-lang="es" role="option" aria-selected="false">Español</a>
+        <a href="/fr/charts/stacked-chart.html" class="lang-option" data-lang="fr" role="option" aria-selected="false">Français</a>
+        <a href="/ar/charts/stacked-chart.html" class="lang-option" data-lang="ar" role="option" aria-selected="false">العربية</a>
+        <a href="/bn/charts/stacked-chart.html" class="lang-option" data-lang="bn" role="option" aria-selected="false">বাংলা</a>
+        <a href="/ru/charts/stacked-chart.html" class="lang-option" data-lang="ru" role="option" aria-selected="false">Русский</a>
+        <a href="/pt/charts/stacked-chart.html" class="lang-option" data-lang="pt" role="option" aria-selected="false">Português</a>
+        <a href="/id/charts/stacked-chart.html" class="lang-option" data-lang="id" role="option" aria-selected="false">Bahasa Indonesia</a>
+      </div>
+    </div>
+  </div>
+
   <header class="section-sm" style="border-bottom: 1px solid var(--border);">
     <div class="mx-auto max-w-3xl px-6">
       <nav class="flex items-center gap-2 text-sm text-secondary">
@@ -56,74 +78,74 @@
           <span class="font-semibold" style="color: var(--text);">ChartPane</span>
         </a>
         <span>/</span>
-        <a href="/charts/" class="hover:text-[var(--text)] transition-colors">Charts</a>
+        <a href="/charts/" class="hover:text-[var(--text)] transition-colors" data-i18n="nav.charts">Charts</a>
         <span>/</span>
-        <span style="color: var(--text);">Stacked Chart</span>
+        <span style="color: var(--text);" data-i18n="charts_stacked.h1">Stacked Chart</span>
       </nav>
     </div>
   </header>
 
   <main class="section">
     <div class="mx-auto max-w-3xl px-6">
-      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);">Stacked Chart</h1>
-      <p class="mt-3 text-secondary text-lg leading-relaxed">Show both individual and total values by stacking multiple datasets on top of each other.</p>
+      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);" data-i18n="charts_stacked.h1">Stacked Chart</h1>
+      <p class="mt-3 text-secondary text-lg leading-relaxed" data-i18n="charts_stacked.subheadline">Show both individual and total values by stacking multiple datasets on top of each other.</p>
 
       <div class="mt-10 space-y-10">
 
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">What is a stacked chart?</h2>
-          <p class="mt-3 text-secondary leading-relaxed">
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="charts_stacked.h2_what">What is a stacked chart?</h2>
+          <p class="mt-3 text-secondary leading-relaxed" data-i18n="charts_stacked.p_what_1">
             A stacked chart places multiple data series on top of each other within the same bar or area. Each segment shows one component, and the total height or area represents the sum. This lets you see both the overall total and the individual contributions in a single view.
           </p>
-          <p class="mt-3 text-secondary leading-relaxed">
+          <p class="mt-3 text-secondary leading-relaxed" data-i18n="charts_stacked.p_what_2">
             Stacking works with both bar charts and area charts. Stacked bar charts are more common for comparing category totals, while stacked area charts are used to show how composition changes over time. A 100% stacked variant normalizes everything to percentages, making it easy to compare proportions even when totals differ.
           </p>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">When to use a stacked chart</h2>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="charts_stacked.h2_when">When to use a stacked chart</h2>
           <ul class="mt-3 space-y-2 text-secondary leading-relaxed list-disc list-inside">
-            <li>Showing how parts contribute to a total (revenue by channel, budget by department)</li>
-            <li>Comparing totals across categories while seeing the breakdown</li>
-            <li>Tracking how composition changes over time (traffic sources by month)</li>
-            <li>When the total matters as much as individual components</li>
-            <li>Using 100% stacked to compare proportions when absolute values vary widely</li>
+            <li data-i18n="charts_stacked.when_1">Showing how parts contribute to a total (revenue by channel, budget by department)</li>
+            <li data-i18n="charts_stacked.when_2">Comparing totals across categories while seeing the breakdown</li>
+            <li data-i18n="charts_stacked.when_3">Tracking how composition changes over time (traffic sources by month)</li>
+            <li data-i18n="charts_stacked.when_4">When the total matters as much as individual components</li>
+            <li data-i18n="charts_stacked.when_5">Using 100% stacked to compare proportions when absolute values vary widely</li>
           </ul>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">Best practices</h2>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="charts_stacked.h2_best_practices">Best practices</h2>
           <ul class="mt-3 space-y-2 text-secondary leading-relaxed list-disc list-inside">
-            <li>Limit to 3-5 stacked segments; more becomes hard to read</li>
-            <li>Put the most important or largest segment at the bottom</li>
-            <li>Use consistent colors across time periods for the same category</li>
-            <li>Add data labels or tooltips so exact values are accessible</li>
-            <li>Consider a grouped bar chart instead if comparing individual segment values is more important than totals</li>
-            <li>Use 100% stacked when the story is about proportion, not absolute values</li>
+            <li data-i18n="charts_stacked.best_1">Limit to 3-5 stacked segments; more becomes hard to read</li>
+            <li data-i18n="charts_stacked.best_2">Put the most important or largest segment at the bottom</li>
+            <li data-i18n="charts_stacked.best_3">Use consistent colors across time periods for the same category</li>
+            <li data-i18n="charts_stacked.best_4">Add data labels or tooltips so exact values are accessible</li>
+            <li data-i18n="charts_stacked.best_5">Consider a grouped bar chart instead if comparing individual segment values is more important than totals</li>
+            <li data-i18n="charts_stacked.best_6">Use 100% stacked when the story is about proportion, not absolute values</li>
           </ul>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">Example</h2>
-          <p class="mt-3 text-secondary leading-relaxed">Quarterly revenue broken down by sales channel, showing both individual channel performance and total growth.</p>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="charts_stacked.h2_example">Example</h2>
+          <p class="mt-3 text-secondary leading-relaxed" data-i18n="charts_stacked.p_example">Quarterly revenue broken down by sales channel, showing both individual channel performance and total growth.</p>
           <div class="mt-6 chart-container" style="height: 340px;">
             <canvas id="chartpage-stacked"></canvas>
           </div>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">Make this in Claude</h2>
-          <p class="mt-3 text-secondary leading-relaxed">With ChartPane installed, just describe what you want:</p>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="charts_stacked.h2_make">Make this in Claude</h2>
+          <p class="mt-3 text-secondary leading-relaxed" data-i18n="charts_stacked.p_make">With ChartPane installed, just describe what you want:</p>
           <div class="mt-4 code-block">
             <pre style="color: var(--text-secondary);">Show quarterly revenue by channel as a stacked bar chart: Direct Sales (120k, 150k, 180k, 220k), Online Store (80k, 110k, 140k, 170k), Partners (40k, 60k, 80k, 100k)</pre>
           </div>
           <div class="mt-6">
-            <a href="/#get-started" class="btn-primary">Get started with ChartPane</a>
+            <a href="/#get-started" class="btn-primary" data-i18n="charts_stacked.cta">Get started with ChartPane</a>
           </div>
         </section>
 
         <section>
-          <h2 class="text-xl font-semibold" style="color: var(--text);">Related chart types</h2>
+          <h2 class="text-xl font-semibold" style="color: var(--text);" data-i18n="charts_stacked.h2_related">Related chart types</h2>
           <div class="mt-4 flex flex-wrap gap-3">
             <a href="/charts/bar-chart.html" class="btn-secondary text-sm">Bar Chart</a>
             <a href="/charts/area-chart.html" class="btn-secondary text-sm">Area Chart</a>
@@ -142,10 +164,10 @@
         <span class="font-semibold" style="color: var(--text);">ChartPane</span>
       </div>
       <div class="flex items-center gap-6 text-sm text-secondary">
-        <a href="/" class="hover:text-[var(--accent)] transition-colors">Home</a>
-        <a href="/charts/" class="hover:text-[var(--accent)] transition-colors">Charts</a>
-        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors">Privacy</a>
-        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors">Terms</a>
+        <a href="/" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.home">Home</a>
+        <a href="/charts/" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.charts">Charts</a>
+        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.privacy">Privacy</a>
+        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.terms">Terms</a>
       </div>
     </div>
   </footer>

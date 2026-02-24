@@ -44,6 +44,28 @@
 </head>
 <body class="font-sans antialiased">
 
+  <!-- Language Switcher -->
+  <div class="lang-nav">
+    <div class="lang-switcher" id="lang-switcher">
+      <button class="lang-trigger" id="lang-trigger" type="button" aria-label="Select language" aria-expanded="false" aria-haspopup="listbox">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="lang-current-label">EN</span>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Select language">
+        <a href="/charts/" class="lang-option lang-option-active" data-lang="en" role="option" aria-selected="true">English</a>
+        <a href="/zh/charts/" class="lang-option" data-lang="zh" role="option" aria-selected="false">中文</a>
+        <a href="/hi/charts/" class="lang-option" data-lang="hi" role="option" aria-selected="false">हिन्दी</a>
+        <a href="/es/charts/" class="lang-option" data-lang="es" role="option" aria-selected="false">Español</a>
+        <a href="/fr/charts/" class="lang-option" data-lang="fr" role="option" aria-selected="false">Français</a>
+        <a href="/ar/charts/" class="lang-option" data-lang="ar" role="option" aria-selected="false">العربية</a>
+        <a href="/bn/charts/" class="lang-option" data-lang="bn" role="option" aria-selected="false">বাংলা</a>
+        <a href="/ru/charts/" class="lang-option" data-lang="ru" role="option" aria-selected="false">Русский</a>
+        <a href="/pt/charts/" class="lang-option" data-lang="pt" role="option" aria-selected="false">Português</a>
+        <a href="/id/charts/" class="lang-option" data-lang="id" role="option" aria-selected="false">Bahasa Indonesia</a>
+      </div>
+    </div>
+  </div>
+
   <header class="section-sm" style="border-bottom: 1px solid var(--border);">
     <div class="mx-auto max-w-5xl px-6">
       <nav class="flex items-center gap-2 text-sm text-secondary">
@@ -59,8 +81,8 @@
 
   <main class="section">
     <div class="mx-auto max-w-5xl px-6">
-      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);">Types of Charts</h1>
-      <p class="mt-3 text-secondary text-lg leading-relaxed max-w-2xl">Every chart type ChartPane supports, with interactive examples and practical guidance on when to use each one.</p>
+      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);" data-i18n="charts_hub.h1">Types of Charts</h1>
+      <p class="mt-3 text-secondary text-lg leading-relaxed max-w-2xl" data-i18n="charts_hub.subheadline">Every chart type ChartPane supports, with interactive examples and practical guidance on when to use each one.</p>
 
       <div class="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
 
@@ -68,72 +90,72 @@
           <div class="chart-container transition-all group-hover:border-[var(--accent)]" style="height: 200px;">
             <canvas id="hub-bar"></canvas>
           </div>
-          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);">Bar Chart</h2>
-          <p class="mt-1 text-sm text-secondary">Compare values across categories</p>
+          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);" data-i18n="charts_hub.card_bar_title">Bar Chart</h2>
+          <p class="mt-1 text-sm text-secondary" data-i18n="charts_hub.card_bar_desc">Compare values across categories</p>
         </a>
 
         <a href="/charts/line-chart.html" class="group block">
           <div class="chart-container transition-all group-hover:border-[var(--accent)]" style="height: 200px;">
             <canvas id="hub-line"></canvas>
           </div>
-          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);">Line Chart</h2>
-          <p class="mt-1 text-sm text-secondary">Show trends over time</p>
+          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);" data-i18n="charts_hub.card_line_title">Line Chart</h2>
+          <p class="mt-1 text-sm text-secondary" data-i18n="charts_hub.card_line_desc">Show trends over time</p>
         </a>
 
         <a href="/charts/area-chart.html" class="group block">
           <div class="chart-container transition-all group-hover:border-[var(--accent)]" style="height: 200px;">
             <canvas id="hub-area"></canvas>
           </div>
-          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);">Area Chart</h2>
-          <p class="mt-1 text-sm text-secondary">Emphasize volume and magnitude</p>
+          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);" data-i18n="charts_hub.card_area_title">Area Chart</h2>
+          <p class="mt-1 text-sm text-secondary" data-i18n="charts_hub.card_area_desc">Emphasize volume and magnitude</p>
         </a>
 
         <a href="/charts/pie-chart.html" class="group block">
           <div class="chart-container transition-all group-hover:border-[var(--accent)]" style="height: 200px;">
             <canvas id="hub-pie"></canvas>
           </div>
-          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);">Pie Chart</h2>
-          <p class="mt-1 text-sm text-secondary">Show parts of a whole</p>
+          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);" data-i18n="charts_hub.card_pie_title">Pie Chart</h2>
+          <p class="mt-1 text-sm text-secondary" data-i18n="charts_hub.card_pie_desc">Show parts of a whole</p>
         </a>
 
         <a href="/charts/doughnut-chart.html" class="group block">
           <div class="chart-container transition-all group-hover:border-[var(--accent)]" style="height: 200px;">
             <canvas id="hub-doughnut"></canvas>
           </div>
-          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);">Doughnut Chart</h2>
-          <p class="mt-1 text-sm text-secondary">Modern ring-shaped proportions</p>
+          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);" data-i18n="charts_hub.card_doughnut_title">Doughnut Chart</h2>
+          <p class="mt-1 text-sm text-secondary" data-i18n="charts_hub.card_doughnut_desc">Modern ring-shaped proportions</p>
         </a>
 
         <a href="/charts/scatter-plot.html" class="group block">
           <div class="chart-container transition-all group-hover:border-[var(--accent)]" style="height: 200px;">
             <canvas id="hub-scatter"></canvas>
           </div>
-          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);">Scatter Plot</h2>
-          <p class="mt-1 text-sm text-secondary">Reveal correlations and outliers</p>
+          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);" data-i18n="charts_hub.card_scatter_title">Scatter Plot</h2>
+          <p class="mt-1 text-sm text-secondary" data-i18n="charts_hub.card_scatter_desc">Reveal correlations and outliers</p>
         </a>
 
         <a href="/charts/radar-chart.html" class="group block">
           <div class="chart-container transition-all group-hover:border-[var(--accent)]" style="height: 200px;">
             <canvas id="hub-radar"></canvas>
           </div>
-          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);">Radar Chart</h2>
-          <p class="mt-1 text-sm text-secondary">Compare multiple dimensions</p>
+          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);" data-i18n="charts_hub.card_radar_title">Radar Chart</h2>
+          <p class="mt-1 text-sm text-secondary" data-i18n="charts_hub.card_radar_desc">Compare multiple dimensions</p>
         </a>
 
         <a href="/charts/stacked-chart.html" class="group block">
           <div class="chart-container transition-all group-hover:border-[var(--accent)]" style="height: 200px;">
             <canvas id="hub-stacked"></canvas>
           </div>
-          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);">Stacked Chart</h2>
-          <p class="mt-1 text-sm text-secondary">Parts and totals together</p>
+          <h2 class="mt-3 text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);" data-i18n="charts_hub.card_stacked_title">Stacked Chart</h2>
+          <p class="mt-1 text-sm text-secondary" data-i18n="charts_hub.card_stacked_desc">Parts and totals together</p>
         </a>
 
       </div>
 
       <div class="mt-16 text-center">
-        <p class="text-secondary text-lg">Create any of these charts by describing your data in plain English.</p>
+        <p class="text-secondary text-lg" data-i18n="charts_hub.cta_desc">Create any of these charts by describing your data in plain English.</p>
         <div class="mt-6">
-          <a href="/#get-started" class="btn-primary">Get started with ChartPane</a>
+          <a href="/#get-started" class="btn-primary" data-i18n="charts_hub.cta">Get started with ChartPane</a>
         </div>
       </div>
 
@@ -147,10 +169,10 @@
         <span class="font-semibold" style="color: var(--text);">ChartPane</span>
       </div>
       <div class="flex items-center gap-6 text-sm text-secondary">
-        <a href="/" class="hover:text-[var(--accent)] transition-colors">Home</a>
-        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors">Privacy</a>
-        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors">Terms</a>
-        <a href="mailto:support@chartpane.com" class="hover:text-[var(--accent)] transition-colors">Support</a>
+        <a href="/" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.home">Home</a>
+        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.privacy">Privacy</a>
+        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.terms">Terms</a>
+        <a href="mailto:support@chartpane.com" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.support">Support</a>
       </div>
     </div>
   </footer>

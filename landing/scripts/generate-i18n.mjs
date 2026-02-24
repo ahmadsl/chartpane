@@ -1,21 +1,22 @@
 /**
  * generate-i18n.mjs — BUILD-TIME SCRIPT (not browser code)
  *
- * Post-build script that stamps translated versions of dist/index.html.
+ * Post-build script that stamps translated versions of every dist/ page.
  * Run automatically via Vite's closeBundle hook (see vite.config.js).
  *
- * Security note: innerHTML usage here is safe — this is Node.js build code
- * that only processes our own controlled i18n JSON files, not user input.
- * node-html-parser's .innerHTML is a string setter on a server-side DOM object,
- * not a browser DOM. No XSS risk applies to build-time HTML generation.
+ * Security note: The setContent helper below sets el.innerHTML, which is safe
+ * in this context because: (a) this is Node.js build code, not browser code;
+ * (b) node-html-parser's innerHTML is a string setter on a server-side AST,
+ * not a live browser DOM — XSS doesn't apply; (c) all values come exclusively
+ * from our own controlled i18n JSON source files, never from user input.
  *
- * For each non-English locale:
- *   1. Reads dist/index.html
+ * For each page × non-English locale:
+ *   1. Reads dist/<page>
  *   2. Applies translations (data-i18n / data-i18n-attr attributes)
  *   3. Updates meta tags, canonical, html[lang], hreflang links
- *   4. Writes to dist/[locale]/index.html
+ *   4. Writes to dist/[locale]/<page>
  *
- * Also patches dist/index.html (English) with hreflang alternate links.
+ * Also patches each English dist page with hreflang alternate links.
  */
 
 import { readFile, writeFile, mkdir } from 'fs/promises';
@@ -35,23 +36,180 @@ const LANG_LABELS = {
   ar: 'AR', bn: 'BN', ru: 'RU', pt: 'PT', id: 'ID',
 };
 
-const ALL_LOCALE_HREFS = [
-  { hreflang: 'x-default', href: 'https://chartpane.com/' },
-  { hreflang: 'en',        href: 'https://chartpane.com/' },
-  { hreflang: 'zh',        href: 'https://chartpane.com/zh/' },
-  { hreflang: 'hi',        href: 'https://chartpane.com/hi/' },
-  { hreflang: 'es',        href: 'https://chartpane.com/es/' },
-  { hreflang: 'fr',        href: 'https://chartpane.com/fr/' },
-  { hreflang: 'ar',        href: 'https://chartpane.com/ar/' },
-  { hreflang: 'bn',        href: 'https://chartpane.com/bn/' },
-  { hreflang: 'ru',        href: 'https://chartpane.com/ru/' },
-  { hreflang: 'pt',        href: 'https://chartpane.com/pt/' },
-  { hreflang: 'id',        href: 'https://chartpane.com/id/' },
+/**
+ * All pages to process. Each entry:
+ *   src          — path relative to dist/
+ *   prefix       — key prefix in i18n JSON (e.g. 'gs.' → keys like 'gs.meta.title')
+ *                  Empty string for index.html (keys like 'meta.title')
+ *   out(locale)  — output path relative to dist/
+ *   canonicalEn  — canonical URL for the English version
+ *   canonicalLocale(locale) — canonical URL for a locale version
+ */
+const PAGES = [
+  {
+    src: 'index.html',
+    prefix: '',
+    out: (l) => `${l}/index.html`,
+    canonicalEn: 'https://chartpane.com/',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/`,
+  },
+  {
+    src: 'getting-started.html',
+    prefix: 'gs.',
+    out: (l) => `${l}/getting-started.html`,
+    canonicalEn: 'https://chartpane.com/getting-started.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/getting-started.html`,
+  },
+  {
+    src: 'what-is-an-mcp-app.html',
+    prefix: 'mcp.',
+    out: (l) => `${l}/what-is-an-mcp-app.html`,
+    canonicalEn: 'https://chartpane.com/what-is-an-mcp-app.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/what-is-an-mcp-app.html`,
+  },
+  {
+    src: 'privacy.html',
+    prefix: 'privacy.',
+    out: (l) => `${l}/privacy.html`,
+    canonicalEn: 'https://chartpane.com/privacy.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/privacy.html`,
+  },
+  {
+    src: 'terms.html',
+    prefix: 'terms.',
+    out: (l) => `${l}/terms.html`,
+    canonicalEn: 'https://chartpane.com/terms.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/terms.html`,
+  },
+  {
+    src: 'charts/index.html',
+    prefix: 'charts_hub.',
+    out: (l) => `${l}/charts/index.html`,
+    canonicalEn: 'https://chartpane.com/charts/',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/charts/`,
+  },
+  {
+    src: 'charts/bar-chart.html',
+    prefix: 'charts_bar.',
+    out: (l) => `${l}/charts/bar-chart.html`,
+    canonicalEn: 'https://chartpane.com/charts/bar-chart.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/charts/bar-chart.html`,
+  },
+  {
+    src: 'charts/line-chart.html',
+    prefix: 'charts_line.',
+    out: (l) => `${l}/charts/line-chart.html`,
+    canonicalEn: 'https://chartpane.com/charts/line-chart.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/charts/line-chart.html`,
+  },
+  {
+    src: 'charts/area-chart.html',
+    prefix: 'charts_area.',
+    out: (l) => `${l}/charts/area-chart.html`,
+    canonicalEn: 'https://chartpane.com/charts/area-chart.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/charts/area-chart.html`,
+  },
+  {
+    src: 'charts/pie-chart.html',
+    prefix: 'charts_pie.',
+    out: (l) => `${l}/charts/pie-chart.html`,
+    canonicalEn: 'https://chartpane.com/charts/pie-chart.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/charts/pie-chart.html`,
+  },
+  {
+    src: 'charts/doughnut-chart.html',
+    prefix: 'charts_doughnut.',
+    out: (l) => `${l}/charts/doughnut-chart.html`,
+    canonicalEn: 'https://chartpane.com/charts/doughnut-chart.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/charts/doughnut-chart.html`,
+  },
+  {
+    src: 'charts/scatter-plot.html',
+    prefix: 'charts_scatter.',
+    out: (l) => `${l}/charts/scatter-plot.html`,
+    canonicalEn: 'https://chartpane.com/charts/scatter-plot.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/charts/scatter-plot.html`,
+  },
+  {
+    src: 'charts/radar-chart.html',
+    prefix: 'charts_radar.',
+    out: (l) => `${l}/charts/radar-chart.html`,
+    canonicalEn: 'https://chartpane.com/charts/radar-chart.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/charts/radar-chart.html`,
+  },
+  {
+    src: 'charts/stacked-chart.html',
+    prefix: 'charts_stacked.',
+    out: (l) => `${l}/charts/stacked-chart.html`,
+    canonicalEn: 'https://chartpane.com/charts/stacked-chart.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/charts/stacked-chart.html`,
+  },
+  {
+    src: 'examples/index.html',
+    prefix: 'ex_hub.',
+    out: (l) => `${l}/examples/index.html`,
+    canonicalEn: 'https://chartpane.com/examples/',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/examples/`,
+  },
+  {
+    src: 'examples/sales-dashboard.html',
+    prefix: 'ex_sales.',
+    out: (l) => `${l}/examples/sales-dashboard.html`,
+    canonicalEn: 'https://chartpane.com/examples/sales-dashboard.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/examples/sales-dashboard.html`,
+  },
+  {
+    src: 'examples/survey-results.html',
+    prefix: 'ex_survey.',
+    out: (l) => `${l}/examples/survey-results.html`,
+    canonicalEn: 'https://chartpane.com/examples/survey-results.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/examples/survey-results.html`,
+  },
+  {
+    src: 'examples/budget-tracker.html',
+    prefix: 'ex_budget.',
+    out: (l) => `${l}/examples/budget-tracker.html`,
+    canonicalEn: 'https://chartpane.com/examples/budget-tracker.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/examples/budget-tracker.html`,
+  },
+  {
+    src: 'integrations/index.html',
+    prefix: 'int_hub.',
+    out: (l) => `${l}/integrations/index.html`,
+    canonicalEn: 'https://chartpane.com/integrations/',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/integrations/`,
+  },
+  {
+    src: 'integrations/claude-desktop.html',
+    prefix: 'int_claude.',
+    out: (l) => `${l}/integrations/claude-desktop.html`,
+    canonicalEn: 'https://chartpane.com/integrations/claude-desktop.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/integrations/claude-desktop.html`,
+  },
+  {
+    src: 'compare/index.html',
+    prefix: 'compare_hub.',
+    out: (l) => `${l}/compare/index.html`,
+    canonicalEn: 'https://chartpane.com/compare/',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/compare/`,
+  },
+  {
+    src: 'compare/claude-artifacts.html',
+    prefix: 'compare_artifacts.',
+    out: (l) => `${l}/compare/claude-artifacts.html`,
+    canonicalEn: 'https://chartpane.com/compare/claude-artifacts.html',
+    canonicalLocale: (l) => `https://chartpane.com/${l}/compare/claude-artifacts.html`,
+  },
 ];
 
-function buildHreflangHtml() {
-  return ALL_LOCALE_HREFS
-    .map(l => `  <link rel="alternate" hreflang="${l.hreflang}" href="${l.href}" />`)
+function buildPageHreflangHtml(page) {
+  const entries = [
+    { hreflang: 'x-default', href: page.canonicalEn },
+    { hreflang: 'en',        href: page.canonicalEn },
+    ...LOCALES.map(l => ({ hreflang: l, href: page.canonicalLocale(l) })),
+  ];
+  return entries
+    .map(e => `  <link rel="alternate" hreflang="${e.hreflang}" href="${e.href}" />`)
     .join('\n');
 }
 
@@ -67,9 +225,10 @@ function setContent(el, value) {
   el.innerHTML = value;
 }
 
-async function processLocale(templateHtml, locale) {
+async function processPage(templateHtml, locale, page) {
   const t = await loadTranslations(locale);
   const root = parse(templateHtml);
+  const p = page.prefix; // e.g. 'gs.' for getting-started, '' for index
 
   // ── html[lang] + optional dir ────────────────────────────────
   const htmlEl = root.querySelector('html');
@@ -84,41 +243,41 @@ async function processLocale(templateHtml, locale) {
 
   // ── <title> ──────────────────────────────────────────────────
   const titleEl = root.querySelector('title');
-  if (titleEl && t['meta.title']) {
-    setContent(titleEl, t['meta.title']);
+  if (titleEl && t[p + 'meta.title']) {
+    setContent(titleEl, t[p + 'meta.title']);
   }
 
   // ── <meta name="description"> ────────────────────────────────
   const metaDesc = root.querySelector('meta[name="description"]');
-  if (metaDesc && t['meta.description']) {
-    metaDesc.setAttribute('content', t['meta.description']);
+  if (metaDesc && t[p + 'meta.description']) {
+    metaDesc.setAttribute('content', t[p + 'meta.description']);
   }
 
   // ── Open Graph ───────────────────────────────────────────────
   const ogTitle = root.querySelector('meta[property="og:title"]');
-  if (ogTitle && t['meta.og_title']) ogTitle.setAttribute('content', t['meta.og_title']);
+  if (ogTitle && t[p + 'meta.og_title']) ogTitle.setAttribute('content', t[p + 'meta.og_title']);
 
   const ogDesc = root.querySelector('meta[property="og:description"]');
-  if (ogDesc && t['meta.og_description']) ogDesc.setAttribute('content', t['meta.og_description']);
+  if (ogDesc && t[p + 'meta.og_description']) ogDesc.setAttribute('content', t[p + 'meta.og_description']);
 
   const ogUrl = root.querySelector('meta[property="og:url"]');
-  if (ogUrl) ogUrl.setAttribute('content', `https://chartpane.com/${locale}/`);
+  if (ogUrl) ogUrl.setAttribute('content', page.canonicalLocale(locale));
 
   // ── Twitter Card ─────────────────────────────────────────────
   const twTitle = root.querySelector('meta[name="twitter:title"]');
-  if (twTitle && t['meta.twitter_title']) twTitle.setAttribute('content', t['meta.twitter_title']);
+  if (twTitle && t[p + 'meta.twitter_title']) twTitle.setAttribute('content', t[p + 'meta.twitter_title']);
 
   const twDesc = root.querySelector('meta[name="twitter:description"]');
-  if (twDesc && t['meta.twitter_description']) twDesc.setAttribute('content', t['meta.twitter_description']);
+  if (twDesc && t[p + 'meta.twitter_description']) twDesc.setAttribute('content', t[p + 'meta.twitter_description']);
 
   // ── Canonical ────────────────────────────────────────────────
   const canonical = root.querySelector('link[rel="canonical"]');
-  if (canonical) canonical.setAttribute('href', `https://chartpane.com/${locale}/`);
+  if (canonical) canonical.setAttribute('href', page.canonicalLocale(locale));
 
   // ── hreflang alternates ──────────────────────────────────────
   const head = root.querySelector('head');
   if (head) {
-    head.insertAdjacentHTML('beforeend', '\n' + buildHreflangHtml() + '\n');
+    head.insertAdjacentHTML('beforeend', '\n' + buildPageHreflangHtml(page) + '\n');
   }
 
   // ── data-i18n: replace element content (build-time, trusted values) ─
@@ -169,31 +328,40 @@ async function processLocale(templateHtml, locale) {
 export async function generateI18n() {
   console.log('[i18n] Generating locale pages...');
 
-  const templateHtml = await readFile(resolve(DIST, 'index.html'), 'utf-8');
-
-  // ── Patch dist/index.html (English) with hreflang ─────────────
-  const enRoot = parse(templateHtml);
-  const enHead = enRoot.querySelector('head');
-  if (enHead) {
-    enHead.insertAdjacentHTML('beforeend', '\n' + buildHreflangHtml() + '\n');
-  }
-  await writeFile(resolve(DIST, 'index.html'), enRoot.toString());
-  console.log('  [i18n] Patched dist/index.html with hreflang links');
-
-  // ── Generate one page per non-English locale ─────────────────
-  for (const locale of LOCALES) {
+  for (const page of PAGES) {
+    const srcPath = resolve(DIST, page.src);
+    let templateHtml;
     try {
-      const outDir = resolve(DIST, locale);
-      await mkdir(outDir, { recursive: true });
-      const html = await processLocale(templateHtml, locale);
-      await writeFile(resolve(outDir, 'index.html'), html);
-      console.log(`  [i18n] Generated dist/${locale}/index.html`);
+      templateHtml = await readFile(srcPath, 'utf-8');
     } catch (err) {
-      console.error(`  [i18n] ERROR generating ${locale}:`, err.message);
+      console.warn(`  [i18n] WARNING: could not read dist/${page.src}: ${err.message}`);
+      continue;
+    }
+
+    // ── Patch English dist file with hreflang links ────────────
+    const enRoot = parse(templateHtml);
+    const enHead = enRoot.querySelector('head');
+    if (enHead) {
+      enHead.insertAdjacentHTML('beforeend', '\n' + buildPageHreflangHtml(page) + '\n');
+    }
+    await writeFile(srcPath, enRoot.toString());
+    console.log(`  [i18n] Patched dist/${page.src} with hreflang links`);
+
+    // ── Generate one page per non-English locale ──────────────
+    for (const locale of LOCALES) {
+      try {
+        const outPath = resolve(DIST, page.out(locale));
+        await mkdir(dirname(outPath), { recursive: true });
+        const html = await processPage(templateHtml, locale, page);
+        await writeFile(outPath, html);
+        console.log(`  [i18n] Generated dist/${page.out(locale)}`);
+      } catch (err) {
+        console.error(`  [i18n] ERROR generating ${locale}/${page.src}:`, err.message);
+      }
     }
   }
 
-  console.log(`[i18n] Done — ${LOCALES.length} locale pages generated.`);
+  console.log(`[i18n] Done — ${PAGES.length} pages × ${LOCALES.length} locales.`);
 }
 
 // Allow running directly: node scripts/generate-i18n.mjs

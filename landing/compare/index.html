@@ -44,6 +44,28 @@
 </head>
 <body class="font-sans antialiased">
 
+  <!-- Language Switcher -->
+  <div class="lang-nav">
+    <div class="lang-switcher" id="lang-switcher">
+      <button class="lang-trigger" id="lang-trigger" type="button" aria-label="Select language" aria-expanded="false" aria-haspopup="listbox">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="lang-current-label">EN</span>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Select language">
+        <a href="/compare/" class="lang-option lang-option-active" data-lang="en" role="option" aria-selected="true">English</a>
+        <a href="/zh/compare/" class="lang-option" data-lang="zh" role="option" aria-selected="false">中文</a>
+        <a href="/hi/compare/" class="lang-option" data-lang="hi" role="option" aria-selected="false">हिन्दी</a>
+        <a href="/es/compare/" class="lang-option" data-lang="es" role="option" aria-selected="false">Español</a>
+        <a href="/fr/compare/" class="lang-option" data-lang="fr" role="option" aria-selected="false">Français</a>
+        <a href="/ar/compare/" class="lang-option" data-lang="ar" role="option" aria-selected="false">العربية</a>
+        <a href="/bn/compare/" class="lang-option" data-lang="bn" role="option" aria-selected="false">বাংলা</a>
+        <a href="/ru/compare/" class="lang-option" data-lang="ru" role="option" aria-selected="false">Русский</a>
+        <a href="/pt/compare/" class="lang-option" data-lang="pt" role="option" aria-selected="false">Português</a>
+        <a href="/id/compare/" class="lang-option" data-lang="id" role="option" aria-selected="false">Bahasa Indonesia</a>
+      </div>
+    </div>
+  </div>
+
   <header class="section-sm" style="border-bottom: 1px solid var(--border);">
     <div class="mx-auto max-w-5xl px-6">
       <nav class="flex items-center gap-2 text-sm text-secondary">
@@ -59,14 +81,14 @@
 
   <main class="section">
     <div class="mx-auto max-w-5xl px-6">
-      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);">Comparisons</h1>
-      <p class="mt-3 text-secondary text-lg leading-relaxed max-w-2xl">Different tools solve different problems. These comparisons lay out the trade-offs so you can pick what fits your workflow.</p>
+      <h1 class="text-3xl font-bold sm:text-4xl" style="color: var(--text);" data-i18n="compare_hub.h1">Comparisons</h1>
+      <p class="mt-3 text-secondary text-lg leading-relaxed max-w-2xl" data-i18n="compare_hub.subheadline">Different tools solve different problems. These comparisons lay out the trade-offs so you can pick what fits your workflow.</p>
 
       <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
         <a href="/compare/claude-artifacts.html" class="group block chart-container transition-all group-hover:border-[var(--accent)] p-6">
-          <h2 class="text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);">ChartPane vs Claude Artifacts</h2>
-          <p class="mt-2 text-sm text-secondary">Both live inside Claude, but they work differently. When to use which.</p>
+          <h2 class="text-lg font-semibold group-hover:text-[var(--accent)] transition-colors" style="color: var(--text);" data-i18n="compare_hub.card_artifacts_title">ChartPane vs Claude Artifacts</h2>
+          <p class="mt-2 text-sm text-secondary" data-i18n="compare_hub.card_artifacts_desc">Both live inside Claude, but they work differently. When to use which.</p>
         </a>
 
         <div class="chart-container p-6" style="opacity: 0.5;">
@@ -91,12 +113,12 @@
         <span class="font-semibold" style="color: var(--text);">ChartPane</span>
       </div>
       <div class="flex items-center gap-6 text-sm text-secondary">
-        <a href="/" class="hover:text-[var(--accent)] transition-colors">Home</a>
-        <a href="/examples/" class="hover:text-[var(--accent)] transition-colors">Examples</a>
-        <a href="/integrations/" class="hover:text-[var(--accent)] transition-colors">Integrations</a>
-        <a href="/charts/" class="hover:text-[var(--accent)] transition-colors">Charts</a>
-        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors">Privacy</a>
-        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors">Terms</a>
+        <a href="/" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.home">Home</a>
+        <a href="/examples/" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.examples">Examples</a>
+        <a href="/integrations/" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.integrations">Integrations</a>
+        <a href="/charts/" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.charts">Charts</a>
+        <a href="/privacy.html" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.privacy">Privacy</a>
+        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors" data-i18n="nav.terms">Terms</a>
       </div>
     </div>
   </footer>
