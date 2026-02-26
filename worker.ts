@@ -131,6 +131,17 @@ export default Sentry.withSentry(
         `[mcp] ${method} ${path}${rpcMethod ? ` → ${rpcMethod}` : ""}${sessionId ? ` [session=${sessionId.slice(0, 8)}]` : " [no-session]"}`,
       );
 
+      // Glama ownership claim
+      if (path === "/.well-known/glama.json") {
+        return Response.json(
+          {
+            $schema: "https://glama.ai/mcp/schemas/connector.json",
+            maintainers: [{ email: "ahmadsoory74@gmail.com" }],
+          },
+          { headers: { "Cache-Control": "public, max-age=86400" } },
+        );
+      }
+
       // Favicon — served for Google's favicon fetcher and browser tabs
       if (path === "/favicon.ico" || path === "/favicon.svg") {
         return new Response(
