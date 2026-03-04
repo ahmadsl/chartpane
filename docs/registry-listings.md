@@ -29,4 +29,5 @@ ChartPane is listed on the following MCP registries and directories.
 
 | Registry | Submit URL |
 |---|---|
+| Cursor MCP Servers | https://github.com/cursor/mcp-servers/issues/new?template=server-request.yml |
 | Docker MCP Catalog | https://github.com/docker/mcp-registry (needs Docker packaging) |
